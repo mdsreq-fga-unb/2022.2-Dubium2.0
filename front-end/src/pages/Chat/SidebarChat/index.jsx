@@ -18,6 +18,7 @@ export default function SidebarChat() {
   const [fotosUsuarios, setFotoUsuarios] = useState({})
   const socket = useContext(SocketContext);
   const [showMenu, setShowMenu] = useState({});
+  const [optionSidebar, setOptionSidebar] = useState(false)
 
 
   useEffect(() => {
@@ -135,7 +136,15 @@ export default function SidebarChat() {
 
   return token && usuario && chats && (
     <div className="containerSidebar">
-      {chats.map((chat, index) => {
+      <div className="headerSidebar">
+        <div onClick={() => { setOptionSidebar(false) }}>
+          Conversas
+        </div>
+        <div onClick={() => { setOptionSidebar(true) }}>
+          Ver arquivados
+        </div>
+      </div>
+      {!optionSidebar && chats.map((chat, index) => {
         return (
           <div className="index"
             key={index}
@@ -206,29 +215,32 @@ export default function SidebarChat() {
             {!chat.privado && <div className="sidebarItemChat"><div className="iconeSala">{<GroupsIcon style={{ fontSize: '40px' }} />}</div>{
               chat.nome}</div>}
           </Link>
+            <div>
+              <DensityMediumIcon className="densityMediumIcon"
+                onClick={(e) => {
+                  e.preventDefault(e);
+                  setShowMenu((prevShowMenu) => ({
+                    ...prevShowMenu,
+                    [chat._id]: !prevShowMenu[chat._id],
+                  }));
+                }}
+              />
 
-            <DensityMediumIcon className="densityMediumIcon"
-              onClick={(e) => {
-                e.preventDefault(e);
-                setShowMenu((prevShowMenu) => ({
-                  ...prevShowMenu,
-                  [chat._id]: !prevShowMenu[chat._id],
-                }));
-              }}
-            />
-
-            {showMenu[chat._id] && (
-              <div className="deleteForeverIcon">
-                <center><DeleteForeverIcon />  </center>Excluir
-                
-              
-              </div>
-            )}
-          
+              {showMenu[chat._id] && (
+                <div className="deleteForeverIcon"
+                  onClick={() => {
+                    console.log(chat._id)
+                  }}
+                >
+                  <center><DeleteForeverIcon />  </center>Excluir
+                </div>
+              )}
+            </div>          
           </div>
         );
       })}
     </div>
+    
     
   );
 }

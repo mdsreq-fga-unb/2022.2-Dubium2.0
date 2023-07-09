@@ -66,8 +66,13 @@
   position: absolute;
   margin-inline-start: 84%;
   margin-top: -18%;
-  
+}
 
+.densityMediumIcon:hover{
+  cursor: pointer;
+}
+.deleteForeverIcon:hover{
+  cursor: pointer;
 }
 
 .deleteForeverIcon{
@@ -81,5 +86,15 @@
 }
 
 
+.headerSidebar{
+  display: flex;
+  border: solid black 1px;
+}
 
+.headerSidebar div{
+  flex: 1;
+}
 
+.headerSidebar div:hover{
+  cursor: pointer;
+}

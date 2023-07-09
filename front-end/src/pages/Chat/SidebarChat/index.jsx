@@ -8,7 +8,7 @@ import { SocketContext } from "../../../context/Socket";
 import React from "react";
 import GroupsIcon from '@mui/icons-material/Groups';
 import PersonIcon from "@mui/icons-material/Person";
-import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import DensityMediumIcon from '@mui/icons-material/MoreVert';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export default function SidebarChat() {

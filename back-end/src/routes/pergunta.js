@@ -13,6 +13,6 @@ router.post("/favoritar/:id", passport.authenticate('jwt', { session: false }), 
 router.post("/salvar", passport.authenticate('jwt', { session: false }), perguntaController.salvarPergunta)
 router.post("/salvos", passport.authenticate('jwt', { session: false }), perguntaController.perguntasSalvas)
 router.post("/favoritos", passport.authenticate('jwt', { session: false }), perguntaController.perguntasCadastradas)
-
+router.put("/editar/:id", passport.authenticate('jwt', { session: false }), perguntaController.editarPergunta)
 
 module.exports = router;

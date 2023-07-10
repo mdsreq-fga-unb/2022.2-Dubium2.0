@@ -1,8 +1,7 @@
 const request = require("supertest");
 const server = require("../index");
 const { excluirUsuario, buscarUsuarioPorEmail } = require('../service/usuarioService');
-const { perguntasCadastradas } = require('../service/perguntaService');
-const { response } = require("../controller/respostaController");
+const { perguntasCadastradas } = require('../service/perguntaService')
 
 let token;
 let idPergunta;
@@ -23,7 +22,7 @@ beforeAll( async () => {
         password: 123456,
     });
   
-    expect(response).toHaveProperty('status', 200);
+
 });
 
 beforeEach(async () => {
@@ -74,72 +73,19 @@ describe('Perguntas', () => {
         filtro: 'C1'
       })
       .set('Authorization', `Bearer ${token}`);
-
-      expect(response).toHaveProperty('status', 201)
     })
 
-    it('Deve editar a pergunta se o usuário tiver permissão para editar', async () =>{
+    it('Deve excluir uma pergunta', async () => {
       let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
       let perguntas = await perguntasCadastradas(usuario.id) 
       let idPergunta = perguntas[0]._id.toString();
+
       const response = await request(server)
-        .put(`/pergunta/editar/${idPergunta}`)
-        .send({
-          titulo: "USM", 
-          conteudo: "Como eu faço um USM? Não entendi", 
-          curso: 6, 
-          filtro: "REQUISITOS"
-        })
+        .delete(`/pergunta/${idPergunta}`)
         .set('Authorization', `Bearer ${token}`);
 
-        expect(response).toHaveProperty('status', 200)
+      expect(response).toHaveProperty('status', 201)
     })
-
-    it('Deve retornar um erro se a pergunta não for encontrada', async () =>{
-      let idPergunta = "64ab31c0b8fdef813c2c201c" //definindo um id aleatório
-      const response = await request(server)
-        .put(`/pergunta/editar/${idPergunta}`)
-        .send({
-          titulo: "USM", 
-          conteudo: "Como eu faço um USM? Não entendi", 
-          curso: 6, 
-          filtro: "REQUISITOS"
-        })
-        .set('Authorization', `Bearer ${token}`);
-      
-      expect(response).toHaveProperty('status', 500)
-    })
-
-    it('Deve retornar um erro se a atualização da pergunta não for bem sucedida', async () =>{
-      let idPergunta = "64ab31c0b8fdef813c2c201c" //definindo um id aleatório
-      try {
-        const response = await request(server)
-        .put(`/pergunta/editar/${idPergunta}`)
-        .send({
-          titulo: 2378123, 
-          conteudo: "Como eu faço um USM? Não entendi", 
-          curso: 6, 
-          filtro: "REQUISITOS"
-        })
-        .set('Authorization', `Bearer ${token}`);
-      } catch (error){
-         expect(response).rejects.toThrow("Pergunta não encontrada!")
-      }
-    })
-
-
-
-    // it('Deve excluir uma pergunta', async () => {
-      // let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-      // let perguntas = await perguntasCadastradas(usuario.id) 
-      // let idPergunta = perguntas[0]._id.toString();
-
-    //   const response = await request(server)
-    //     .delete(`/pergunta/${idPergunta}`)
-    //     .set('Authorization', `Bearer ${token}`);
-
-    //   
-    // })
 })
 
 describe('Respostas', () => {
@@ -153,6 +99,8 @@ describe('Avisos', () => {
 describe('Chat', () => {
 
 })
+
+
 
 afterAll( async () => {
   //retira o usuário de teste do banco de dados

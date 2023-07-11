@@ -2,7 +2,6 @@ site_name: Dubium
 theme:
   name: material
 
-
   features:
     - navigation.tabs
     - navigation.top
@@ -14,7 +13,6 @@ theme:
     - content.action.edit
     - content.action.view
     - navigation.footer
-    
 
   language: en
   palette:
@@ -27,50 +25,47 @@ nav:
   - Início: "inicial.md"
 
   - Documentação:
-     - Visão Geral do Produto: "visaoProduto.md"
-     - Visão Geral do Projeto: "visaoProjeto.md"
-     - Proceso de Desenvolvimento de Software: "processoDesenv.md"
-     - Construção de Software: "construcao.md"
-     - Lições Aprendidas: "licoesAprendidas.md"
-     - Referências Bibliográficas: "referencias.md"
+      - Visão Geral do Produto: "visaoProduto.md"
+      - Visão Geral do Projeto: "visaoProjeto.md"
+      - Refatoração: "refatoracao.md"
+      - Proceso de Desenvolvimento de Software: "processoDesenv.md"
+      - Construção de Software: "construcao.md"
+      - Lições Aprendidas: "licoesAprendidas.md"
+      - Referências Bibliográficas: "referencias.md"
 
   - Entregas:
-    - Unidade 1:
-        - Seminário - Processos e Ciclos de Vida: "entrega1-conectafga.md"
-        - Vídeo - Apresentação GitPages: "entrega1-vdo-conectafga.md"
-    - Unidade 2:
-        - Material - Padrões de interface, tipo e estilo de arquitetura: "entrega2-conectafga.md"
-        - Vídeo - Apresentação Unidade 2: "entrega2-vdo-conectafga.md"
-    - Unidade 3:
-        - Material - Construção, CI e Teste: "entrega3-conectafga.md"
-        - Vídeo - Apresentação Unidade 3: "entrega3-vdo-conectafga.md"
+      - Unidade 1:
+          - Seminário - Processos e Ciclos de Vida: "entrega1-conectafga.md"
+          - Vídeo - Apresentação GitPages: "entrega1-vdo-conectafga.md"
+      - Unidade 2:
+          - Material - Padrões de interface, tipo e estilo de arquitetura: "entrega2-conectafga.md"
+          - Vídeo - Apresentação Unidade 2: "entrega2-vdo-conectafga.md"
+      - Unidade 3:
+          - Material - Construção, CI e Teste: "entrega3-conectafga.md"
+          - Vídeo - Apresentação Unidade 3: "entrega3-vdo-conectafga.md"
 
   - Backlog do Produto:
-     - Backlog: "backlog-conectafga.md"
-     - MVPs: "mvps1e2.md"
+      - Backlog: "backlog-conectafga.md"
+      - MVPs: "mvps1e2.md"
 
-  - Sprints: 
-    - Historico de Revisão: "sprintConecta/historico_sprints.md"
-    - Sprint 1: 
-        - Planning: "sprintConecta/sprint_01/planning.md"
-        - Review: "sprintConecta/sprint_01/review.md"
-        - Retrospective: "sprintConecta/sprint_01/retrospective.md"
-    - Sprint 2:
-        - Planning: "sprintConecta/sprint_02/planning.md"
-        - Review: "sprintConecta/sprint_02/review.md"
-        - Retrospective: "sprintConecta/sprint_02/retrospective.md"
-    - Sprint 3:
-        - Planning: "sprintConecta/sprint_03/planning.md"
-        - Review: "sprintConecta/sprint_03/review.md"
-        - Retrospective: "sprintConecta/sprint_03/retrospective.md"
-    - Sprint 4: "sprintConecta/sprint04.md"
-
-
-
+  - Sprints:
+      - Historico de Revisão: "sprintConecta/historico_sprints.md"
+      - Sprint 1:
+          - Planning: "sprintConecta/sprint_01/planning.md"
+          - Review: "sprintConecta/sprint_01/review.md"
+          - Retrospective: "sprintConecta/sprint_01/retrospective.md"
+      - Sprint 2:
+          - Planning: "sprintConecta/sprint_02/planning.md"
+          - Review: "sprintConecta/sprint_02/review.md"
+          - Retrospective: "sprintConecta/sprint_02/retrospective.md"
+      - Sprint 3:
+          - Planning: "sprintConecta/sprint_03/planning.md"
+          - Review: "sprintConecta/sprint_03/review.md"
+          - Retrospective: "sprintConecta/sprint_03/retrospective.md"
+      - Sprint 4: "sprintConecta/sprint04.md"
 
 extra:
   prev_next_buttons: true
-
 
 markdown_extensions:
   - pymdownx.details
@@ -79,7 +74,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - admonition
-  - toc: {} # adiciona a tabela de conteúdo 
+  - toc: {} # adiciona a tabela de conteúdo
   - pymdownx.arithmatex:
       generic: true
   - footnotes
@@ -88,9 +83,9 @@ markdown_extensions:
   - pymdownx.mark
   - attr_list
   - pymdownx.tasklist
- # - pymdownx.emoji:
- #     emoji_index: !!python/name:materialx.emoji.twemoji
- #     emoji_generator: !!python/name:materialx.emoji.to_svg
+  # - pymdownx.emoji:
+  #     emoji_index: !!python/name:materialx.emoji.twemoji
+  #     emoji_generator: !!python/name:materialx.emoji.to_svg
 
 extra_css:
   - stylesheets/extra.css

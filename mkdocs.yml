@@ -63,6 +63,7 @@ nav:
           - Review: "sprintConecta/sprint_03/review.md"
           - Retrospective: "sprintConecta/sprint_03/retrospective.md"
       - Sprint 4: "sprintConecta/sprint04.md"
+      - Sprint 5: "sprintConecta/sprint05.md"
 
 extra:
   prev_next_buttons: true

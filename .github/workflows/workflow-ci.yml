@@ -21,6 +21,12 @@ jobs:
           
           cd ../front-end
           npm install
+      
+      - name: Create a .env file
+        run: |
+          cd back-end
+          run: echo "DB_HOST="mongodb://localhost:27017"" > .env
+
 
       - name: Run back-end
         run: |
@@ -28,6 +34,7 @@ jobs:
           npm run dev &
           sleep 10
           pkill -f "npm run dev"
+          npm run test
 
       - name: Run front-end
         run: |

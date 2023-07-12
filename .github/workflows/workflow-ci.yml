@@ -23,8 +23,6 @@ jobs:
           npm install
 
       - name: Run back-end
-        env:
-          $DB_HOST: mongodb://localhost:27017
         run: |
           cd back-end
           npm run dev &

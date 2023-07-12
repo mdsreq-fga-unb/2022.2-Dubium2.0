@@ -25,10 +25,10 @@ jobs:
       - name: Run back-end
         run: |
           cd back-end
+          npm run test
           npm run dev &
           sleep 10
           pkill -f "npm run dev"
-          npm run test
 
       - name: Run front-end
         run: |

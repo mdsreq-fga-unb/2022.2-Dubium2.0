@@ -44,6 +44,21 @@ const obterPerguntaPorId = (req, res) => {
         })
 }
 
+const editarPergunta = (req, res) => {
+    const { id } = req.params
+    const { titulo, conteudo, curso, filtro } = req.body
+    perguntaService.editarPergunta(id, req.user._id, titulo, conteudo, curso, filtro )
+        .then(updatedPergunta => {
+            res.status(200).json(updatedPergunta)
+        })
+        .catch(err => {
+            res.status(500).send({
+                error: "Erro ao atualizar pergunta",
+                message: err.message
+            });
+        });
+}
+
 const deletarPergunta = (req, res) => {
         const { id } = req.params
         perguntaService.deletarPergunta(id, req.user._id)
@@ -57,7 +72,7 @@ const deletarPergunta = (req, res) => {
                 error: "Falha ao deletar pergunta",
                 message: err
                 });
-            });   
+            });
 }
 
 const favoritarPergunta = (req, res) => {
@@ -127,5 +142,6 @@ module.exports = {
     favoritarPergunta,
     salvarPergunta,
     perguntasSalvas,
-    perguntasCadastradas
+    perguntasCadastradas,
+    editarPergunta
 }

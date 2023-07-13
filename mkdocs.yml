@@ -48,6 +48,7 @@ nav:
   - Backlog do Produto:
       - Backlog: "backlog-conectafga.md"
       - MVPs: "mvps1e2.md"
+      - Estratégia de testes: "estrategiaTestes.md"
 
   - Sprints:
       - Historico de Revisão: "sprintConecta/historico_sprints.md"

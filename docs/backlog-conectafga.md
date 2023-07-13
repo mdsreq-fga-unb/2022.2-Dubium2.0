@@ -17,7 +17,7 @@
 | Confiabilidade | RNF01 |O sistema deve ser seguro para evitar qualquer tipo de fraude ou violação de privacidade de acordo com a Lei Geral de Proteção de Dados (LGPD).|
 | Escalabilidade | RNF02 |O sistema deve ser escalável para suportar um número considerável de usuários e atividades simultâneas a partir da implementação de uma arquitetura de software escalável.|
 | Usabilidade | RNF03 |O sistema deve ser acessível, conforme as diretrizes de acessibilidade para conteúdo web (WCAG) do W3C.|
-| Usabilidade | RNF04 |O conteúdo de interface da aplicação deve ser totalmente responsivo.|
+| Usabilidade | RNF04 |O conteúdo de interface da aplicação deve ser totalmente responsivo para dispositivos desktop.|
 | Performance | RNF05 |O sistema deve ser rápido e eficiente (5.000ms), proporcionando uma experiência satisfatória ao usuário a partir de constantes otimizações no código.|
 | Requisitos de Interface | RNF06 | Padrão de cores deverá seguir o que foi bem definido pelo cliente: Azul, verde, preto, branco e cinza.|
 | Requisitos de Interface | RNF07 | Deverá ter modo claro e escuro. |

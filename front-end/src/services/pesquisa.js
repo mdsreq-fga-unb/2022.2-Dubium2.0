@@ -78,3 +78,13 @@ export function pesquisaUsuario(usuarioArray, usuario) {
 
     return usuariosFiltrados;
 }
+
+export function pesquisaMensagem(mensagens, texto) {
+  const regex = new RegExp(texto, "gi");
+  const mensagensFiltradas = mensagens.filter(
+      (e) =>
+        regex.test(e.message)
+    );
+  console.log(mensagensFiltradas)
+  return mensagensFiltradas;
+}

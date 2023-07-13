@@ -116,8 +116,7 @@ function App() {
           <Route
             path="/chat/:idChat"
             element={
-               <Chat />
-
+               <Chat mensagemPesquisada={materiaPesquisada} />
            } />
           <Route
             path="/chat"

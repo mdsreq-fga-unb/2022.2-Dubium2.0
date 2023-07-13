@@ -11,9 +11,13 @@ import React, { useContext } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import GroupsIcon from '@mui/icons-material/Groups';
 import PersonIcon from '@mui/icons-material/Person';
+import { pesquisaMensagem } from "../../../services/pesquisa";
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
-export default function ChatPrincipal({ setLogado }) {
+export default function ChatPrincipal({ mensagemPesquisada }) {
+  const containerRef = useRef(null);
 
   const [message, setMessage] = useState("");
   const [isFirstRender, setIsFirstRender] = useState(true);
@@ -32,6 +36,7 @@ export default function ChatPrincipal({ setLogado }) {
   const [userTarget, setUserTarget] = useState("")
   const socketContext = useContext(SocketContext);
   const [fotosUsuarios, setFotoUsuarios] = useState({})
+  const [mensagensFiltradas, setMensagensFiltradas] = useState([])
 
   //ScrollBar
   useEffect(() => {
@@ -68,9 +73,7 @@ export default function ChatPrincipal({ setLogado }) {
   useEffect(() => {
     return () => {
       if (socket) {
-        console.log(usuarioSelecionado)
         socket.emit("leaveInstance");
-        console.log("saiu")
       }
     };
   }, [location, socket]);
@@ -124,10 +127,17 @@ export default function ChatPrincipal({ setLogado }) {
   }
 
   const scrollDown = () => {
-    const container = document.getElementsByClassName('conteudoChat')[0];
-    if (container) {
-      console.log(container)
+    const container = containerRef.current
+    if (containerRef.current) {
       container.scrollTop = container.scrollHeight
+    }
+  }
+
+  const scrollToIndex = (index) => {
+    const element = containerRef.current.children[index];
+    if (element) {
+        element.scrollIntoView(true);
+        element.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
@@ -209,7 +219,7 @@ export default function ChatPrincipal({ setLogado }) {
         }
       })
       .then(data => {
-        console.log(data)
+
       })
       .catch(err => {
         console.log(err)
@@ -243,6 +253,23 @@ export default function ChatPrincipal({ setLogado }) {
     const regex = new RegExp(searchText, "gi");
     return text.replace(regex, (match) => `<span class="highlight">${match}</span>`);
   };
+
+  useEffect(() => {
+    if(mensagensFiltradas){
+      console.log(mensagensFiltradas)
+    }
+  }, [mensagensFiltradas])
+
+
+  useEffect(() => {
+    if(searchText){
+      const mensagensFilt = pesquisaMensagem(messagesDB, searchText)
+      scrollToIndex(mensagensFilt[mensagensFilt.length-1])
+      setMensagensFiltradas(mensagensFilt)
+    } else if (searchText == 0) {
+      setMensagensFiltradas("")
+    }
+  }, [searchText])
 
   return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB &&  (
     <div className="containerChat">
@@ -303,18 +330,36 @@ export default function ChatPrincipal({ setLogado }) {
             )}
              </div>
           </div>
-
-          <div className="conteudoChat" >
+          {
+            mensagensFiltradas && (
+              <div className="mensagensFiltradas">
+                {mensagensFiltradas.map((mensagem) => {
+                  return (mensagem.idRoom == chat._id) && (
+                        <div
+                          key={mensagem.index}
+                          onClick={() => {
+                            scrollToIndex(mensagem.index)
+                          }}
+                        >
+                          {mensagem.message}
+                        </div>
+                  );
+                })
+                }
+              </div>
+            )
+          }
+          <div className="conteudoChat" ref={containerRef}>
             {messagesDB.map((mensagem, index) => {
+              mensagem.index = index
               return (mensagem.idRoom == chat._id) && (
-                <Link key={index}>
                     <div
+                      key={index}
                       className={jwt(token).secret.id == mensagem.user.id ? "textoChat1" : "textoChatOutro"}>
                       {chat.privado ? (<span className="mensagem" dangerouslySetInnerHTML={{__html: highlightSearchText(mensagem.message, searchText)
                       }}/>) : (<>{mensagem.user.nome}: {mensagem.message} </>)}
                       <span className="horario">{new Date(mensagem.horario).getHours() + ':' + new Date(mensagem.horario).getMinutes()}</span>
                     </div>
-                </Link>
               );
             })
             }

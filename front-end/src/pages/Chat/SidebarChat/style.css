@@ -1,11 +1,14 @@
 .sidebarItemChat {
   height: 50px;
-  border-bottom: 2px solid #201F25;
   font-size: 17px;
   display: flex;
   align-items: center;
   padding: 0.6rem;
   margin-left: -5px;
+  width: 80%;
+
+
+
 }
 
 .iconeSala{
@@ -25,6 +28,7 @@
   align-items: center;
   justify-content: center;
   margin-left: 2.2rem;
+  
 }
 
 #imagemPerfilChatS {
@@ -33,4 +37,64 @@
   height: 3rem;
   border-radius: 50%;
   border: #000000 0.5px solid;
+  
+}
+
+
+.sidebarDate{
+  height: 50px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem;
+  margin-left: -1.9rem;
+  width: 96%;
+  
+  
+
+}
+
+.index{
+  
+  /* display: flex; */
+  /* width: 50%; */
+  border-bottom: 2px solid #201F25;
+}
+
+.densityMediumIcon{
+  display: flex;
+  position: absolute;
+  margin-inline-start: 84%;
+  margin-top: -18%;
+}
+
+.densityMediumIcon:hover{
+  cursor: pointer;
+}
+.deleteForeverIcon:hover{
+  cursor: pointer;
+}
+
+.deleteForeverIcon{
+  display: flex;
+  background-color: #2476aa;
+  margin-left: 150px;
+  margin-bottom: 0.4px;
+  padding: 2px;
+  align-items: center;
+  justify-content:start ;
+}
+
+
+.headerSidebar{
+  display: flex;
+  border: solid black 1px;
+}
+
+.headerSidebar div{
+  flex: 1;
+}
+
+.headerSidebar div:hover{
+  cursor: pointer;
 }

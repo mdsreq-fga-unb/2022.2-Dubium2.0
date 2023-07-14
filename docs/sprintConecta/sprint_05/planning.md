@@ -1,5 +1,5 @@
-# Sprint 3
-19/07/2023 - 04/07/2023
+# Sprint 5
+05/07/2023 - 20/07/2023
 
 
 ## 1.1. Papéis
@@ -16,25 +16,26 @@ CI-Test| Yasmim | Arthur, Dara, Eric, Fábio, Giulia, Pedro
 
 ## 1.2. Objetivos da Sprint
 <!-- descrever de forma geral o objetivo da sprint -->
-Nessa sprint iremos começar a implementação do MVP2, sem débitos técnicos a serem resolvidos, somente com algumas observação de funcionalidades do produto como:
+Nessa sprint iremos resolver os débitos técnicos da sprint passada e iremos prosseguir com o desenvolvimento para finalizar o nosso MVP2.
 
-- Scrollbar para a rolagem dos usuários do chat;
-- Responsividade extremamente necessária para utilização da aplicação;
-- Criação de perguntas parou de funcionar;
-
-Dentre as histórias apresentadas no backlog do produto, foram priorizadas pela cliente: 
+Dentre as histórias apresentadas no backlog do produto, foram priorizadas pela cliente, juntamente com nossos débitos: 
 
 | Tema | Épico | US |
 |------|-------|----|
+|**T02** - Ranking para Classificação de Usuários|**EP04** Gerenciar ranqueamento de usuários com base em sua atividade.|**US18** - Eu, como usuário, gostaria de editar minhas perguntas para corrigir erro de digitação.|
+|**T02** - Ranking para Classificação de Usuários|**EP04** Gerenciar ranqueamento de usuários com base em sua atividade.|**US19** - Eu, como usuário, gostaria de editar minhas respostas para corrigir erros de digitação.|
 |**T04** - Chat|**EP11** - Gerenciar histórico de conversas.|**US45** - Eu, como usuário, quero ser capaz de pesquisar meu histórico de conversas por palavra-chave ou data específica, para que eu possa encontrar informações importantes de forma rápida e fácil.|
 |**T04** - Chat|**EP11** Gerenciar histórico de conversas.|**US46** - Eu, como usuário, quero ser capaz de arquivar ou excluir conversas antigas que não são mais relevantes para mim, para manter minha lista de conversas organizada e fácil de usar.|
-|**T04** - Chat|**EP11** Gerenciar histórico de conversas.|**US47** - Eu, como usuário, quero que meu histórico de conversas mais recentes sejam recuperados e carregados mais rapidamente.|
+|**T05** - Automatização com IA	|**EP12** - Implementação GPT3	|US48 - Eu, como usuário, gostaria de ter o conteúdo de avisos analisados por uma IA para maior confiabilidade|
+|**T05** - Automatização com IA	|**EP12** - Implementação GPT3|	**US49** - Eu, como usuário, gostaria de ter o conteúdo de perguntas filtrados por uma IA para remover palavras nocivas.
+|**T05** - Automatização com IA	|**EP12** - Implementação GPT3	|**US50** - Eu, como usuário, gostaria de ter o conteúdo de respostas analisados por uma IA para maior confiabilidade.|
+|**T05** - Automatização com IA	|**EP12** - Implementação GPT3	|**US51** - Eu, como usuário, gostaria de ter o conteúdo das mensagens no chat analisados por uma IA quando solicitado.|
 
-Sendo definido assim esse o backlog da sprint.
+Sendo esse o nosso backlog da sprint.
 
 
 ## 1.3. Tarefas
 <!-- descrever as issues que definimos para essa sprint e alocar um responsavel por ela -->
 Tarefas | Descrição | Responsáveis
 ------ | --------- | -----------
-01 | Documentação da planning da sprint |[Eric](https://github.com/ericbky) e [Pedro](https://github.com/lucasdray)|
+01 | Documentação da planning da sprint |[Eric](https://github.com/ericbky)|

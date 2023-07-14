@@ -37,13 +37,16 @@ nav:
   - Entregas:
       - Unidade 1:
           - Seminário - Processos e Ciclos de Vida: "entrega1-conectafga.md"
-          - Vídeo - Apresentação GitPages: "entrega1-vdo-conectafga.md"
+          - Vídeo - Apresentação Unidade 1: "entrega1-vdo-conectafga.md"
       - Unidade 2:
           - Material - Padrões de interface, tipo e estilo de arquitetura: "entrega2-conectafga.md"
           - Vídeo - Apresentação Unidade 2: "entrega2-vdo-conectafga.md"
       - Unidade 3:
           - Material - Construção, CI e Teste: "entrega3-conectafga.md"
           - Vídeo - Apresentação Unidade 3: "entrega3-vdo-conectafga.md"
+      - Unidade 4:
+          - Material - Estratégias de teste: "entrega4-conectafga.md"
+          - Vídeo - Apresentação Unidade 4: "entrega4-vdo-conectafga.md"
 
   - Backlog do Produto:
       - Backlog: "backlog-conectafga.md"

@@ -18,10 +18,21 @@ const obterPerguntas = async () => {
 
 const obterPerguntaPorId = async (id) => {
     try {
-        return await perguntaSchema.findOne({ _id: id })
+        return await aSchema.findOne({ _id: id })
     } catch (error) {
         return new Error(error.message)
     }
+}
+
+const editarPergunta = async (id, idUser, titulo, conteudo, curso, filtro) => {
+    return await perguntaSchema.findOne({_id: id})
+        .then(aviso => {
+            if(aviso.idUsuario.id != idUser){
+                return res.status(403).send({error: "Você não tem permissão para editar essa pergunta."})
+            }
+            return aviso.updateOne({titulo: titulo, conteudo: conteudo, curso: curso, filtro: filtro})
+        })
+        .catch(error => {throw new Error("Pergunta não encontrada!")})
 }
 
 const deletarPergunta = async (id, idUsuario) => {
@@ -87,5 +98,6 @@ module.exports = {
     favoritarPergunta,
     salvarPergunta,
     perguntasSalvas,
-    perguntasCadastradas
+    perguntasCadastradas,
+    editarPergunta
 }

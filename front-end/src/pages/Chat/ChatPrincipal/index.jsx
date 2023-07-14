@@ -77,7 +77,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
       }
     };
   }, [location, socket]);
-  
+
 
   useEffect(() => {
     if (socket) {
@@ -90,10 +90,10 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   }, [usuarioSelecionado]);
 
   useEffect(() => {
-    if(chat){
+    if (chat) {
       socket.on("targetDig", (data) => {
-        if(data.idRoom == chat._id){
-          setStringDigitando(`${chat.usuarios[0].user.id == jwt(token).secret.id ? 
+        if (data.idRoom == chat._id) {
+          setStringDigitando(`${chat.usuarios[0].user.id == jwt(token).secret.id ?
             chat.usuarios[0].userTarget.nome + " está digitando..." :
             chat.usuarios[0].user.nome + " está digitando..."}`)
         }
@@ -105,7 +105,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   }, [chat])
 
   useEffect(() => {
-    if(chat && chat.privado) {
+    if (chat && chat.privado) {
       chat.usuarios[0].user.id == usuarioSelecionado._id ? setUserTarget(chat.usuarios[0].userTarget.id) : setUserTarget(chat.usuarios[0].user.id)
     }
   }, [chat])
@@ -136,8 +136,8 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   const scrollToIndex = (index) => {
     const element = containerRef.current.children[index];
     if (element) {
-        element.scrollIntoView(true);
-        element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView(true);
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
@@ -174,7 +174,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   // const enviarNotificacao = (userId, mensagem) => {
   //   socket.emit('enviarNotificacao', { userId, mensagem });
   // };  
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -233,75 +233,75 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
     }
   }, [arrayMensagens])
 
-  
+
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
-  
+
   const handleSearchClick = () => {
     setIsSearchOpen(true);
   };
-  
+
   const handleSearchInputChange = (e) => {
     setSearchText(e.target.value);
   };
-  
+
   const highlightSearchText = (text, searchText) => {
     if (!searchText) {
       return text;
     }
-  
+
     const regex = new RegExp(searchText, "gi");
     return text.replace(regex, (match) => `<span class="highlight">${match}</span>`);
   };
 
   useEffect(() => {
-    if(mensagensFiltradas){
+    if (mensagensFiltradas) {
       console.log(mensagensFiltradas)
     }
   }, [mensagensFiltradas])
 
 
   useEffect(() => {
-    if(searchText){
+    if (searchText) {
       const mensagensFilt = pesquisaMensagem(messagesDB, searchText)
-      scrollToIndex(mensagensFilt[mensagensFilt.length-1])
+      scrollToIndex(mensagensFilt[mensagensFilt.length - 1])
       setMensagensFiltradas(mensagensFilt)
     } else if (searchText == 0) {
       setMensagensFiltradas("")
     }
   }, [searchText])
 
-  return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB &&  (
+  return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB && (
     <div className="containerChat">
       <div className="chat-principal">
 
         <div id="corFundo">
           <div className="cabecalhoChat">
             {chat.privado && (
-                  <>
-                    {chat.usuarios[0].user.id === jwt(token).secret.id ? (
-                      chat.usuarios[0].userTarget.id in fotosUsuarios ? (
-                        <img
-                          id="imagemPerfilChat"
-                          src={fotosUsuarios[chat.usuarios[0].userTarget.id]}
-                          alt="imagemPerfil"
-                        />
-                      ) : (
-                        <PersonIcon />
-                      )
-                    ) : (
-                      chat.usuarios[0].user.id in fotosUsuarios ? (
-                        <img
-                          id="imagemPerfilChat"
-                          src={fotosUsuarios[chat.usuarios[0].user.id]}
-                          alt="imagemPerfil"
-                        />
-                      ) : (
-                        <PersonIcon />
-                      )
-                    )}
-                  </>
+              <>
+                {chat.usuarios[0].user.id === jwt(token).secret.id ? (
+                  chat.usuarios[0].userTarget.id in fotosUsuarios ? (
+                    <img
+                      id="imagemPerfilChat"
+                      src={fotosUsuarios[chat.usuarios[0].userTarget.id]}
+                      alt="imagemPerfil"
+                    />
+                  ) : (
+                    <PersonIcon />
+                  )
+                ) : (
+                  chat.usuarios[0].user.id in fotosUsuarios ? (
+                    <img
+                      id="imagemPerfilChat"
+                      src={fotosUsuarios[chat.usuarios[0].user.id]}
+                      alt="imagemPerfil"
+                    />
+                  ) : (
+                    <PersonIcon />
+                  )
                 )}
+              </>
+            )}
 
             <div className="dados">
               {token && chat.privado ?
@@ -318,23 +318,22 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
             </div>
             <div id="searchIcon">
               {isSearchOpen ? (
-              <input
-                type="text"
-                placeholder="Digite sua pesquisa..."
-                value={searchText}
-                onChange={handleSearchInputChange}
-                className="searchInput"
-              />
-            ) : (
-              <SearchIcon onClick={handleSearchClick} />
-            )}
-             </div>
-          </div>
-          {
-            mensagensFiltradas && (
-              <div className="mensagensFiltradas">
-                {mensagensFiltradas.map((mensagem) => {
-                  return (mensagem.idRoom == chat._id) && (
+                <input
+                  type="text"
+                  placeholder="Digite sua pesquisa..."
+                  value={searchText}
+                  onChange={handleSearchInputChange}
+                  className="searchInput"
+                />
+              ) : (
+                <SearchIcon onClick={handleSearchClick} />
+              )}
+
+              {
+                mensagensFiltradas && (
+                  <div className="mensagensFiltradas">
+                    {mensagensFiltradas.map((mensagem) => {
+                      return (mensagem.idRoom == chat._id) && (
                         <div
                           key={mensagem.index}
                           onClick={() => {
@@ -343,29 +342,32 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                         >
                           {mensagem.message}
                         </div>
-                  );
-                })
-                }
-              </div>
-            )
-          }
+                      );
+                    })
+                    }
+                  </div>
+                )
+              }
+            </div>
+          </div>
           <div className="conteudoChat" ref={containerRef}>
             {messagesDB.map((mensagem, index) => {
               mensagem.index = index
               return (mensagem.idRoom == chat._id) && (
-                    <div
-                      key={index}
-                      className={jwt(token).secret.id == mensagem.user.id ? "textoChat1" : "textoChatOutro"}>
-                      {chat.privado ? (<span className="mensagem" dangerouslySetInnerHTML={{__html: highlightSearchText(mensagem.message, searchText)
-                      }}/>) : (<>{mensagem.user.nome}: {mensagem.message} </>)}
-                      <span className="horario">{new Date(mensagem.horario).getHours() + ':' + new Date(mensagem.horario).getMinutes()}</span>
-                    </div>
+                <div
+                  key={index}
+                  className={jwt(token).secret.id == mensagem.user.id ? "textoChat1" : "textoChatOutro"}>
+                  {chat.privado ? (<span className="mensagem" dangerouslySetInnerHTML={{
+                    __html: highlightSearchText(mensagem.message, searchText)
+                  }} />) : (<>{mensagem.user.nome}: {mensagem.message} </>)}
+                  <span className="horario">{new Date(mensagem.horario).getHours() + ':' + new Date(mensagem.horario).getMinutes()}</span>
+                </div>
               );
             })
             }
           </div>
         </div >
-        
+
 
         <form className="formEntradas" action="" onSubmit={handleSubmit}>
           <div className="entradasChat">
@@ -376,10 +378,10 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
               value={message}
               required
               maxLength='30'
-              onChange={e => {setMessage(e.target.value)}}
+              onChange={e => { setMessage(e.target.value) }}
             />
             <button type="submit" className="sendMessage">
-            <SendIcon/>
+              <SendIcon />
             </button>
           </div>
         </form>

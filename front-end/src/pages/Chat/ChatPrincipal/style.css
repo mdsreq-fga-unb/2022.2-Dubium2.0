@@ -13,7 +13,10 @@
   }
 
   .mensagensFiltradas {
+    padding: 5px;
     background-color: #f1f1f1;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
   .cabecalhoChat {
@@ -26,26 +29,17 @@
 
   #searchIcon {
     margin-top: 2rem;
-    margin-left: 50%;
-    display: flex;
+    margin-left: 45%;
+    align-items: center;
     justify-content: center;
-  }
-  
-  #searchIcon div {
-    flex: 1;
-  }
-  
-  #searchIcon input {
-    flex: 1;
   }
 
   .searchInput {
-    border: none;
+    padding: 5px;
     outline: none;
-    padding: 14px;
     font-size: 14px;
     background-color: #f2f2f2;
-    border-radius: 4px;
+    border-radius: 8px;
     width: 200px;
   }
   
@@ -59,12 +53,10 @@
   }
   
   .highlight {
+    border-radius: 3px;
     background-color: yellow;
     color: black;
-
   }
-  
-  
 
   #imagemPerfilChat {
     margin-top: 1.2rem;

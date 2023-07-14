@@ -64,8 +64,14 @@ nav:
           - Planning: "sprintConecta/sprint_03/planning.md"
           - Review: "sprintConecta/sprint_03/review.md"
           - Retrospective: "sprintConecta/sprint_03/retrospective.md"
-      - Sprint 4: "sprintConecta/sprint04.md"
-      - Sprint 5: "sprintConecta/sprint05.md"
+      - Sprint 4: 
+          - Planning: "sprintConecta/sprint_04/planning.md"
+          - Review: "sprintConecta/sprint_04/review.md"
+          - Retrospective: "sprintConecta/sprint_04/retrospective.md"
+      - Sprint 5: 
+          - Planning: "sprintConecta/sprint_05/planning.md"
+          - Review: "sprintConecta/sprint_05/review.md"
+          - Retrospective: "sprintConecta/sprint_05/retrospective.md"
 
 extra:
   prev_next_buttons: true

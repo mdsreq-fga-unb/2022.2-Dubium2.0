@@ -30,9 +30,8 @@ Na conversa inicial explicamos os nossos objetivos e conseguimos alinhar um pouc
 Para essa atual Sprint, os objetivos são:
 
 -   Ajustar o padrão de interface;
--   Realizar a reescrita do backend (Typescript para Node.js);
 -   Realizar a mudança do banco de dados (MySQL para o MongoDB);
--   Realizar a mudança de Framework (Next.js para Express.js).
+-   Realizar a mudança de Framework do backend (Next.js para Express.js).
 
 ## 1.3. Tarefas
 <!-- descrever as issues que definimos para essa sprint e alocar um responsavel por ela -->

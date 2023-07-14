@@ -19,11 +19,11 @@ Como esses problemas foram resolvidos ?
 
 O que pode ser mudado para que o time seja mais eficaz?
 
--   Organizar melhor os horários para a execução do projeto e a comunicação entre todos os membros da equipe.
+-   Organizar melhor os horários para o desenvolvimento do projeto e a comunicação entre todos os membros da equipe.
 
 O que cada um pode melhorar?
 
--   A disponibilidade de um período semanal significativo, por parte de cada membro da equipe, para a realização das atividades relacionadas ao projeto e a busca pelo conhecimento técnico necessário para a execução dessas atividades serão primordiais para o sucesso de nossas entregas. 
+-   A disponibilidade de um período semanal significativo, por parte de cada membro da equipe, para a realização das atividades relacionadas ao projeto e a busca pelo conhecimento técnico necessário para a execução dessas atividades serão primordiais, afim de manter o sucesso para nossas próximas entregas. 
 
 
 ## 3.2. Tarefas

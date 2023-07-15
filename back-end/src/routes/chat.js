@@ -12,5 +12,8 @@ router.post("/messages", passport.authenticate('jwt', { session: false }), chatC
 router.post("/chatPublico", passport.authenticate('jwt', { session: false }), chatController.instanciarChatPublico)
 router.get("/", passport.authenticate('jwt', { session: false }), chatController.listarChatsPublicos)
 router.post("/joinUser", passport.authenticate('jwt', { session: false }), chatController.adicionarUsuarioEmGrupo)
+router.put("/arquivar", passport.authenticate('jwt', { session: false }), chatController.arquivarConversa)
+router.post("/user", passport.authenticate('jwt', { session: false }), chatController.chatUsuario)
+
 
 module.exports = router;

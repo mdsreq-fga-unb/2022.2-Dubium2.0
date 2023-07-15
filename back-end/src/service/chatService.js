@@ -110,7 +110,29 @@ const adicionarUsuarioEmGrupo = async (idChat, idUsuario) => {
     }    
 }
 
+const arquivarConversa = async (idChat) => {
+    try {
+        const chat = await obterChat(idChat)
+        return await chat.updateOne({ arquivada: !chat.arquivada })
+    } catch (error) {
+        throw new Error(error.message)
+    }     
+}
 
+
+
+const chatUsuario = async (idUser) => {
+    try {
+        return await chatSchema.find({
+            $or: [
+              { "usuarios.0.user.id": idUser },
+              { "usuarios.0.userTarget.id": idUser }
+            ]
+          }).select({ usuarios: 1, _id: 0 })
+    } catch (error) {
+        throw new Error(error.message)
+    }  
+}
 
 module.exports = {
     criarInstanciaChat,
@@ -121,5 +143,7 @@ module.exports = {
     salvarMensagens,
     criarChatPublico,
     listarChatsPublicos,
-    adicionarUsuarioEmGrupo
+    adicionarUsuarioEmGrupo,
+    arquivarConversa,
+    chatUsuario
 }

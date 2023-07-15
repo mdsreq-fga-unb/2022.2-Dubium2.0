@@ -64,6 +64,19 @@ export default function SidebarChat() {
     }
   }, [chats])
 
+  const arquivarConversa = async (idChat) => {
+    await apiRequest
+      .put("/chat/arquivar", { idChat }, {
+        headers: {
+          Authorization: "Bearer " + token,
+        }
+      })
+      .then(response => {
+        obterChats()
+      })
+      .catch(err => {console.log(err)})
+  }
+
   const getFotos = async () => {
     await apiRequest
       .get('/usuario', {
@@ -105,21 +118,25 @@ export default function SidebarChat() {
     return data
   }
 
+  const obterChats = async () => {
+    apiRequest
+    .post("/chat", { chats: usuario.chats }, {
+      headers: {
+        Authorization: "Bearer " + token,
+      }
+    })
+    .then(response => {
+      let chats = ordenaChat(response.data)
+      setChats(chats)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
   useEffect(() => {
     if (usuario && token) {
-      apiRequest
-        .post("/chat", { chats: usuario.chats }, {
-          headers: {
-            Authorization: "Bearer " + token,
-          }
-        })
-        .then(response => {
-          let chats = ordenaChat(response.data)
-          setChats(chats)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      obterChats()
     }
   }, [usuario])
 
@@ -144,7 +161,7 @@ export default function SidebarChat() {
         </div>
       </div>
       {!optionSidebar && chats.map((chat, index) => {
-        return (
+        return !chat.arquivada && (
           <div className="index"
             key={index}
           >
@@ -232,10 +249,119 @@ export default function SidebarChat() {
               {showMenu[chat._id] && (
                 <div className="deleteForeverIcon"
                   onClick={() => {
-                    console.log(chat._id)
+                    chat.arquivada = !chat.arquivada
+                    arquivarConversa(chat._id)
+                    setShowMenu((prevShowMenu) => ({
+                      ...prevShowMenu,
+                      [chat._id]: !prevShowMenu[chat._id],
+                    }))
                   }}
                 >
                   <DeleteForeverIcon />Arquivar
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+
+
+
+{optionSidebar && chats.map((chat, index) => {
+        return chat.arquivada && (
+          <div className="index"
+            key={index}
+          >
+            <Link
+              to={ // quando clicar levar pra pergunta específica
+                isAuthenticated()
+                  ? `/chat/${chat._id}`
+                  : "/login"
+              }
+              onClick={() => {
+                if (chat.privado) {
+                  let verificaNotificacao = (chat.usuarios[0].user.id == jwt(token).secret.id ?
+                    chat.usuarios[0].user.notificacoes :
+                    chat.usuarios[0].userTarget.notificacoes)
+                  if (verificaNotificacao) {
+                    limparNotificacao(chat._id, verificaNotificacao)
+                  }
+                }
+              }}
+            >
+
+              {chat.privado && (
+                <div className="sidebarItemChat">
+                  <div className="sidebarDate">
+                    {chat.privado && (
+                      <>
+                        {chat.privado && (
+                          <>
+                            {chat.usuarios[0].user.id === jwt(token).secret.id ? (
+                              chat.usuarios[0].userTarget.id in fotosUsuarios ? (
+                                <img
+                                  id="imagemPerfilChatS"
+                                  src={fotosUsuarios[chat.usuarios[0].userTarget.id]}
+                                  alt="imagemPerfil"
+                                />
+                              ) : (
+                                <PersonIcon />
+                              )
+                            ) : (
+                              chat.usuarios[0].user.id in fotosUsuarios ? (
+                                <img
+                                  id="imagemPerfilChatS"
+                                  src={fotosUsuarios[chat.usuarios[0].user.id]}
+                                  alt="imagemPerfil"
+                                />
+                              ) : (
+                                <PersonIcon />
+                              )
+                            )}
+                          </>
+                        )}
+                      </>
+                    )}
+
+                    {chat.usuarios[0].user.id === jwt(token).secret.id
+                      ? chat.usuarios[0].userTarget.nome
+                      : chat.usuarios[0].user.nome}
+
+                    <div>
+                      {chat.usuarios[0].user.id === jwt(token).secret.id ?
+                        chat.usuarios[0].user.notificacoes > 0 && <span className="notificacao" >{chat.usuarios[0].user.notificacoes}</span> :
+                        chat.usuarios[0].userTarget.notificacoes > 0 && <span className="notificacao" >{chat.usuarios[0].userTarget.notificacoes}</span>
+                      }
+                    </div>
+                  </div>
+                  <DensityMediumIcon className="densityMediumIcon"
+                    onClick={(e) => {
+                      e.preventDefault(e);
+                      setShowMenu((prevShowMenu) => ({
+                        ...prevShowMenu,
+                        [chat._id]: !prevShowMenu[chat._id],
+                      }));
+                    }}
+                  />
+                </div>
+
+              )}
+              {!chat.privado && <div className="sidebarItemChat"><div className="iconeSala">{<GroupsIcon style={{ fontSize: '40px' }} />}</div>{
+                chat.nome}</div>}
+            </Link>
+            <div>
+              {showMenu[chat._id] && (
+                <div className="deleteForeverIcon"
+                  onClick={() => {
+                    chat.arquivada = !chat.arquivada
+                    arquivarConversa(chat._id)
+                    setShowMenu((prevShowMenu) => ({
+                      ...prevShowMenu,
+                      [chat._id]: !prevShowMenu[chat._id],
+                    }))
+                  }}
+                >
+                  <DeleteForeverIcon />Desarquivar
                 </div>
               )}
             </div>

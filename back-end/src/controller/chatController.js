@@ -81,6 +81,23 @@ const adicionarUsuarioEmGrupo = (req, res) => {
         .catch(err => res.status(400).send({error: "Erro ao registrar usuario no chat", message: err}))
 }
 
+const arquivarConversa = (req, res) => {
+    const { idChat } = req.body
+    chatService.arquivarConversa(idChat)
+        .then(response => {
+            res.status(200).send("Status de arquivamento do chat alterado com sucesso!")
+        })
+        .catch(err => res.status(400).send({error: "Erro ao alterar status de arquivamento", message: err}))
+}
+
+const chatUsuario = (req, res) => {
+    const { idUser } = req.body
+    chatService.chatUsuario(idUser)
+        .then(data => {
+            res.status(200).send(data)
+        })
+        .catch(err => res.status(400).send({error: "Erro ao encontrar chats", message: err}))
+}
 
 
 // router.post("/user", passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -106,5 +123,7 @@ module.exports = {
     salvarMensagens,
     instanciarChatPublico,
     listarChatsPublicos,
-    adicionarUsuarioEmGrupo
+    adicionarUsuarioEmGrupo,
+    arquivarConversa,
+    chatUsuario
 }

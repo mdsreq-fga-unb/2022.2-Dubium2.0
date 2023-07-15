@@ -304,7 +304,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
 
             <div className="dados">
               {token && chat.privado ?
-                <Link to={`/usuario/${chat.usuarios[0].user.id}`}>
+                <Link to={`/usuario/${chat.usuarios[0].user.id == jwt(token).secret.id ? chat.usuarios[0].userTarget.id : chat.usuarios[0].user.id}`}>
                   <span>{chat.usuarios[0].user.id == jwt(token).secret.id ? chat.usuarios[0].userTarget.nome : chat.usuarios[0].user.nome}</span>
                 </Link> :
                 <span>{chat.nome}</span>

@@ -80,6 +80,18 @@ const instanciarChatUsuario = async (privado, users, infosChat, userIds) => {
     }
   };
 
+const instanciarChatPublico = async(privado, nome, tema, userAdmin, foto, idUsuario) => {
+    try {
+        await chatService.criarChatPublico(privado, nome, tema, userAdmin, foto)
+            .then(async (data) => {
+                const usuario = await buscarUsuario(idUsuario)
+                return await usuario.updateOne({ $push: { chats: { idChat: data._id, privado: false } } })
+            })
+    } catch (error) {
+        throw new Error(error.message, { Error: "Erro ao criar instância do chat público" })
+    }
+}
+
 const excluirUsuario = async (email) =>{
     try {
     buscarUsuarioPorEmail(email)
@@ -98,7 +110,5 @@ module.exports = {
     conteudosSalvos,
     obterUsuarios,
     salvarFoto,
-    instanciarChatUsuario,
-    excluirUsuario,
-    buscarUsuarioPorEmail
+    instanciarChatUsuario
 }

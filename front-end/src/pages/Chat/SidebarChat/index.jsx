@@ -11,6 +11,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import DensityMediumIcon from '@mui/icons-material/MoreVert';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ArchiveIcon from '@mui/icons-material/Archive';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function SidebarChat() {
   const [usuario, setUsuario] = useState({});
@@ -156,8 +157,9 @@ export default function SidebarChat() {
     <div className="containerSidebar">
       <div className="headerSidebar">
         <div onClick={() => { setOptionSidebar(!optionSidebar) }} className="arquivados">
-          <ArchiveIcon/>
-          <span>Arquivadas</span>
+          {!optionSidebar ? <ArchiveIcon/> : <ArrowBackIcon/>}
+          {!optionSidebar ? <span>Arquivadas</span> : <span>Conversas</span>}
+          
         </div>
       </div>
       {!optionSidebar && chats.map((chat, index) => {
@@ -269,7 +271,7 @@ export default function SidebarChat() {
 
 {optionSidebar && chats.map((chat, index) => {
         return chat.arquivada && (
-          <div className="index"
+          <div className="sidebarArquivados"
             key={index}
           >
             <Link
@@ -334,6 +336,7 @@ export default function SidebarChat() {
                       }
                     </div>
                   </div>
+                  <div className="iconPoints">
                   <DensityMediumIcon className="densityMediumIcon"
                     onClick={(e) => {
                       e.preventDefault(e);
@@ -343,6 +346,7 @@ export default function SidebarChat() {
                       }));
                     }}
                   />
+                  </div>
                 </div>
 
               )}

@@ -13,6 +13,7 @@
 }
 
 
+
 .index:hover {
   box-shadow: 0px 5px 10px rgba(162, 161, 161, 0.5);
   background-color: #F3F2F7;
@@ -86,6 +87,23 @@
   padding: 2px;
   align-items: center;
   justify-content: start;
+}
+
+.sidebarArquivados {
+  position:relative;
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+
+}
+
+@keyframes slideIn {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 1rem;
+  }
 }
 
 .deleteForeverIcon:hover{

@@ -94,7 +94,6 @@
 .headerSidebar {
   margin-top: 5px;
   display: flex;
-  border: solid black 1px;
   border-radius: 5px;
   padding: 5px;
   width: 310px;

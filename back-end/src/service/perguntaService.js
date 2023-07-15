@@ -47,6 +47,16 @@ const deletarPergunta = async (id, idUsuario) => {
         .catch(error => new Error("Falha ao procurar pergunta"))
 }
 
+const deletarPerguntasPorUsuario = async (usuario) => {
+    await perguntaSchema.deleteMany({
+    idUsuario:{
+      "username": usuario.email,
+      "id": usuario.id,
+      "curso": usuario.curso
+    }
+   })
+}
+
 const favoritarPergunta = async (id, idUser, favorito) => {
     return await perguntaSchema.findOne({ _id: id })
         .then(data => {
@@ -99,5 +109,6 @@ module.exports = {
     salvarPergunta,
     perguntasSalvas,
     perguntasCadastradas,
-    editarPergunta
+    editarPergunta,
+    deletarPerguntasPorUsuario
 }

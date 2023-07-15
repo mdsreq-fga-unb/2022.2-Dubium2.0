@@ -82,8 +82,10 @@ const instanciarChatUsuario = async (privado, users, infosChat, userIds) => {
 
 const excluirUsuario = async (email) =>{
     try {
-    buscarUsuarioPorEmail(email)
+    console.log('Entrando na função')
+    await buscarUsuarioPorEmail(email)
         .then(user => {
+            console.log('Deletado com sucesso')
             return user.deleteOne({ email: email})
         })
     }  catch (error){

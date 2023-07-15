@@ -93,11 +93,11 @@ const salvarPergunta = (req, res) => {
     const { id_usuario, id_pergunta, salvo } = req.body
     perguntaService.salvarPergunta(id_pergunta, id_usuario, salvo)
         .then(() => {
-            res.status(201).send("Pergunta alterada com sucesso!")
+            res.status(201).send("Pergunta salva com sucesso!")
         })
         .catch(err => {
             res.status(400).send({
-                error: "Erro ao alterar pergunta!",
+                error: "Erro ao salvar pergunta!",
                 message: err
             })
         })

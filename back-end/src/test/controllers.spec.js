@@ -3,8 +3,10 @@ const server = require("../index");
 const { excluirUsuario, buscarUsuarioPorEmail } = require('../service/usuarioService');
 const { perguntasCadastradas, deletarPerguntasPorUsuario } = require('../service/perguntaService')
 const { avisosCadastrados, deletarAvisosPorUsuario } = require('../service/avisoService')
+const { deletarRespostasPorUsuario } = require('../service/respostaService')
 
 let token;
+let respostas;
 
 //ignorando console.logs do back-end
 //console.log = jest.fn();
@@ -36,11 +38,6 @@ beforeEach(async () => {
 
     token = response.headers['set-cookie'][0].split('=')[1].split(';')[0];
 });
-
-
-describe('Cadastro', () => {
-
-})
 
 describe('Usuário', () => {
   it('Deve fazer login em um usuário', async () => {
@@ -181,6 +178,65 @@ describe('Perguntas', () => {
 })
 
 describe('Respostas', () => {
+  it('Deve criar um comentário', async() => {
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+    let perguntas = await perguntasCadastradas(usuario.id)
+    let idPergunta = perguntas[0]._id.toString();
+
+    const response = await request(server)
+      .post('/resposta/')
+      .send({
+        Usuario: {
+          username: usuario.email,
+          nome: usuario.nome_completo,
+          id: usuario.id,
+          curso: usuario.curso
+        },
+        idPergunta: idPergunta,
+        conteudo: "Não sei... "
+      })
+      .set('Authorization', `Bearer ${token}`)
+
+    expect(response).toHaveProperty('status', 201)
+  })
+
+  it('Deve retornar as respostas de uma pergunta', async() => {
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+    let perguntas = await perguntasCadastradas(usuario.id)
+    let idPergunta = perguntas[0]._id.toString();
+
+    const response = await request(server)
+      .get(`/resposta/pergunta/${idPergunta}`)
+      .set('Authorization', `Bearer ${token}`)
+
+    respostas = response.body
+    expect(Array.isArray(response.body)).toBe(true);
+  })
+
+  it('Deve favoritar uma resposta à uma pergunta', async() => {
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+    let perguntas = await perguntasCadastradas(usuario.id)
+    let idPergunta = perguntas[0]._id.toString();
+
+    let idResposta = respostas[0]._id.toString();
+
+    const response = await request(server)
+      .post('/resposta/favoritar/${idPergunta}')
+      .send({
+        Usuario: {
+          username: usuario.email,
+          nome: usuario.nome_completo,
+          id: usuario.id,
+          curso: usuario.curso
+        },
+        idResposta: idResposta,
+        favorito: true
+        })
+      .set('Authorization', `Bearer ${token}`)
+
+    expect(response).toHaveProperty('status', 201)
+  })
+
 })
 
 describe('Avisos', () => {
@@ -300,6 +356,9 @@ describe('Avisos', () => {
 
 afterAll( async () => {
   let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+
+  //deleta as respostas de teste do banco de dados
+  await deletarRespostasPorUsuario(usuario)
 
   //deleta as perguntas de teste do banco de dados
   await deletarPerguntasPorUsuario(usuario)

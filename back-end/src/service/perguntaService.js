@@ -1,6 +1,6 @@
 const avisoSchema = require("../model/avisoSchema.js")
 const perguntaSchema = require("../model/perguntaSchema.js")
-const usuarioSchema = require("../model/usuarioSchema.js")
+
 const usuarioService = require("../service/usuarioService.js")
 
 const criarPergunta = async (titulo, curso, conteudo, filtro, idUsuario) => {

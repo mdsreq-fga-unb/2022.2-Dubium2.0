@@ -1,7 +1,7 @@
 const request = require("supertest");
 const server = require("../index");
-const { excluirUsuario, buscarUsuarioPorEmail } = require('../service/usuarioService');
-const { perguntasCadastradas, deletarPergunta } = require('../service/perguntaService')
+const { excluirUsuario, buscarUsuarioPorEmail } = require('../service/usuarioService.js');
+const { perguntasCadastradas, deletarPergunta } = require('../service/perguntaService.js')
 
 let token;
 let idPergunta;

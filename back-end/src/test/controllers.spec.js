@@ -205,6 +205,14 @@ describe('Avisos', () => {
     expect(response).toHaveProperty('status', 201)
   })
 
+  it('Deve obter todos os avisos', async() => {
+    const response = await request(server)
+      .get('/aviso/')
+      .set('Authorization', `Bearer ${token}`)
+
+    expect(Array.isArray(response.body)).toBe(true);
+  })
+
 
 })
 

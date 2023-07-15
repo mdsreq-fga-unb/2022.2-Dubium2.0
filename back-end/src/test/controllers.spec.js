@@ -2,7 +2,7 @@ const request = require("supertest");
 const server = require("../index");
 const { excluirUsuario, buscarUsuarioPorEmail } = require('../service/usuarioService');
 const { perguntasCadastradas, deletarPerguntasPorUsuario } = require('../service/perguntaService')
-const { avisosCadastrados } = require('../service/avisoService')
+const { avisosCadastrados, deletarAvisosPorUsuario } = require('../service/avisoService')
 
 let token;
 
@@ -301,10 +301,15 @@ describe('Avisos', () => {
 afterAll( async () => {
   let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
 
-  //deleta a pergunta de teste do banco de dados
+  //deleta as perguntas de teste do banco de dados
   await deletarPerguntasPorUsuario(usuario)
+
+  //deleta os avisos de teste do banco de dados
+  await deletarAvisosPorUsuario(usuario)
 
   //retira o usuário de teste do banco de dados
   await excluirUsuario('usuario_teste@gmail.com')
+
+
 })
 

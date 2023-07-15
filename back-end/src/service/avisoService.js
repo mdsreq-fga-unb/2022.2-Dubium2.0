@@ -55,6 +55,17 @@ const deletarAviso = async (id, userId) => {
       });
   };
 
+const deletarAvisosPorUsuario = async (user) => {
+    await avisoSchema.deleteMany({
+    usuario:{
+      "username": user.email,
+      "id": user.id,
+      "nome": user.nome_completo,
+      "curso": user.curso
+    }
+   })
+}
+
   const salvarAviso = async (id, idUser, salvo) => {
     try {
         usuarioService.buscarUsuario(idUser)
@@ -109,5 +120,6 @@ module.exports = {
     salvarAviso,
     avisosSalvos,
     favoritarAviso,
-    avisosCadastrados
+    avisosCadastrados,
+    deletarAvisosPorUsuario
 }

@@ -11,6 +11,12 @@
   border-radius: 15px;
 }
 
+.fotosCards {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
 .ps-usuario-container {
   display: flex;
   flex-direction: row;

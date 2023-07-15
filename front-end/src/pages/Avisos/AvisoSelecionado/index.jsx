@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import apiRequest from "../../../services/api";
@@ -11,8 +11,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import DeleteIcon from "@mui/icons-material/Delete";
 import StarIcon from "@mui/icons-material/Star";
 import EditIcon from "@mui/icons-material/Edit";
-
 import { IconButton } from "@mui/material";
+import { FotoContext } from "../../../context/FotoProvider";
 
 export default function AvisoSelecionado() {
   const [avisoSelecionado, setAvisoSelecionado] = useState({});
@@ -23,7 +23,7 @@ export default function AvisoSelecionado() {
   const [tituloEditado, setTituloEditado] = useState("");
   const [conteudoEditado, setConteudoEditado] = useState("");
   const [materiaEditada, setMateriaEditada] = useState("");
-
+  const fotoContext = useContext(FotoContext)
   const { idAviso } = useParams();
 
   const navigate = useNavigate();
@@ -171,7 +171,7 @@ export default function AvisoSelecionado() {
           <div className="ps-usuario-container">
             <div className="ps-usuario-info">
             <Link className="link-usuario" to={`/usuario/${avisoSelecionado?.usuario?.id}`}>
-              <PersonIcon fontSize="large" />
+            <img src={fotoContext[avisoSelecionado?.usuario?.id]} className="fotosCards" />
               <div className="ps-usuario-info-texto">
                 <span>{avisoSelecionado?.usuario?.nome}</span>
                 <span style={{ color: "#757575" }}>

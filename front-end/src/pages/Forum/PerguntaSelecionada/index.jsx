@@ -15,6 +15,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
 
 import jwt from 'jwt-decode'
+import { FotoContext } from "../../../context/FotoProvider";
 
 export default function PerguntaSelecionada() {
   const [perguntaSelecionada, setPerguntaSelecionada] = useState({});
@@ -24,7 +25,7 @@ export default function PerguntaSelecionada() {
   const [infosSalvas, setInfosSalvas] = useState({});
   const [comentar, setComentar] = useState(false);
   const [token, setToken] = useState('');
-
+  const fotoContext = useContext(FotoContext)
   const { idPergunta } = useParams();
 
   const navigate = useNavigate();
@@ -242,7 +243,7 @@ export default function PerguntaSelecionada() {
       <div className="pergunta-selecionada">
         <div className="ps-usuario-container">
           <div className="ps-usuario-info">
-            <PersonIcon fontSize="large" />
+          <img src={fotoContext[perguntaSelecionada?.idUsuario?.id]} className="fotosCards" />
             <div className="ps-usuario-info-texto">
 
 

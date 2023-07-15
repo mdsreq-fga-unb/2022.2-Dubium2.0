@@ -13,12 +13,17 @@ import apiRequest from "../../../services/api";
 import PersonIcon from "@mui/icons-material/Person";
 import StarIcon from "@mui/icons-material/Star";
 import Footer from "../../../components/footer";
+import { FotoContext } from "../../../context/FotoProvider";
+
+
 apiRequest.defaults.withCredentials = true
+
 
 export default function ForumBody({ materiaPesquisada }) {
   const [allQuest, setAllQuest] = useState([]);
   const { elementoSidebar } = useContext(SidebarContext);
-
+  const fotoContext = useContext(FotoContext)
+ 
   useEffect(() => {
     function getPerguntas() {
       if (elementoSidebar) {
@@ -84,7 +89,7 @@ export default function ForumBody({ materiaPesquisada }) {
                 <div className="infos">
                 <div className="usuario-pergunta">
                   <Link className='link-usuario' to={`/usuario/${data.idUsuario.id}`}>
-                    <PersonIcon fontSize="large" />
+                    <img src={fotoContext[data.idUsuario.id]} className="fotosCards" />
                     <div className="usuario-informacao-texto">
 
                       <span>{data.idUsuario.nome}</span>

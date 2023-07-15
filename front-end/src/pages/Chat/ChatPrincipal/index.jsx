@@ -272,8 +272,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   }, [searchText])
 
   return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB && (
-    <div className="containerChatPrincipal">
-      <div className="ContainerChatPrincipal">
+      <div className="containerChatPrincipal">
 
         <div id="corFundo">
           <div className="cabecalhoChat">
@@ -320,7 +319,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
               {isSearchOpen ? (
                 <input
                   type="text"
-                  placeholder="Digite sua pesquisa..."
+                  placeholder="Pesquisar..."
                   value={searchText}
                   onChange={handleSearchInputChange}
                   className="searchInput"
@@ -366,9 +365,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
             })
             }
           </div>
-        </div >
-
-
+          
         <form className="formEntradas" action="" onSubmit={handleSubmit}>
           <div className="entradasChat">
             <input
@@ -381,12 +378,13 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
               onChange={e => { setMessage(e.target.value) }}
             />
             <button type="submit" className="sendMessage">
-              <SendIcon />
+              Send <SendIcon style={{ fontSize: '15px' }} />
             </button>
           </div>
         </form>
+        </div >
 
       </div>
-    </div>
+
   );
 }

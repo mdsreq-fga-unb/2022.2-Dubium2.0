@@ -172,29 +172,16 @@ export default function SidebarChat() {
                   <div className="sidebarDate">
                     {chat.privado && (
                       <>
-                        {chat.usuarios[0].user.id === jwt(token).secret.id ? (
-                          chat.usuarios[0].userTarget.id in fotosUsuarios ? (
-                            <img
-                              id="imagemPerfilChatS"
-                              src={fotosUsuarios[chat.usuarios[0].userTarget.id]}
-                              alt="imagemPerfil"
-                            />
-                          ) : (
-                            <PersonIcon />
-                          )
-                        ) : (
-                          chat.usuarios[0].user.id in fotosUsuarios ? (
-                            <img
-                              id="imagemPerfilChatS"
-                              src={fotosUsuarios[chat.usuarios[0].user.id]}
-                              alt="imagemPerfil"
-                            />
-                          ) : (
-                            <PersonIcon />
-                          )
+                        {chat.usuarios[0].user.id === jwt(token).secret.id && chat.usuarios[0].userTarget.id in fotosUsuarios && (
+                          <img
+                            id="imagemPerfilChatS"
+                            src={fotosUsuarios[chat.usuarios[0].userTarget.id]}
+                            alt="imagemPerfil"
+                          />
                         )}
                       </>
                     )}
+
                     {chat.usuarios[0].user.id === jwt(token).secret.id
                       ? chat.usuarios[0].userTarget.nome
                       : chat.usuarios[0].user.nome}

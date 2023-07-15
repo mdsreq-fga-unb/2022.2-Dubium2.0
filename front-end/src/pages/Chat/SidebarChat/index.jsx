@@ -210,7 +210,11 @@ export default function SidebarChat() {
                                   alt="imagemPerfil"
                                 />
                               ) : (
-                                <PersonIcon />
+                                <img
+                                  id="imagemPerfilChatS"
+                                  src={"https://cdn-icons-png.flaticon.com/512/3106/3106921.png"}
+                                  alt="imagemPerfil"
+                                />
                               )
                             )}
                           </>

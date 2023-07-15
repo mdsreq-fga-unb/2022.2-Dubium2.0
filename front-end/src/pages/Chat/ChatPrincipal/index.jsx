@@ -286,7 +286,11 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                       alt="imagemPerfil"
                     />
                   ) : (
-                    <PersonIcon />
+                    <img
+                      id="imagemPerfilChat"
+                      src={"https://cdn-icons-png.flaticon.com/512/3106/3106921.png"}
+                      alt="imagemPerfil"
+                    />
                   )
                 ) : (
                   chat.usuarios[0].user.id in fotosUsuarios ? (

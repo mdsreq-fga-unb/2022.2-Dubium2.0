@@ -78,17 +78,18 @@
 .deleteForeverIcon {
   transition: 0.5s;
   display: flex;
-  border: 1px solid #ccc;
+  width: 90px;
   border-radius: 5px;
-  margin-left: 230px;
-  margin-bottom: 0.4px;
+  margin-left: 200px;
+  margin-top: -25px;
+  height: 40px;
   padding: 2px;
   align-items: center;
   justify-content: start;
 }
 
 .deleteForeverIcon:hover{
-  background-color: #ED4956;
+  background-color: #d9def8;
 }
 
 .headerSidebar {

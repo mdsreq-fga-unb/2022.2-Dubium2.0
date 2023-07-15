@@ -235,7 +235,7 @@ export default function SidebarChat() {
                     console.log(chat._id)
                   }}
                 >
-                  <center><DeleteForeverIcon />  </center>Excluir
+                  <DeleteForeverIcon />Arquivar
                 </div>
               )}
             </div>

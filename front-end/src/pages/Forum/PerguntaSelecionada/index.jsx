@@ -89,9 +89,7 @@ export default function PerguntaSelecionada() {
 
   useEffect(() => {
     if (token && perguntaSelecionada) {
-      if (perguntaSelecionada.favoritadoPor.includes(jwt(token).secret.id)) {
-        setFavoritoPergunta(true)
-      }
+      console.log(perguntaSelecionada)
     }
   }, [perguntaSelecionada])
 

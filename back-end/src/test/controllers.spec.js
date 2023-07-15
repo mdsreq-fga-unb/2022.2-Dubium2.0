@@ -1,6 +1,6 @@
 const request = require("supertest");
 const server = require("../index");
-const { excluirUsuario, buscarUsuarioPorEmail } = require('../service/usuarioService');
+const { excluirUsuario, buscarUsuarioPorEmail, obterUsuarios } = require('../service/usuarioService');
 const { perguntasCadastradas, deletarPerguntasPorUsuario } = require('../service/perguntaService')
 const { avisosCadastrados, deletarAvisosPorUsuario } = require('../service/avisoService')
 const { deletarRespostasPorUsuario } = require('../service/respostaService')
@@ -349,9 +349,33 @@ describe('Avisos', () => {
 
 })
 
-// describe('Chat', () => {
+describe('Chat', () => {
+  it('Deve abrir um chat privado entre duas pessoas', async() => {
+    let usuarios = await obterUsuarios()
+    usuario_target = usuarios[0]
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
 
-// })
+    const response = request(server)
+      .post("/chatInstance")
+      .send({
+        user: {
+          id: usuario.id,
+          nome: usuario.nome_completo,
+          notificacoes: 0
+        },
+        userTarget: {
+          id: usuario_target._id.toString(),
+          nome: usuario_target.nome_completo,
+          notificacoes: 0
+        },
+        privado: true
+      })
+      .set('Authorization', `Bearer ${token}`)
+
+    console.log(response)
+
+  })
+})
 
 
 afterAll( async () => {
@@ -367,7 +391,7 @@ afterAll( async () => {
   await deletarAvisosPorUsuario(usuario)
 
   //retira o usuário de teste do banco de dados
-  await excluirUsuario('usuario_teste@gmail.com')
+//  await excluirUsuario('usuario_teste@gmail.com')
 
 
 })

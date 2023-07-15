@@ -14,6 +14,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { pesquisaMensagem } from "../../../services/pesquisa";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { horarioFormatado } from "../../../services/util";
 
 
 export default function ChatPrincipal({ mensagemPesquisada }) {
@@ -363,7 +364,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                   {chat.privado ? (<span className="mensagem" dangerouslySetInnerHTML={{
                     __html: highlightSearchText(mensagem.message, searchText)
                   }} />) : (<>{mensagem.user.nome}: {mensagem.message} </>)}
-                  <span className="horario">{new Date(mensagem.horario).getHours() + ':' + new Date(mensagem.horario).getMinutes()}</span>
+                  <span className="horario">{horarioFormatado(mensagem.horario)}</span>
                 </div>
               );
             })

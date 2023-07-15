@@ -73,7 +73,9 @@ describe('Perguntas', () => {
         filtro: 'C1'
       })
       .set('Authorization', `Bearer ${token}`);
-      })
+
+    expect(response).toHaveProperty('status', 201)
+  })
 
   it('Deve obter todas as perguntas', async () =>{
     const response = await request(server)
@@ -160,7 +162,7 @@ describe('Perguntas', () => {
     expect(response).toHaveProperty('status', 201)
   })
 
-  it('', async() => {
+  it('Deve salvar uma pergunta', async() => {
     let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
     let perguntas = await perguntasCadastradas(usuario.id)
     let idPergunta = perguntas[0]._id.toString();
@@ -176,22 +178,33 @@ describe('Perguntas', () => {
 
     expect(response).toHaveProperty('status', 201)
   })
-
-  it('', async() => {
-
-
-  })
-
-
-
-
 })
 
 describe('Respostas', () => {
-
 })
 
 describe('Avisos', () => {
+  it('Deve criar um aviso', async() => {
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+    const response = await request(server)
+      .post('/aviso/criar')
+      .send({
+        id_usuario: {
+          username: usuario.email,
+          id: usuario.id,
+          nome: usuario.nome_completo,
+          curso: usuario.curso,
+        },
+        tituloAviso: "Aviso",
+        corpoAviso: "Esse é um aviso bem maneiro!" ,
+        id_cursoAviso: usuario.curso,
+        filtro: "Matérias"
+      })
+      .set('Authorization', `Bearer ${token}`)
+
+    expect(response).toHaveProperty('status', 201)
+  })
+
 
 })
 

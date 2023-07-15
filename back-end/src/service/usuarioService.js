@@ -84,11 +84,10 @@ const excluirUsuario = async (email) =>{
     try {
     await buscarUsuarioPorEmail(email)
         .then(user => {
-            console.log('Deletado com sucesso')
             return user.deleteOne({ email: email})
         })
     }  catch (error){
-    console.log("Erro ao excluir usuário")
+        console.log("Erro ao excluir usuário")
         }
     };
 

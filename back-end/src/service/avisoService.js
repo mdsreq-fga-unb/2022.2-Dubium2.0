@@ -91,6 +91,14 @@ const deletarAviso = async (id, userId) => {
         .catch(error => {throw new Error("Aviso não encontrado!")})
   }
 
+  const avisosCadastrados = async (idUsuario) => {
+    try {
+        return await avisoSchema.find({ "usuario.id": idUsuario }).lean()
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
 
 module.exports = {
     criarAviso,
@@ -100,7 +108,6 @@ module.exports = {
     editarAviso,
     salvarAviso,
     avisosSalvos,
-    favoritarAviso
-
-
+    favoritarAviso,
+    avisosCadastrados
 }

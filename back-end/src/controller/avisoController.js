@@ -63,11 +63,11 @@ const salvarAviso = (req, res) => {
     const { id_usuario, id_aviso, salvo } = req.body
     avisoService.salvarAviso(id_aviso, id_usuario, salvo)
         .then(() => {
-            res.status(201).send("Aviso alterado com sucesso!")
+            res.status(201).send("Aviso salvo com sucesso!")
         })
         .catch(err => {
             res.status(400).send({
-                error: "Erro ao alterar aviso!",
+                error: "Erro ao salvar aviso!",
                 message: err
             })
         })

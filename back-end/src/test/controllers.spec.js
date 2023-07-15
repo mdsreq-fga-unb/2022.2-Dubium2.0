@@ -2,9 +2,9 @@ const request = require("supertest");
 const server = require("../index");
 const { excluirUsuario, buscarUsuarioPorEmail } = require('../service/usuarioService');
 const { perguntasCadastradas, deletarPerguntasPorUsuario } = require('../service/perguntaService')
+const { avisosCadastrados } = require('../service/avisoService')
 
 let token;
-let idPergunta;
 
 //ignorando console.logs do back-end
 //console.log = jest.fn();
@@ -211,6 +211,83 @@ describe('Avisos', () => {
       .set('Authorization', `Bearer ${token}`)
 
     expect(Array.isArray(response.body)).toBe(true);
+  })
+
+  it('Deve obter um aviso a partir do seu id', async() =>{
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+    let avisos = await avisosCadastrados(usuario.id)
+    let idAviso = avisos[0]._id.toString();
+
+    const response = await request(server)
+      .get(`/aviso/${idAviso}`)
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response).toHaveProperty('status', 201)
+  })
+
+  it('Deve editar o aviso se o usuário tiver permissão para editar', async() => {
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+    let avisos = await avisosCadastrados(usuario.id)
+    let idAviso = avisos[0]._id.toString();
+
+    const response = await request(server)
+      .put(`/aviso/editar/${idAviso}`)
+      .send({
+        titulo: "Título editado",
+        materia: "materia editada",
+        conteudo: "conteudo editado"
+      })
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response).toHaveProperty('status', 200)
+  })
+
+  it('Deve salvar um aviso', async() => {
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+    let avisos = await avisosCadastrados(usuario.id)
+    let idAviso = avisos[0]._id.toString();
+
+    const response = await request(server)
+      .post(`/aviso/salvar`)
+      .send({
+        id_usuario: usuario.id,
+        id_aviso: idAviso,
+        salvo: true
+      })
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response).toHaveProperty('status', 201)
+  })
+
+  it('Deve retornar todos os avisos salvos', async() => {
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+    let arrayAvisos = usuario.salvos.avisos
+
+    const response = await request(server)
+      .post('/aviso/salvos')
+      .send({
+        arrayAvisos: arrayAvisos
+      })
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response).toHaveProperty('status', 201)
+  })
+
+  it('Deve favoritar um aviso', async() => {
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+    let avisos = await avisosCadastrados(usuario.id)
+    let idAviso = avisos[0]._id.toString();
+
+    const response = await request(server)
+      .post(`/aviso/favoritar/${idAviso}`)
+      .send({
+        idUsuario: usuario.id,
+        idAviso: idAviso,
+        favorito: true
+      })
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response).toHaveProperty('status', 201)
   })
 
 

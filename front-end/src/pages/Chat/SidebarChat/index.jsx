@@ -10,6 +10,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import PersonIcon from "@mui/icons-material/Person";
 import DensityMediumIcon from '@mui/icons-material/MoreVert';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ArchiveIcon from '@mui/icons-material/Archive';
 
 export default function SidebarChat() {
   const [usuario, setUsuario] = useState({});
@@ -137,11 +138,9 @@ export default function SidebarChat() {
   return token && usuario && chats && (
     <div className="containerSidebar">
       <div className="headerSidebar">
-        <div onClick={() => { setOptionSidebar(false) }}>
-          Conversas
-        </div>
-        <div onClick={() => { setOptionSidebar(true) }}>
-          Ver arquivados
+        <div onClick={() => { setOptionSidebar(!optionSidebar) }} className="arquivados">
+          <ArchiveIcon/>
+          <span>Arquivadas</span>
         </div>
       </div>
       {!optionSidebar && chats.map((chat, index) => {

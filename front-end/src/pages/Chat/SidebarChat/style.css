@@ -39,6 +39,16 @@
 
 }
 
+.arquivados {
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+}
+
+.arquivados span {
+  margin-left: 50px;
+}
+
 #imagemPerfilChatS {
   margin: 0.8rem;
   width: 3rem;

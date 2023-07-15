@@ -42,7 +42,7 @@ export default function SidebarChat() {
   }
 
   useEffect(() => {
-    if(usuario){
+    if (usuario) {
       socket.on("atualizarSidebar", (data) => {
         setChats((prevChats) => [data, ...prevChats]);
       })
@@ -50,12 +50,12 @@ export default function SidebarChat() {
   }, [])
 
   useEffect(() => {
-    if(chats.length > 0){
+    if (chats.length > 0) {
       socket.on("atualizarSidebarMensagens", (idChat) => {
         //acessar chats._id e jogar pra cima
         const index = chats.findIndex(e => e._id === idChat);
         const temp = chats[index]
-        if(index > -1){
+        if (index > -1) {
           chats.splice(index, 1)
         }
         setChats((prevChats) => [temp, ...chats]);
@@ -93,13 +93,13 @@ export default function SidebarChat() {
     data.sort((a, b) => {
       const lastMessageA = a.mensagens[a.mensagens.length - 1];
       const lastMessageB = b.mensagens[b.mensagens.length - 1];
-      
-      if(lastMessageA && lastMessageB){
+
+      if (lastMessageA && lastMessageB) {
         const dateA = new Date(lastMessageA.horario);
         const dateB = new Date(lastMessageB.horario);
         return dateB - dateA;
       }
-      
+
     })
     return data
   }
@@ -129,7 +129,7 @@ export default function SidebarChat() {
   }
 
   useEffect(() => {
-    if(chats){
+    if (chats) {
       console.log(chats)
     }
   }, [chats])
@@ -166,10 +166,10 @@ export default function SidebarChat() {
                 }
               }}
             >
-            
+
               {chat.privado && (
                 <div className="sidebarItemChat">
-                  <div className ="sidebarDate">
+                  <div className="sidebarDate">
                     {chat.privado && (
                       <>
                         {chat.usuarios[0].user.id === jwt(token).secret.id ? (
@@ -205,27 +205,26 @@ export default function SidebarChat() {
                         chat.usuarios[0].userTarget.notificacoes > 0 && <span className="notificacao" >{chat.usuarios[0].userTarget.notificacoes}</span>
                       }
                     </div>
-                  </div>  
+                  </div>
+                  <DensityMediumIcon className="densityMediumIcon"
+                    onClick={(e) => {
+                      e.preventDefault(e);
+                      setShowMenu((prevShowMenu) => ({
+                        ...prevShowMenu,
+                        [chat._id]: !prevShowMenu[chat._id],
+                      }));
+                    }}
+                  />
                 </div>
-            
-            )}
-            
-            
 
-            {!chat.privado && <div className="sidebarItemChat"><div className="iconeSala">{<GroupsIcon style={{ fontSize: '40px' }} />}</div>{
-              chat.nome}</div>}
-          </Link>
+              )}
+
+
+
+              {!chat.privado && <div className="sidebarItemChat"><div className="iconeSala">{<GroupsIcon style={{ fontSize: '40px' }} />}</div>{
+                chat.nome}</div>}
+            </Link>
             <div>
-              <DensityMediumIcon className="densityMediumIcon"
-                onClick={(e) => {
-                  e.preventDefault(e);
-                  setShowMenu((prevShowMenu) => ({
-                    ...prevShowMenu,
-                    [chat._id]: !prevShowMenu[chat._id],
-                  }));
-                }}
-              />
-
               {showMenu[chat._id] && (
                 <div className="deleteForeverIcon"
                   onClick={() => {
@@ -235,12 +234,12 @@ export default function SidebarChat() {
                   <center><DeleteForeverIcon />  </center>Excluir
                 </div>
               )}
-            </div>          
+            </div>
           </div>
         );
       })}
     </div>
-    
-    
+
+
   );
 }

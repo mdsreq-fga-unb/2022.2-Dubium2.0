@@ -272,8 +272,8 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   }, [searchText])
 
   return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB && (
-    <div className="containerChat">
-      <div className="chat-principal">
+    <div className="containerChatPrincipal">
+      <div className="ContainerChatPrincipal">
 
         <div id="corFundo">
           <div className="cabecalhoChat">

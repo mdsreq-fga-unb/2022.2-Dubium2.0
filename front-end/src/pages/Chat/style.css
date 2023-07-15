@@ -1,37 +1,36 @@
 .containerChat {
-  position: fixed;
-  width: 100%;
-  height: auto;
-}
-
-.containerSidebar {
-  position: fixed;
+  padding: 0;
+  margin-top: 80px;
   display: flex;
-  overflow: auto;
+  width: 100%;
+  height: 100vh;
 }
 
-.containerSidebar {
-  flex-direction: column;
-  border-right: 2px solid #414141;
-  width: 250px;
-  padding: 10px;
-  top: 0;
-  bottom: 0;
-  left: 0;
+.sidebar-Chat {
   position: fixed;
-  top: 80px;
+  overflow: auto;
+  background-color: #F3F2F7;
+  width: 350px;
+  position: fixed;
+  top: 83px;
+  height: 90vh;
 }
 
-.containerSidebar::-webkit-scrollbar {
-  width: 6px;
+.chat-principal {
+  margin-left: 350px;
+  width: auto;
+}
+
+.sidebar-Chat::-webkit-scrollbar {
+  width: 3px;
   background-color: transparent;
 }
 
-.containerSidebar::-webkit-scrollbar-thumb {
+.sidebar-Chat::-webkit-scrollbar-thumb {
   background-color: #888;
   border-radius: 4px;
 }
 
-.containerSidebar::-webkit-scrollbar-thumb:hover {
+.sidebar-Chat::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }

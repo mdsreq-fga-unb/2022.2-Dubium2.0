@@ -3,12 +3,17 @@
   font-size: 17px;
   display: flex;
   align-items: center;
-  padding: 0.6rem;
-  margin-left: -5px;
-  width: 80%;
+  padding: 0.8rem;
+}
+.index{
+  margin-left: 1rem;
+  width: 310px;
+}
 
 
-
+.index:hover{
+  background-color: #fff;
+  border-radius: 4px;
 }
 
 .iconeSala{
@@ -37,7 +42,6 @@
   height: 3rem;
   border-radius: 50%;
   border: #000000 0.5px solid;
-  
 }
 
 
@@ -49,23 +53,6 @@
   padding: 0.6rem;
   margin-left: -1.9rem;
   width: 96%;
-  
-  
-
-}
-
-.index{
-  
-  /* display: flex; */
-  /* width: 50%; */
-  border-bottom: 2px solid #201F25;
-}
-
-.densityMediumIcon{
-  display: flex;
-  position: absolute;
-  margin-inline-start: 84%;
-  margin-top: -18%;
 }
 
 .densityMediumIcon:hover{

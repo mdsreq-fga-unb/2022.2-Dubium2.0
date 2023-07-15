@@ -9,12 +9,12 @@ export default function Chat({ mensagemPesquisada }) {
     return (
         <div className="containerChat">
             <div className="sidebar-Chat">
-                    <SidebarChat>
-                    </SidebarChat>
+                <SidebarChat>
+                </SidebarChat>
             </div>
             <div className="chat-principal">
-                    <ChatPrincipal mensagemPesquisada={mensagemPesquisada}>
-                    </ChatPrincipal>
+                <ChatPrincipal mensagemPesquisada={mensagemPesquisada}>
+                </ChatPrincipal>
             </div>
         </div>
     );

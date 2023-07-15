@@ -6,137 +6,105 @@ const chatSchema = require('../model/chatSchema.js')
 const passport = require("passport")
 const usuarioSchema = require("../model/usuarioSchema.js")
 const redisClient = require("../config/RedisConfig.js")
+const chatService = require("../service/chatService.js")
+const redisService = require("../service/redisService.js")
+const usuarioService = require("../service/usuarioService.js")
 
-router.post("/", passport.authenticate('jwt', { session: false }), (req, res) => {
+
+const obterChatsPorUsuario = (req, res) => {
     const { chats } = req.body
     const idChats = chats.map(chat => chat.idChat)
-    chatSchema.find({ _id: { $in: idChats } }).lean()
+    chatService.obterChatsPorUsuario(idChats)
         .then(data => {
             res.send(data)
         })
         .catch(err => {
-            res.status(400).send({
-                error: "Erro ao fazer requisição",
-                message: err
-            })
+            res.status(400).send({ error: "Erro ao fazer requisição", message: err })
         })
-})
+}
 
-
-router.get("/:idChat", passport.authenticate('jwt', { session: false }), async (req, res) => {
+const obterChat = async (req, res) => {
     const { idChat } = req.params
     const chatCache = await redisClient.get(idChat)
     if(chatCache){
-        console.log("pegando do REDIS")
         res.status(200).send(chatCache)
     } else {
-        chatSchema.findOne({ _id: idChat })
+        chatService.obterChat(idChat)
         .then(async (data) => {
-            console.log("pegando do DB")
-            const chatJSON = JSON.stringify(data)
-            await redisClient.set(idChat, chatJSON)
-            await redisClient.expire(idChat, 300)
+            redisService.salvarMensagensCache(idChat, data)
             res.status(200).send(data)
         })
         .catch(err => {
-            res.status(400).send({
-                error: "Erro ao fazer requisição",
-                message: err
-            })
+            res.status(400).send({ error: "Erro ao fazer requisição", message: error })
         })
     }
-})
+}
 
-router.post("/messages", passport.authenticate('jwt', { session: false }), (req, res) => {
+const salvarMensagens = (req, res) => {
     const { messages, idChat } = req.body
-    // console.log(messages[0])
-    chatSchema.findOneAndUpdate(
-        { _id: idChat },
-        { $push: { mensagens: { $each: messages } } },
-      )
+    chatService.salvarMensagens(idChat, messages)
         .then(async (updatedChat) => {
             updatedChat.mensagens.push(messages[0])
-            const updatedChatString = JSON.stringify(updatedChat);
-            await redisClient.set(idChat, updatedChatString, (err) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).send("Erro ao salvar as mensagens no cache");
-                }
-        })
-        await redisClient.expire(idChat, 300)
+            redisService.salvarMensagensCache(idChat, updatedChat)
             res.status(200).send("Mensagens salvas com sucesso")
         })
         .catch(error => {
-            res.status(400).send({
-                error: "Erro ao fazer requisição",
-                message: error
-            })
+            res.status(400).send({ error: "Erro ao fazer requisição", message: error })
         });
-})
+}
 
-router.post("/chatPublico", passport.authenticate('jwt', { session: false }), (req, res) => {
+ const instanciarChatPublico = (req, res) => {
     const { privado, nome, tema, userAdmin, foto } = req.body
-    new chatSchema({ privado: privado, nome: nome, tema: tema, usuarios: [userAdmin], foto: foto }).save()
-        .then(data => {
-            usuarioSchema.findOne({ _id: userAdmin.id })
-                .then(user => {
-                    user.updateOne({ $push: { chats: { idChat: data._id, privado: false } } })
-                        .then(response => {
-                            res.status(200).send("Instância pública criada com sucesso!")
-                        })
-                        .catch(err => res.status(400).send({error: "Erro ao salvar instância no usuario", message: err}))
-                })
-                .catch(err => {
-                    res.status(400).send({error: "Erro ao salvar instância no usuário", message: err})})
-        })
-        .catch(err => {
-            res.status(400).send({
-                error: "Erro ao criar instância de chat!",
-                message: err
-            })
-        })
+    usuarioService.instanciarChatPublico(privado, nome, tema, userAdmin, foto, userAdmin.id)
+    .then(response => {
+        res.status(200).send("Instância pública criada com sucesso!")
+    })
+    .catch(err => res.status(400).send({error: "Erro ao salvar instância no usuario", message: err}
+    ))
+}
 
-})
-
-router.get("/", passport.authenticate('jwt', { session: false }), (req, res) => {
-    chatSchema.find({ privado: false }).lean()
+const listarChatsPublicos = (req, res) => {
+    chatService.listarChatsPublicos()
         .then(data => {
             res.status(200).send(data)
         })
         .catch(err => res.status(400).send({error: "Erro ao encontrar chats", message: err}))
-})
+}
 
 
-router.post("/joinUser", passport.authenticate('jwt', { session: false }), (req, res) => {
+const adicionarUsuarioEmGrupo = (req, res) => {
     const { idChat, idUsuario } = req.body
-    usuarioSchema.findOneAndUpdate({ _id: idUsuario }, { $push: { chats: {idChat: idChat, privado: false} } })
+    chatService.adicionarUsuarioEmGrupo(idChat, idUsuario)
         .then(response => {
-            chatSchema.findOneAndUpdate({ _id: idChat }, { $push: { usuarios: { id: idUsuario, nome: response.nome_completo } } })
-                .then(response => {
-                    res.status(200).send("Usuario adicionado ao chat com sucesso!")
-                })
-                .catch(err => res.status(400).send({error: "Erro ao registrar usuario no chat", message: err}))
+            res.status(200).send("Usuario adicionado ao chat com sucesso!")
         })
-        .catch(err => res.status(400).send({error: "Erro ao registrar usuário no chat", message: err}))
-})
+        .catch(err => res.status(400).send({error: "Erro ao registrar usuario no chat", message: err}))
+}
 
 
 
-router.post("/user", passport.authenticate('jwt', { session: false }), (req, res) => {
-    const { idUser } = req.body
-    chatSchema.find({
-        $or: [
-          { "usuarios.0.user.id": idUser },
-          { "usuarios.0.userTarget.id": idUser }
-        ]
-      }).select({ usuarios: 1, _id: 0 })
-        .then(data => {
-            res.status(200).send(data)
-        })
-        .catch(err => res.status(400).send({error: "Erro ao encontrar chats", message: err}))
-})
+// router.post("/user", passport.authenticate('jwt', { session: false }), (req, res) => {
+//     const { idUser } = req.body
+//     chatSchema.find({
+//         $or: [
+//           { "usuarios.0.user.id": idUser },
+//           { "usuarios.0.userTarget.id": idUser }
+//         ]
+//       }).select({ usuarios: 1, _id: 0 })
+//         .then(data => {
+//             res.status(200).send(data)
+//         })
+//         .catch(err => res.status(400).send({error: "Erro ao encontrar chats", message: err}))
+// })
 
 
 
 
-module.exports = router
+module.exports = {
+    obterChatsPorUsuario,
+    obterChat,
+    salvarMensagens,
+    instanciarChatPublico,
+    listarChatsPublicos,
+    adicionarUsuarioEmGrupo
+}

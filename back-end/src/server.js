@@ -13,7 +13,7 @@ const pergunta = require("./routes/pergunta.js")
 const resposta = require("./controller/respostaController.js")
 const usuario = require("./routes/usuario.js")
 const aviso = require("./routes/aviso.js")
-const chat = require("./controller/chatController.js")
+const chat = require("./routes/chat.js")
 //require mongo
 require("./config/MongoConfig.js")
 //require cors

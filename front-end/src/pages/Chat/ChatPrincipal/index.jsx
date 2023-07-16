@@ -379,7 +379,6 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
               placeholder="Mensagem"
               value={message}
               required
-              maxLength='30'
               onChange={e => { setMessage(e.target.value) }}
             />
             <button type="submit" className="sendMessage">

@@ -5,6 +5,11 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    env:
+      DB_HOST: "mongodb+srv://arthurmelo1918:71JuBrKKWQr6kAfU@dubium0.o4ru6rq.mongodb.net/Dubium"
+      API_KEY: "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"
+      ORG: "org-ZKypXgICyNRD0O6urMB1v5Eh"
+
     steps:
       - name: Clone repository
         uses: actions/checkout@v2

@@ -5,7 +5,7 @@ router.use(json())
 const passport = require("passport")
 const RespostaSchema = require("../model/respostaSchema.js")
 const respostaSchema = require("../model/respostaSchema.js")
-
+const respostaService = require("../service/respostaService.js")
 
 
 router.post("/", passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -21,6 +21,7 @@ router.post("/", passport.authenticate('jwt', { session: false }), (req, res) =>
             })
         })
 })
+
 router.get("/pergunta/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
     const { id } = req.params
     RespostaSchema.find({ idPergunta: id }).lean()
@@ -101,6 +102,20 @@ router.post("/favoritar/:id", passport.authenticate('jwt', { session: false }), 
         })
 })
 
+router.put("/editar/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { id } = req.params
+  const { conteudo } = req.body
+  respostaService.editarResposta(id, req.user._id, conteudo)
+    .then(updatedResposta => {
+      res.status(200).json(updatedResposta)
+    })
+    .catch(err => {
+      res.status(500).send({
+        error: "Erro ao atualizar resposta",
+        message: err.message
+      })
+    })
+})
 
 
 

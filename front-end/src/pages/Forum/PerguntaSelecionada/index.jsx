@@ -1,5 +1,4 @@
 import "./style.css";
-
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -42,9 +41,6 @@ export default function PerguntaSelecionada() {
     setToken(document.cookie.replace(/(?:(?:^|.*;\s*)jwt\s*\=\s*([^;]*).*$)|^.*$/, '$1'))
   }, [])
 
-
-
-
   const {
     register,
     reset,
@@ -52,7 +48,7 @@ export default function PerguntaSelecionada() {
     formState: { errors },
   } = useForm();
 
-  const getPerguntas = () => {
+  const getPergunta = () => {
     apiRequest
       .get(`pergunta/${idPergunta}`, {
         headers: {
@@ -67,9 +63,11 @@ export default function PerguntaSelecionada() {
       });
   }
 
-  useEffect(() => { // get pergunta
+  useEffect(() => {
     if (token) {
-      getPerguntas()
+      getPergunta();
+      getRespostas();
+      getUsuario();
     }
   }, [token]);
 
@@ -89,33 +87,6 @@ export default function PerguntaSelecionada() {
       });
   }
 
-  useEffect(() => {
-    if (token && infosSalvas) {
-      getUsuario()
-    }
-  }, [token]);
-
-  useEffect(() => {
-    if (token && perguntaSelecionada) {
-      console.log(perguntaSelecionada?.favoritadoPor?.includes(jwt(token).secret.id))
-      setFavoritoPergunta(perguntaSelecionada?.favoritadoPor?.includes(jwt(token).secret.id) )
-    }
-  }, [perguntaSelecionada])
-
-  const verificaFavorito = (bool) => {
-    if (bool) {
-      return bool
-    }
-    return bool
-  }
-
-  // const verificaSalvo = (bool) => {
-  //   if(bool){
-  //     return bool
-  //   }
-  //   return bool
-  // }
-
   const getRespostas = () => {
     apiRequest
       .get(`resposta/pergunta/${idPergunta}`, {
@@ -130,12 +101,6 @@ export default function PerguntaSelecionada() {
         console.error("ops! ocorreu um erro" + err);
       });
   }
-
-  useEffect(() => {
-    if (token) {
-      getRespostas()
-    }
-  }, [token])
 
   const habilitarEdicao = () => {
     setEditando(true);
@@ -177,7 +142,7 @@ export default function PerguntaSelecionada() {
       })
       .then((response) => {
         alert("Resposta deletada!");
-        getRespostas()
+        getRespostas();
       })
       .catch((error) => console.log(error));
   };
@@ -237,7 +202,7 @@ export default function PerguntaSelecionada() {
       .catch((error) => console.log(error));
   };
 
-  const onSubmit = async (data) => { // registra nova resposta
+  const onSubmit = async (data) => { // registrar nova resposta
     let novaResposta = {
       Usuario: jwt(token).secret,
       idPergunta: idPergunta,
@@ -256,7 +221,7 @@ export default function PerguntaSelecionada() {
       .catch((error) => console.log(error));
 
     setComentar(!comentar);
-    reset()
+    reset();
   };
 
   const editarPergunta = async () => {
@@ -276,51 +241,85 @@ export default function PerguntaSelecionada() {
       })
       .then((response) => {
         setEditando(false);
-        getPerguntas()
+        getPergunta()
       })
       .catch((error) => console.log(error));
   };
 
-
-
-  // PERGUNTA
   return (
     <div className="container">
       <div className="pergunta-selecionada">
         <div className="ps-usuario-container">
           <div className="ps-usuario-info">
-          <img src={fotoContext[perguntaSelecionada?.idUsuario?.id]} className="fotosCards" />
+            <img src={fotoContext[perguntaSelecionada?.idUsuario?.id]} className="fotosCards" />
             <div className="ps-usuario-info-texto">
-
-
-                <span>{perguntaSelecionada?.idUsuario?.nome}</span>
-
-
+              <span>{perguntaSelecionada?.idUsuario?.nome}</span>
               <span style={{ color: "#757575" }}>
                 {handleCurso(perguntaSelecionada?.usuario?.curso)}
-                {/* mais na frente arrumar isso */}
               </span>
             </div>
           </div>
-          {token && jwt(token)?.secret?.id == perguntaSelecionada?.idUsuario?.id && (
+          {token && jwt(token)?.secret?.id === perguntaSelecionada?.idUsuario?.id && (
             <IconButton onClick={deletarPergunta}>
               <DeleteIcon sx={{ fontSize: 16 }} />
+            </IconButton>
+          )}
+          {token && jwt(token)?.secret?.id === perguntaSelecionada?.idUsuario?.id && (
+            <IconButton onClick={habilitarEdicao}>
+              <EditIcon sx={{ fontSize: 16 }} />
             </IconButton>
           )}
         </div>
         <span className="filtroPerguntaSeleionada">
           {perguntaSelecionada?.filtro?.toUpperCase()}
         </span>
-        <span>{perguntaSelecionada?.conteudo}</span>
+        {editando ? (
+          <div>
+            <label htmlFor="">Título:</label><br /><br />
+            <input
+              type="text"
+              value={tituloEditado}
+              onChange={(e) => setTituloEditado(e.target.value)}
+              className="textarea-editar"
+            />
+            <label htmlFor="">Conteúdo:</label><br /><br />
+            <textarea
+              className="conteudoArea"
+              value={conteudoEditado}
+              onChange={(e) => setConteudoEditado(e.target.value)}
+            ></textarea>
+            <label htmlFor="">Curso:</label><br /><br />
+            <input
+              type="text"
+              value={cursoEditado}
+              onChange={(e) => setCursoEditado(e.target.value)}
+              className="textarea-editar"
+            />
+            <label htmlFor="">Filtro:</label><br /><br />
+            <input
+              type="text"
+              value={filtroEditado}
+              onChange={(e) => setFiltroEditado(e.target.value)}
+              className="textarea-editar"
+            />
+            <div>
+              <button className="salvar-editar" onClick={editarPergunta}>Salvar</button>
+              <button className="cancelar-editar" onClick={cancelarEdicao}>Cancelar</button>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <span className="conteudo">{perguntaSelecionada?.conteudo}</span>
+          </div>
+        )}
         <ul className="container-interacao">
           <div className="ps-favoritar-salvar">
             <li
               className="item-interacao"
               onClick={() => {
-                updateFavoritoPergunta(perguntaSelecionada?.favoritadoPor?.includes(jwt(token).secret.id));
+                updateFavoritoPergunta(favoritoPergunta);
               }}
             >
-              {/* FAVORITAR PERGUNTA */}
               <IconButton>
                 <StarIcon
                   className={favoritoPergunta ? "corFavorito" : ""}
@@ -329,8 +328,7 @@ export default function PerguntaSelecionada() {
               </IconButton>
               <span>Favoritar</span>
             </li>
-            {/* SALVAR PERGUNTA */}
-            {token &&
+            {token && (
               <li
                 className="item-interacao"
                 onClick={() => {
@@ -338,14 +336,15 @@ export default function PerguntaSelecionada() {
                 }}
               >
                 <IconButton>
-                  <BookmarkIcon sx={{ fontSize: 16 }}
+                  <BookmarkIcon
                     className={infosSalvas?.perguntas?.includes(idPergunta) ? "corFavorito" : ""}
+                    sx={{ fontSize: 16 }}
                   />
                 </IconButton>
-                <span>{infosSalvas?.perguntas?.includes(idPergunta) ? "salvo" : "salvar"}</span>
-              </li>}
+                <span>{infosSalvas?.perguntas?.includes(idPergunta) ? "Salvo" : "Salvar"}</span>
+              </li>
+            )}
           </div>
-          {/* BOTAO PARA RESPONDER */}
           <li className="item-interacao" onClick={() => setComentar(!comentar)}>
             <IconButton>
               <QuestionAnswerIcon sx={{ fontSize: 16 }} />
@@ -353,7 +352,6 @@ export default function PerguntaSelecionada() {
             <span>Responder</span>
           </li>
         </ul>
-        {/* RESPOSTA */}
         {comentar && (
           <div>
             <form
@@ -378,7 +376,6 @@ export default function PerguntaSelecionada() {
             </form>
           </div>
         )}
-        {/* puxando respostas da pergunta */}
         <ul className="container-resposta">
           {respostas.map((data, index) => (
             <li value={data._id} key={index} className="card-resposta">
@@ -391,9 +388,8 @@ export default function PerguntaSelecionada() {
                     alignItems: "center",
                   }}
                 >
-
                   {data.Usuario.nome}
-                  {token && jwt(token)?.secret?.id == data?.Usuario.id && (
+                  {token && jwt(token)?.secret?.id === data?.Usuario.id && (
                     <IconButton
                       onClick={() => {
                         deletarResposta(data._id);
@@ -409,8 +405,10 @@ export default function PerguntaSelecionada() {
               <div
                 className="ps-favoritar"
                 onClick={() => {
-                  verificaFavorito(data.favoritadoPor.includes(jwt(token).secret.id))
-                  updateFavoritoResposta(data.favoritadoPor.includes(jwt(token).secret.id), data._id)
+                  updateFavoritoResposta(
+                    data.favoritadoPor.includes(jwt(token).secret.id),
+                    data._id
+                  )
                 }}
               >
                 <IconButton>

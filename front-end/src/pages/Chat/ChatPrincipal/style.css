@@ -27,6 +27,8 @@
   background-color: #f1f1f1;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+
+  margin-top: 10px;
 }
 
 #searchIcon {
@@ -37,16 +39,46 @@
   cursor: pointer;
 }
 
+.searchContainer {
+  width: 400px;
+  position: fixed; /* Alterando para posição fixa */
+  top: 12%; /* Posicionando no meio vertical da tela */
+  right: 1rem; /* Posicionando a 1rem da borda direita da tela */
+  transform: translateY(-50%); /* Centralizando verticalmente */
+  display: flex;
+  align-items: center;
+  border: solid 2px blue;
+  background-color: #fff; /* Adicionando uma cor de fundo */
+  padding: 5px; /* Adicionando um pouco de espaço interno para o conteúdo */
+  z-index: 9999; /* Definindo um z-index alto para garantir que ele fique acima dos outros elementos */
+}
+
 .searchInput {
-  margin-left: -5rem;
   padding: 5px;
   outline: none;
   font-size: 14px;
   background-color: #f2f2f2;
-  border-radius: 8px;
-  width: 200px;
-  border: 1.2px solid #ccc; /* Adicione a propriedade border para definir o estilo da borda */
+  border-radius: px;
+  width: 400px;
+  border: 1.2px solid #ccc;
 }
+
+.mensagensFiltradas {
+  width: 400px;
+  position: absolute; /* Posicionando como absoluto para que a div não ocupe espaço no fluxo do layout */
+  top: 2.5rem; /* Ajuste a distância do topo conforme necessário */
+  right: 0rem; /* Ajuste a distância da direita conforme necessário */
+  border: solid 2px blue;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 5px;
+  z-index: 9999; /* Definindo um z-index alto para garantir que fique acima dos outros elementos */
+}
+/* 
+.test {
+  border: solid 2px blue;
+} */
+
 
 .searchInput:focus {
   background-color: #ffffff;

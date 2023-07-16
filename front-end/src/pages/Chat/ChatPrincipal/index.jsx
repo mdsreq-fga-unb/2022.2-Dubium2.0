@@ -320,7 +320,8 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                   {chat.privado && chat.usuarios[0].user.id == jwt(token).secret.id ? `${stringDigitando}` : `${stringDigitando}`}</div>
               </div>
             </div>
-            <div id="searchIcon">
+
+            {/* <div id="searchIcon">
               {isSearchOpen ? (
                 <input
                   type="text"
@@ -352,7 +353,44 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                   </div>
                 )
               }
+            </div> */}
+
+            <div id="searchIcon">
+              {isSearchOpen ? (
+                <div className="searchContainer">
+                  <input
+                    type="text"
+                    placeholder="Pesquisar..."
+                    value={searchText}
+                    onChange={handleSearchInputChange}
+                    className="searchInput"
+                  />
+
+                  {/* Corpo da div de pesquisa */}
+                  {mensagensFiltradas && (
+                    <div className="mensagensFiltradas">
+                      {mensagensFiltradas.map((mensagem) => {
+                        return mensagem.idRoom === chat._id && (
+                          <div
+                            key={mensagem.index}
+                            onClick={() => {
+                              scrollToIndex(mensagem.index);
+                            }}
+                            className="test"
+                          >
+                            {mensagem.message}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <SearchIcon onClick={handleSearchClick} />
+              )}
             </div>
+
+
           </div>
           <div className="conteudoChat" ref={containerRef}>
             {messagesDB.map((mensagem, index) => {

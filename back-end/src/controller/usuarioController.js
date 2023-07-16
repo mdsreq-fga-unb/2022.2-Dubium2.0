@@ -90,10 +90,21 @@ const instanciarChatUsuario = (req, res) => {
             res.status(200).json(data.data)
         })
         .catch(err => {
-            res.status(400).send({
-                erro: "Falha ao salvar instância",
-                message: err.message
+            res.status(400).send({ erro: "Falha ao salvar instância", message: err.message })
+        })
+}
+
+const obterFotos = (req, res) => {
+    usuarioService.obterUsuarios()
+        .then((data) => {
+            const objectData = {}
+            data.map(e => {
+                objectData[`${e._id}`] = e.foto
             })
+            res.status(200).send(objectData)
+        })
+        .catch(err => {
+            res.status(400).send({ erro: "Falha ao encontrar usuarios", message: err.message })
         })
 }
 
@@ -105,5 +116,6 @@ module.exports = {
     conteudosSalvos,
     obterUsuarios,
     salvarFoto,
-    instanciarChatUsuario
+    instanciarChatUsuario,
+    obterFotos
 }

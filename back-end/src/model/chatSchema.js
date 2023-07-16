@@ -22,6 +22,10 @@ const ChatSchema = new Schema({
     },
     foto: {
         type: String
+    },
+    arquivada: {
+        type: Boolean,
+        default: false
     }
 })
 

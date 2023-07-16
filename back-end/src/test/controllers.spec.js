@@ -66,7 +66,7 @@ describe('Perguntas', () => {
         },
         titulo: 'Rei e Rainha da Derivada',
         curso: 1,
-        conteudo: 'É obrigatório participar do evento?',
+        conteudo: 'Que horas começa o evento?',
         filtro: 'C1'
       })
       .set('Authorization', `Bearer ${token}`);

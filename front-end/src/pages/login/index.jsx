@@ -3,19 +3,23 @@ import logo from "../../assets/images/logo.jpg";
 import question from "../../assets/images/bichinho.png";
 import search from "../../assets/images/mulher.png";
 import Cookies from 'js-cookie';
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, redirect, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
 import apiRequest from "../../services/api";
 import { SocketContext } from "../../context/Socket";
 import jwt from 'jwt-decode';
+import FotoProvider, { FotoContext } from "../../context/FotoProvider";
+
 
 
 export default function Login({ setLogado }) {
   const navigate = useNavigate();
   const { user, setUser } = useContext(AuthContext);
   const socket = useContext(SocketContext)
+  const fotoContext = useContext(FotoContext)
+  const [token, setToken] = useState("")
 
   const {
     register,
@@ -36,7 +40,7 @@ export default function Login({ setLogado }) {
         console.log(response.data)
         document.cookie = `jwt=${response.data.token}; expires=DataDeExpiracao; path=/`
         socket.emit("idUser", jwt(response.data.token).secret.id)
-        navigate("/")
+        setToken(response.data.token)
       })
       .catch((err) => {
         console.log(err.message);
@@ -44,7 +48,14 @@ export default function Login({ setLogado }) {
       });
   };
 
+  useEffect(() => {
+    if(token){
+      navigate("/")
+    }
+  }, [token])
+
   return (
+    <FotoProvider initToken={token}>
     <div className="login">
       <div className="login-descricao">
         <div className="ld-texto">
@@ -93,5 +104,6 @@ export default function Login({ setLogado }) {
           </Link>
       </div>
     </div>
+    </FotoProvider>
   );
 }

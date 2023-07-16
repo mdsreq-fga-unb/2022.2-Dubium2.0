@@ -4,22 +4,26 @@ const perguntaSchema = require("../model/perguntaSchema.js")
 const usuarioSchema = require("../model/usuarioSchema.js")
 const perguntaService = require("../service/perguntaService.js")
 const jwt = require('jsonwebtoken')
+const openaiService = require("../service/openaiService.js")
 
-
-const criarPergunta = (req, res) => {
+const criarPergunta = async (req, res) => {
     const { titulo, curso, conteudo, filtro, idUser } = req.body
     const idUsuario = idUser
-    perguntaService.criarPergunta(titulo, curso, conteudo, filtro, idUsuario)
-        .then(data => {
-            res.status(201).send(data)
-        })
-        .catch(err => {
-            res.status(404).send({
-                error: "Erro ao criar pergunta",
-                message: err
-            })
-        })
+    let conteudoPergunta = `${filtro}, ${titulo}, ${conteudo}`
+
+    try {
+        const data = await openaiService.analisarConteudoPost(conteudoPergunta);
+        const verificacao = data.data.choices[0].message.content;
+        if (verificacao === 'False' || verificacao === 'false') {
+            throw new Error("Conteúdo impróprio ou não condiz com o objetivo deste fórum");
+        }
+        const pergunta = await perguntaService.criarPergunta(titulo, curso, conteudo, filtro, idUsuario);
+        res.status(201).send(pergunta);
+    } catch (err) {
+        res.status(404).send({ error: "Erro ao criar pergunta", message: err.message });
+    }
 }
+
 
 const obterPerguntas = (req, res) => {
     perguntaService.obterPerguntas()

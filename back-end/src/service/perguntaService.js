@@ -18,7 +18,7 @@ const obterPerguntas = async () => {
 
 const obterPerguntaPorId = async (id) => {
     try {
-        return await aSchema.findOne({ _id: id })
+        return await perguntaSchema.findOne({ _id: id })
     } catch (error) {
         return new Error(error.message)
     }

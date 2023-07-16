@@ -1,4 +1,4 @@
-
+docker run --name back-end -p 6379:6379 -d redis
 
 <h1 align="center"> Discipulus e ConectaFGA </h1>
 <h3 align="center"> 2022.2 / 2023.1</h3>
@@ -11,11 +11,13 @@ Projeto: [Link](https://dubium2.vercel.app/login)
 
 ## Índice 
 
-* [Descrição do Projeto](#descrição-do-projeto)
-* [Documentação](#documentação)
-* [Clonando o Repositório](#clonando-o-repositório)
-* [Instalação](#instalação)
-* [Equipe](#equipe)
+- [Índice](#índice)
+- [Descrição do Projeto](#descrição-do-projeto)
+- [Documentação](#documentação)
+- [Clonando o repositório](#clonando-o-repositório)
+- [Instalação](#instalação)
+- [Equipe](#equipe)
+  - [MDS](#mds)
 
 ## Descrição do Projeto
 

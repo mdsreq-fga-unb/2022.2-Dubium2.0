@@ -251,10 +251,10 @@ describe('Avisos', () => {
           nome: usuario.nome_completo,
           curso: usuario.curso,
         },
-        tituloAviso: "Aviso",
-        corpoAviso: "Esse é um aviso bem maneiro!" ,
+        tituloAviso: "seja uma pessoa feliz",
+        corpoAviso: "a felicidade traz muitos benefícios" ,
         id_cursoAviso: usuario.curso,
-        filtro: "Matérias"
+        filtro: "a vida é bela"
       })
       .set('Authorization', `Bearer ${token}`)
 
@@ -289,9 +289,9 @@ describe('Avisos', () => {
     const response = await request(server)
       .put(`/aviso/editar/${idAviso}`)
       .send({
-        titulo: "Título editado",
-        materia: "materia editada",
-        conteudo: "conteudo editado"
+        titulo: "Seja gentil",
+        materia: "Gentileza gera gentileza",
+        conteudo: "a felicidade é linda"
       })
       .set('Authorization', `Bearer ${token}`);
 

@@ -29,11 +29,11 @@ const editarAviso = async (req, res) => {
     let conteudoAviso = `${materia}, ${materia}, ${conteudo}`
 
     try {
-        const data = await openaiService.analisarConteudoPost(conteudoAviso);
-        const verificacao = data.data.choices[0].message.content;
-        if (verificacao === 'False' || verificacao === 'false') {
-            throw new Error("Conteúdo impróprio ou não condiz com o objetivo deste fórum");
-        }
+        // const data = await openaiService.analisarConteudoPost(conteudoAviso);
+        // const verificacao = data.data.choices[0].message.content;
+        // if (verificacao === 'False' || verificacao === 'false') {
+        //     throw new Error("Conteúdo impróprio ou não condiz com o objetivo deste fórum");
+        // }
         const updatedAviso = await avisoService.editarAviso(id, req.user._id, titulo, materia, conteudo)
         res.status(200).json(updatedAviso);
     } catch (err) {

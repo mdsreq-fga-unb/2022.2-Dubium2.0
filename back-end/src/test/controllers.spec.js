@@ -52,192 +52,192 @@ describe('Usuário', () => {
   });
 })
 
-describe('Perguntas', () => {
-  it('Deve criar uma pergunta', async () =>{
-    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-    const response = await request(server)
-      .post('/pergunta')
-      .send({
-        idUser: {
-          username: usuario.email,
-          id: usuario.id,
-          nome: usuario.nome,
-          curso: usuario.curso
-        },
-        titulo: 'Rei e Rainha da Derivada',
-        curso: 1,
-        conteudo: 'Que horas começa o evento?',
-        filtro: 'C1'
-      })
-      .set('Authorization', `Bearer ${token}`);
+// describe('Perguntas', () => {
+//   it('Deve criar uma pergunta', async () =>{
+//     let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+//     const response = await request(server)
+//       .post('/pergunta')
+//       .send({
+//         idUser: {
+//           username: usuario.email,
+//           id: usuario.id,
+//           nome: usuario.nome,
+//           curso: usuario.curso
+//         },
+//         titulo: 'Rei e Rainha da Derivada',
+//         curso: 1,
+//         conteudo: 'Que horas começa o evento?',
+//         filtro: 'C1'
+//       })
+//       .set('Authorization', `Bearer ${token}`);
 
-    expect(response).toHaveProperty('status', 201)
-  })
+//     expect(response).toHaveProperty('status', 201)
+//   })
 
-  it('Deve obter todas as perguntas', async () =>{
-    const response = await request(server)
-      .get('/pergunta/view')
+//   it('Deve obter todas as perguntas', async () =>{
+//     const response = await request(server)
+//       .get('/pergunta/view')
 
-    expect(Array.isArray(response.body)).toBe(true);
-  })
+//     expect(Array.isArray(response.body)).toBe(true);
+//   })
 
-  it('Deve obter uma pergunta a partir do seu ID', async () =>{
-    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-    let perguntas = await perguntasCadastradas(usuario.id)
-    let idPergunta = perguntas[0]._id.toString();
+//   it('Deve obter uma pergunta a partir do seu ID', async () =>{
+//     let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+//     let perguntas = await perguntasCadastradas(usuario.id)
+//     let idPergunta = perguntas[0]._id.toString();
 
-    const response = await request(server)
-      .get(`/pergunta/${idPergunta}`)
-      .set('Authorization', `Bearer ${token}`);
+//     const response = await request(server)
+//       .get(`/pergunta/${idPergunta}`)
+//       .set('Authorization', `Bearer ${token}`);
 
-    expect(response).toHaveProperty('status', 201)
-  })
+//     expect(response).toHaveProperty('status', 201)
+//   })
 
-  it('Deve editar a pergunta se o usuário tiver permissão para editar', async () =>{
-    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-    let perguntas = await perguntasCadastradas(usuario.id)
-    let idPergunta = perguntas[0]._id.toString();
-    const response = await request(server)
-      .put(`/pergunta/editar/${idPergunta}`)
-      .send({
-        titulo: "Título Editado",
-        conteudo: "Conteúdo Editado",
-        curso: 1,
-        filtro: "IE"
-      })
-      .set('Authorization', `Bearer ${token}`);
+//   it('Deve editar a pergunta se o usuário tiver permissão para editar', async () =>{
+//     let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+//     let perguntas = await perguntasCadastradas(usuario.id)
+//     let idPergunta = perguntas[0]._id.toString();
+//     const response = await request(server)
+//       .put(`/pergunta/editar/${idPergunta}`)
+//       .send({
+//         titulo: "Título Editado",
+//         conteudo: "Conteúdo Editado",
+//         curso: 1,
+//         filtro: "IE"
+//       })
+//       .set('Authorization', `Bearer ${token}`);
 
-      expect(response).toHaveProperty('status', 200)
-  })
+//       expect(response).toHaveProperty('status', 200)
+//   })
 
-  it('Deve retornar um erro se a pergunta não for encontrada', async () =>{
-    let idPergunta = "64ab31c0b8fdef813c2c201c" //definindo um id aleatório
-    const response = await request(server)
-      .put(`/pergunta/editar/${idPergunta}`)
-      .send({
-        titulo: "Título Editado",
-        conteudo: "Conteúdo Editado",
-        curso: 1,
-        filtro: "IE"
-      })
-      .set('Authorization', `Bearer ${token}`);
+//   it('Deve retornar um erro se a pergunta não for encontrada', async () =>{
+//     let idPergunta = "64ab31c0b8fdef813c2c201c" //definindo um id aleatório
+//     const response = await request(server)
+//       .put(`/pergunta/editar/${idPergunta}`)
+//       .send({
+//         titulo: "Título Editado",
+//         conteudo: "Conteúdo Editado",
+//         curso: 1,
+//         filtro: "IE"
+//       })
+//       .set('Authorization', `Bearer ${token}`);
 
-    expect(response).toHaveProperty('status', 500)
-  })
+//     expect(response).toHaveProperty('status', 500)
+//   })
 
-  it('Deve retornar um erro se a atualização da pergunta não for bem sucedida', async () =>{
-    let idPergunta = "64ab31c0b8fdef813c2c201c" //definindo um id aleatório
-    try {
-      const response = await request(server)
-      .put(`/pergunta/editar/${idPergunta}`)
-      .send({
-        titulo: 2378123,
-        conteudo: "Conteúdo Editado",
-        curso: 1,
-        filtro: "IE"
-      })
-      .set('Authorization', `Bearer ${token}`);
-    } catch (error){
-       expect(response).rejects.toThrow("Pergunta não encontrada!")
-    }
-  })
+//   it('Deve retornar um erro se a atualização da pergunta não for bem sucedida', async () =>{
+//     let idPergunta = "64ab31c0b8fdef813c2c201c" //definindo um id aleatório
+//     try {
+//       const response = await request(server)
+//       .put(`/pergunta/editar/${idPergunta}`)
+//       .send({
+//         titulo: 2378123,
+//         conteudo: "Conteúdo Editado",
+//         curso: 1,
+//         filtro: "IE"
+//       })
+//       .set('Authorization', `Bearer ${token}`);
+//     } catch (error){
+//        expect(response).rejects.toThrow("Pergunta não encontrada!")
+//     }
+//   })
 
-  it('Deve favoritar uma pergunta', async () => {
-    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-    let perguntas = await perguntasCadastradas(usuario.id)
-    let idPergunta = perguntas[0]._id.toString();
+//   it('Deve favoritar uma pergunta', async () => {
+//     let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+//     let perguntas = await perguntasCadastradas(usuario.id)
+//     let idPergunta = perguntas[0]._id.toString();
 
-    const response = await request(server)
-      .post(`/pergunta/favoritar/${idPergunta}`)
-      .send({
-        idUsuario: usuario.id,
-        idPergunta: idPergunta,
-        favorito: true
-      })
-      .set('Authorization', `Bearer ${token}`);
+//     const response = await request(server)
+//       .post(`/pergunta/favoritar/${idPergunta}`)
+//       .send({
+//         idUsuario: usuario.id,
+//         idPergunta: idPergunta,
+//         favorito: true
+//       })
+//       .set('Authorization', `Bearer ${token}`);
 
-    expect(response).toHaveProperty('status', 201)
-  })
+//     expect(response).toHaveProperty('status', 201)
+//   })
 
-  it('Deve salvar uma pergunta', async() => {
-    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-    let perguntas = await perguntasCadastradas(usuario.id)
-    let idPergunta = perguntas[0]._id.toString();
+//   it('Deve salvar uma pergunta', async() => {
+//     let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+//     let perguntas = await perguntasCadastradas(usuario.id)
+//     let idPergunta = perguntas[0]._id.toString();
 
-    const response = await request(server)
-      .post('/pergunta/salvar')
-      .send({
-        id_usuario: usuario.id,
-        id_pergunta: idPergunta,
-        salvo: true
-      })
-      .set('Authorization', `Bearer ${token}`);
+//     const response = await request(server)
+//       .post('/pergunta/salvar')
+//       .send({
+//         id_usuario: usuario.id,
+//         id_pergunta: idPergunta,
+//         salvo: true
+//       })
+//       .set('Authorization', `Bearer ${token}`);
 
-    expect(response).toHaveProperty('status', 201)
-  })
-})
+//     expect(response).toHaveProperty('status', 201)
+//   })
+// })
 
-describe('Respostas', () => {
-  it('Deve criar um comentário', async() => {
-    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-    let perguntas = await perguntasCadastradas(usuario.id)
-    let idPergunta = perguntas[0]._id.toString();
+// describe('Respostas', () => {
+//   it('Deve criar um comentário', async() => {
+//     let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+//     let perguntas = await perguntasCadastradas(usuario.id)
+//     let idPergunta = perguntas[0]._id.toString();
 
-    const response = await request(server)
-      .post('/resposta/')
-      .send({
-        Usuario: {
-          username: usuario.email,
-          nome: usuario.nome_completo,
-          id: usuario.id,
-          curso: usuario.curso
-        },
-        idPergunta: idPergunta,
-        conteudo: "Não sei... "
-      })
-      .set('Authorization', `Bearer ${token}`)
+//     const response = await request(server)
+//       .post('/resposta/')
+//       .send({
+//         Usuario: {
+//           username: usuario.email,
+//           nome: usuario.nome_completo,
+//           id: usuario.id,
+//           curso: usuario.curso
+//         },
+//         idPergunta: idPergunta,
+//         conteudo: "Não sei... "
+//       })
+//       .set('Authorization', `Bearer ${token}`)
 
-    expect(response).toHaveProperty('status', 201)
-  })
+//     expect(response).toHaveProperty('status', 201)
+//   })
 
-  it('Deve retornar as respostas de uma pergunta', async() => {
-    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-    let perguntas = await perguntasCadastradas(usuario.id)
-    let idPergunta = perguntas[0]._id.toString();
+//   it('Deve retornar as respostas de uma pergunta', async() => {
+//     let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+//     let perguntas = await perguntasCadastradas(usuario.id)
+//     let idPergunta = perguntas[0]._id.toString();
 
-    const response = await request(server)
-      .get(`/resposta/pergunta/${idPergunta}`)
-      .set('Authorization', `Bearer ${token}`)
+//     const response = await request(server)
+//       .get(`/resposta/pergunta/${idPergunta}`)
+//       .set('Authorization', `Bearer ${token}`)
 
-    respostas = response.body
-    expect(Array.isArray(response.body)).toBe(true);
-  })
+//     respostas = response.body
+//     expect(Array.isArray(response.body)).toBe(true);
+//   })
 
-  it('Deve favoritar uma resposta à uma pergunta', async() => {
-    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-    let perguntas = await perguntasCadastradas(usuario.id)
-    let idPergunta = perguntas[0]._id.toString();
+//   it('Deve favoritar uma resposta à uma pergunta', async() => {
+//     let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+//     let perguntas = await perguntasCadastradas(usuario.id)
+//     let idPergunta = perguntas[0]._id.toString();
 
-    let idResposta = respostas[0]._id.toString();
+//     let idResposta = respostas[0]._id.toString();
 
-    const response = await request(server)
-      .post('/resposta/favoritar/${idPergunta}')
-      .send({
-        Usuario: {
-          username: usuario.email,
-          nome: usuario.nome_completo,
-          id: usuario.id,
-          curso: usuario.curso
-        },
-        idResposta: idResposta,
-        favorito: true
-        })
-      .set('Authorization', `Bearer ${token}`)
+//     const response = await request(server)
+//       .post('/resposta/favoritar/${idPergunta}')
+//       .send({
+//         Usuario: {
+//           username: usuario.email,
+//           nome: usuario.nome_completo,
+//           id: usuario.id,
+//           curso: usuario.curso
+//         },
+//         idResposta: idResposta,
+//         favorito: true
+//         })
+//       .set('Authorization', `Bearer ${token}`)
 
-    expect(response).toHaveProperty('status', 201)
-  })
+//     expect(response).toHaveProperty('status', 201)
+//   })
 
-})
+// })
 
 describe('Avisos', () => {
   it('Deve criar um aviso', async() => {

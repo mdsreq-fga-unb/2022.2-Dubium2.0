@@ -7,7 +7,7 @@ const passport = require("passport")
 const usuarioSchema = require("../model/usuarioSchema.js")
 const redisClient = require("../config/RedisConfig.js")
 const chatService = require("../service/chatService.js")
-const redisService = require("../service/redisService.js")
+// const redisService = require("../service/redisService.js")
 const usuarioService = require("../service/usuarioService.js")
 
 
@@ -25,13 +25,14 @@ const obterChatsPorUsuario = (req, res) => {
 
 const obterChat = async (req, res) => {
     const { idChat } = req.params
-    const chatCache = await redisClient.get(idChat)
+    // const chatCache = await redisClient.get(idChat)
+    const chatCache = false
     if(chatCache){
         res.status(200).send(chatCache)
     } else {
         chatService.obterChat(idChat)
         .then(async (data) => {
-            redisService.salvarMensagensCache(idChat, data)
+            // redisService.salvarMensagensCache(idChat, data)
             res.status(200).send(data)
         })
         .catch(err => {
@@ -45,7 +46,7 @@ const salvarMensagens = (req, res) => {
     chatService.salvarMensagens(idChat, messages)
         .then(async (updatedChat) => {
             updatedChat.mensagens.push(messages[0])
-            redisService.salvarMensagensCache(idChat, updatedChat)
+            // redisService.salvarMensagensCache(idChat, updatedChat)
             res.status(200).send("Mensagens salvas com sucesso")
         })
         .catch(error => {

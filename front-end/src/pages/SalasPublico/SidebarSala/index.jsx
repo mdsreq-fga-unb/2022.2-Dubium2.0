@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./style.css";
 import CriarSala from "../CriarSala";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';

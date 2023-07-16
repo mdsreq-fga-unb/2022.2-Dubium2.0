@@ -12,7 +12,7 @@ export default function ChatPublico() {
 
             <Header/>
             <div className="containerSidebarSalasPublico">
-                <SidebarSalasPublico/>
+                <SidebarSalasPublico />
             </div>
             <div className="chatPrincipalSalaspublico">
                 <SalasPublicas/>

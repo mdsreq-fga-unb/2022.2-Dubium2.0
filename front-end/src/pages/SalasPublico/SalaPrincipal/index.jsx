@@ -42,17 +42,17 @@ export default function SalasPublicas() {
       .then(response => {
         setChats((response.data))
       })
-      .catch(err => {console.log(err)})
+      .catch(err => { console.log(err) })
   }
 
   useEffect(() => {
-    if(token){
+    if (token) {
       getUsuario()
     }
   }, [token])
 
   useEffect(() => {
-    if(token) {
+    if (token) {
       console.log(usuarioSelecionado)
       const array = usuarioSelecionado.chats.map(e => {
         return e.idChat
@@ -63,7 +63,7 @@ export default function SalasPublicas() {
   }, [usuarioSelecionado])
 
   useEffect(() => {
-    if(chats && token){
+    if (chats && token) {
       console.log(chats)
     }
   }, [chats])
@@ -76,12 +76,12 @@ export default function SalasPublicas() {
     }
     await apiRequest
       .post("/chat/joinUser", data, {
-        headers: {Authorization: "bearer " + token}
+        headers: { Authorization: "bearer " + token }
       })
       .then(response => {
         navigate("/chat")
       })
-      .catch(err => {console.log(err)})
+      .catch(err => { console.log(err) })
   }
 
 
@@ -93,21 +93,23 @@ export default function SalasPublicas() {
             <div className="sala" key={index}>
               <div className="nomeSala">{data.nome}</div>
               <div className="temaSala">{data.tema}</div>
-              <div className="botaoChatPublico">
-                <Link
-                  to="/chat"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    joinUserInstance(data._id)
-                  }}
-                >
-                  Juntar-se ao grupo
-                </Link>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div className="botaoChatPublico">
+                  <Link
+                    to="/chat"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      joinUserInstance(data._id)
+                    }}
+                  >
+                    Juntar-se ao grupo
+                  </Link>
+                </div>
               </div>
             </div>
           );
         })}
-    </div>
+      </div>
     </div >
 
   );

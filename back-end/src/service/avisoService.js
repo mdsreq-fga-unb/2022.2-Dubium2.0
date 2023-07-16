@@ -31,13 +31,13 @@ const buscarAvisoPorId = async (id) => {
 
 const editarAviso = async (id, idUser, titulo, materia, conteudo) => {
     return await avisoSchema.findOne({ _id: id})
-        .then(aviso => {
+        .then(async aviso => {
             if (aviso.usuario.id != idUser) {
                 return res.status(403).send({
                     error: "Você não tem permissão para editar esse aviso."
                 });
             }
-            return aviso.updateOne({titulo: titulo, materia: materia, conteudo: conteudo})
+            return await aviso.updateOne({titulo: titulo, materia: materia, conteudo: conteudo})
         })
         .catch(error => {throw new Error("Aviso não encontrado!")})
 }

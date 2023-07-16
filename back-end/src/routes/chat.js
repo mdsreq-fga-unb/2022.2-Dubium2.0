@@ -5,7 +5,6 @@ const passport = require('passport');
 const chatController = require("../controller/chatController.js")
 
 
-// router.post("/criar", passport.authenticate('jwt', { session: false }), avisoController.criarAviso)
 router.post("/", passport.authenticate('jwt', { session: false }), chatController.obterChatsPorUsuario)
 router.get("/:idChat", passport.authenticate('jwt', { session: false }), chatController.obterChat)
 router.post("/messages", passport.authenticate('jwt', { session: false }), chatController.salvarMensagens)
@@ -14,6 +13,5 @@ router.get("/", passport.authenticate('jwt', { session: false }), chatController
 router.post("/joinUser", passport.authenticate('jwt', { session: false }), chatController.adicionarUsuarioEmGrupo)
 router.put("/arquivar", passport.authenticate('jwt', { session: false }), chatController.arquivarConversa)
 router.post("/user", passport.authenticate('jwt', { session: false }), chatController.chatUsuario)
-
 
 module.exports = router;

@@ -161,7 +161,7 @@ export default function AvisoSelecionado() {
         setEditando(false);
         getAviso()
       })
-      .catch((error) => console.log(error));
+      .catch((error) => window.alert(error.response.data.message));
   };
 
   return (

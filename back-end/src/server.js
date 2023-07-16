@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const cookieParser = require("cookie-parser")
 const http =  require('http').createServer(app)
+const openai = require("./config/OpenaiConfig.js")
+
 
 //redis
 const client = require("./config/RedisConfig.js")
@@ -33,6 +35,7 @@ app.use("/resposta", resposta)
 app.use("/usuario", usuario)
 app.use("/aviso", aviso)
 app.use("/chat", chat)
+
 
 
 module.exports = http;

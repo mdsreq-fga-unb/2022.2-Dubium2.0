@@ -72,7 +72,7 @@ export default function AvisosFormulario() {
       .then((response) => {
         alert("Aviso cadastrado com sucesso!");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => window.alert(error.response.data.message));
 
     navigate(-1);
   };

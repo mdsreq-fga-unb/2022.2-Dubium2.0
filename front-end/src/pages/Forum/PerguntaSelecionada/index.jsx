@@ -15,6 +15,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
 
 import jwt from 'jwt-decode'
+import { FotoContext } from "../../../context/FotoProvider";
 
 export default function PerguntaSelecionada() {
   const [perguntaSelecionada, setPerguntaSelecionada] = useState({});
@@ -24,7 +25,7 @@ export default function PerguntaSelecionada() {
   const [infosSalvas, setInfosSalvas] = useState({});
   const [comentar, setComentar] = useState(false);
   const [token, setToken] = useState('');
-
+  const fotoContext = useContext(FotoContext)
   const { idPergunta } = useParams();
 
   const navigate = useNavigate();
@@ -89,9 +90,8 @@ export default function PerguntaSelecionada() {
 
   useEffect(() => {
     if (token && perguntaSelecionada) {
-      if (perguntaSelecionada.favoritadoPor.includes(jwt(token).secret.id)) {
-        setFavoritoPergunta(true)
-      }
+      console.log(perguntaSelecionada?.favoritadoPor?.includes(jwt(token).secret.id))
+      setFavoritoPergunta(perguntaSelecionada?.favoritadoPor?.includes(jwt(token).secret.id) )
     }
   }, [perguntaSelecionada])
 
@@ -160,11 +160,11 @@ export default function PerguntaSelecionada() {
       .catch((error) => console.log(error));
   };
 
-  const updateFavoritoPergunta = async () => {
+  const updateFavoritoPergunta = async (bool) => {
     const infoPergunta = {
       idUsuario: jwt(token).secret.id,
       idPergunta: perguntaSelecionada._id,
-      favorito: !favoritoPergunta
+      favorito: !bool
     }
     await apiRequest
       .post(`/pergunta/favoritar/${perguntaSelecionada._id}`, infoPergunta, {
@@ -244,7 +244,7 @@ export default function PerguntaSelecionada() {
       <div className="pergunta-selecionada">
         <div className="ps-usuario-container">
           <div className="ps-usuario-info">
-            <PersonIcon fontSize="large" />
+          <img src={fotoContext[perguntaSelecionada?.idUsuario?.id]} className="fotosCards" />
             <div className="ps-usuario-info-texto">
 
 
@@ -272,7 +272,7 @@ export default function PerguntaSelecionada() {
             <li
               className="item-interacao"
               onClick={() => {
-                updateFavoritoPergunta();
+                updateFavoritoPergunta(perguntaSelecionada?.favoritadoPor?.includes(jwt(token).secret.id));
               }}
             >
               {/* FAVORITAR PERGUNTA */}

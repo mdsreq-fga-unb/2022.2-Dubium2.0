@@ -73,8 +73,7 @@ export default function FormularioPergunta() {
       .then((response) => {
         alert("Pergunta cadastrada com sucesso!");
       })
-      .catch((error) => console.log(error));
-
+      .catch((error) => window.alert(error.response.data.message));
     navigate(-1);
   };
 

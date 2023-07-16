@@ -3,17 +3,42 @@ const avisoSchema = require("../model/avisoSchema.js")
 const perguntaSchema = require("../model/perguntaSchema.js")
 const usuarioSchema = require("../model/usuarioSchema.js")
 const avisoService = require("../service/avisoService.js")
+const openaiService = require("../service/openaiService.js")
 
 
-const criarAviso = (req, res) => {
+const criarAviso = async (req, res) => {
     const { id_usuario, tituloAviso, corpoAviso, id_cursoAviso, filtro } = req.body
-    avisoService.criarAviso(id_usuario, tituloAviso, corpoAviso, id_cursoAviso, filtro)
-        .then(() => {
-            res.status(201).send("Aviso criado com sucesso!")
-        })
-        .catch(err => {
-            res.status(400).send({ error: "Erro ao criar aviso!", message: err })
-        })
+    let conteudoAviso = `${filtro}, ${tituloAviso}, ${corpoAviso}`
+
+    try {
+        const data = await openaiService.analisarConteudoPost(conteudoAviso);
+        const verificacao = data.data.choices[0].message.content;
+        if (verificacao === 'False' || verificacao === 'false') {
+            throw new Error("Conteúdo impróprio ou não condiz com o objetivo deste fórum");
+        }
+        await avisoService.criarAviso(id_usuario, tituloAviso, corpoAviso, id_cursoAviso, filtro)
+        res.status(201).send("Aviso criado com sucesso!")
+    } catch (err) {
+        res.status(400).send({ error: "Erro ao criar aviso!", message: err.message })
+    }
+}
+
+const editarAviso = async (req, res) => {
+    const { id } = req.params;
+    const { titulo, materia, conteudo } = req.body;
+    let conteudoAviso = `${materia}, ${materia}, ${conteudo}`
+
+    try {
+        const data = await openaiService.analisarConteudoPost(conteudoAviso);
+        const verificacao = data.data.choices[0].message.content;
+        if (verificacao === 'False' || verificacao === 'false') {
+            throw new Error("Conteúdo impróprio ou não condiz com o objetivo deste fórum");
+        }
+        const updatedAviso = await avisoService.editarAviso(id, req.user._id, titulo, materia, conteudo)
+        res.status(200).json(updatedAviso);
+    } catch (err) {
+        res.status(500).send({ error: "Erro ao atualizar aviso", message: err.message })
+    }
 }
 
 const buscarAvisos = (req, res) => {
@@ -44,20 +69,6 @@ const deletarAviso = (req, res) => {
         .catch(err => res.status(400).send({ error: "Falha ao deletar aviso", message: err }));
 }
 
-const editarAviso = (req, res) => {
-    const { id } = req.params;
-    const { titulo, materia, conteudo } = req.body;
-    avisoService.editarAviso(id, req.user._id, titulo, materia, conteudo)
-        .then(updatedAviso => {
-            res.status(200).json(updatedAviso);
-        })
-        .catch(err => {
-            res.status(500).send({
-                error: "Erro ao atualizar aviso",
-                message: err.message
-            });
-        });
-}
 
 const salvarAviso = (req, res) => {
     const { id_usuario, id_aviso, salvo } = req.body

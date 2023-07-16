@@ -174,6 +174,22 @@
               )}
               {isAuthenticated() && (
                 <>
+                  {token ?
+                  <li className="notification-item">
+                    <Link to="/chat"><SendIcon style={estiloMensagem} /> </Link>
+                    {notificacao > 0 && <span className="notificacaoHeader">{notificacao}</span>}
+                  </li>
+                    :
+                    <></>
+                  }
+                  {token ?
+                  <li>
+                    {/*<label onClick={handleClickIcone} htmlFor="CriarSala"><GroupAddIcon style={icon} /></label>*/}
+                    <Link to="/salasPublico"><GroupsIcon /></Link>
+                  </li>
+                    :
+                    <></>
+                  }
                   {/* recuperar api de informações do usuario */}
                   {token ?
 
@@ -197,16 +213,6 @@
                       <span>Sair</span>
                     </li>
                   </Link>
-              <li>
-
-                {/*<label onClick={handleClickIcone} htmlFor="CriarSala"><GroupAddIcon style={icon} /></label>*/}
-                <Link to="/salasPublico"><GroupsIcon /></Link>
-              </li>
-
-              <li className="notification-item">
-                <Link to="/chat"><SendIcon style={estiloMensagem} /> </Link>
-                {notificacao > 0 && <span className="notificacaoHeader">{notificacao}</span>}
-              </li>
 
             </>
             )}

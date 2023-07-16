@@ -12,12 +12,6 @@
   transition: 0.5s;
 }
 
-.mensagensFiltradas {
-  padding: 5px;
-  background-color: #f1f1f1;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
 
 .cabecalhoChat {
   width: 100%;
@@ -26,6 +20,13 @@
   background-color: rgb(255, 255, 255);
   color: black;
   border-bottom: rgb(184, 181, 181) solid 0.1px; /* Ajuste o valor da margem inferior conforme necessário */
+}
+
+.mensagensFiltradas {
+  padding: 5px;
+  background-color: #f1f1f1;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 #searchIcon {

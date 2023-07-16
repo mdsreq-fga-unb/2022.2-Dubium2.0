@@ -7,7 +7,7 @@ jobs:
 
     env:
       DB_HOST: "mongodb+srv://arthurmelo1918:71JuBrKKWQr6kAfU@dubium0.o4ru6rq.mongodb.net/Dubium"
-      API_KEY: "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"
+      API_KEY: "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"
       ORG: "org-ZKypXgICyNRD0O6urMB1v5Eh"
 
     steps:

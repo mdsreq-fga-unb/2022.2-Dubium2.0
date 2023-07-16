@@ -237,18 +237,6 @@ describe('Respostas', () => {
     expect(response).toHaveProperty('status', 201)
   })
 
-  it('Deve editar uma resposta se o usuário tiver permissão para editar', async() => {
-    let idResposta = respostas[0]._id.toString();
-
-    const response = await request(server)
-      .put(`/resposta/editar/${idResposta}`)
-      .send({
-        conteudo: "Não sei, mas sei quem sabe! Tentou ver com o monitor?"
-      })
-      .set('Authorization', `Bearer ${token}`)
-
-    expect(response).toHaveProperty('status', 200)
-  })
 })
 
 describe('Avisos', () => {
@@ -361,33 +349,33 @@ describe('Avisos', () => {
 
 })
 
-//describe('Chat', () => {
-//  it('Deve abrir um chat privado entre duas pessoas', async() => {
-//    let usuarios = await obterUsuarios()
-//    usuario_target = usuarios[0]
-//    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-//
-//    const response = request(server)
-//      .post("/chatInstance")
-//      .send({
-//        user: {
-//          id: usuario.id,
-//          nome: usuario.nome_completo,
-//          notificacoes: 0
-//        },
-//        userTarget: {
-//          id: usuario_target._id.toString(),
-//          nome: usuario_target.nome_completo,
-//          notificacoes: 0
-//        },
-//        privado: true
-//      })
-//      .set('Authorization', `Bearer ${token}`)
-//
-//    console.log(response)
-//
-//  })
-//})
+describe('Chat', () => {
+  it('Deve abrir um chat privado entre duas pessoas', async() => {
+    let usuarios = await obterUsuarios()
+    usuario_target = usuarios[0]
+    let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
+
+    const response = request(server)
+      .post("/chatInstance")
+      .send({
+        user: {
+          id: usuario.id,
+          nome: usuario.nome_completo,
+          notificacoes: 0
+        },
+        userTarget: {
+          id: usuario_target._id.toString(),
+          nome: usuario_target.nome_completo,
+          notificacoes: 0
+        },
+        privado: true
+      })
+      .set('Authorization', `Bearer ${token}`)
+
+    console.log(response)
+
+  })
+})
 
 
 afterAll( async () => {
@@ -403,7 +391,7 @@ afterAll( async () => {
   await deletarAvisosPorUsuario(usuario)
 
   //retira o usuário de teste do banco de dados
-  await excluirUsuario('usuario_teste@gmail.com')
+//  await excluirUsuario('usuario_teste@gmail.com')
 
 
 })

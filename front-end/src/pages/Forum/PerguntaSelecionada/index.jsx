@@ -13,6 +13,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import StarIcon from "@mui/icons-material/Star";
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 
 import jwt from 'jwt-decode'
 import { FotoContext } from "../../../context/FotoProvider";
@@ -26,6 +27,12 @@ export default function PerguntaSelecionada() {
   const [comentar, setComentar] = useState(false);
   const [token, setToken] = useState('');
   const fotoContext = useContext(FotoContext)
+  const [editando, setEditando] = useState(false);
+  const [tituloEditado, setTituloEditado] = useState("");
+  const [conteudoEditado, setConteudoEditado] = useState("");
+  const [cursoEditado, setCursoEditado] = useState("");
+  const [filtroEditado, setFiltroEditado] = useState("");
+
   const { idPergunta } = useParams();
 
   const navigate = useNavigate();
@@ -130,6 +137,21 @@ export default function PerguntaSelecionada() {
     }
   }, [token])
 
+  const habilitarEdicao = () => {
+    setEditando(true);
+    setTituloEditado(perguntaSelecionada?.titulo || "");
+    setConteudoEditado(perguntaSelecionada?.conteudo || "");
+    setCursoEditado(perguntaSelecionada?.curso || "");
+    setFiltroEditado(perguntaSelecionada?.filtro  || "");
+  };
+
+  const cancelarEdicao = () => {
+    setEditando(false);
+    setTituloEditado("");
+    setConteudoEditado("");
+    setCursoEditado("");
+    setFiltroEditado("");
+  };
 
   const deletarPergunta = async () => {
     await apiRequest
@@ -236,6 +258,29 @@ export default function PerguntaSelecionada() {
     setComentar(!comentar);
     reset()
   };
+
+  const editarPergunta = async () => {
+    const infoPergunta = {
+      id_usuario: jwt(token).secret.id,
+      id_pergunta: idPergunta,
+      conteudo: conteudoEditado,
+      curso: cursoEditado,
+      filtro: filtroEditado
+    };
+
+    await apiRequest
+      .put(`/pergunta/editar/${idPergunta}`, infoPergunta, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response) => {
+        setEditando(false);
+        getPerguntas()
+      })
+      .catch((error) => console.log(error));
+  };
+
 
 
   // PERGUNTA

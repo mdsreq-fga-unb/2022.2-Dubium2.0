@@ -42,7 +42,7 @@
 .searchContainer {
   width: 400px;
   position: fixed; /* Alterando para posição fixa */
-  top: 12%; /* Posicionando no meio vertical da tela */
+  top: 13%; /* Posicionando no meio vertical da tela */
   right: 1rem; /* Posicionando a 1rem da borda direita da tela */
   transform: translateY(-50%); /* Centralizando verticalmente */
   display: flex;

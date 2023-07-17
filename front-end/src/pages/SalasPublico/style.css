@@ -6,10 +6,9 @@
   height: 100vh;
 }
 
-.containerSidebarSalasPublico{
+.containerSidebarSalasPublico {
   background-color: transparent;
   width: 100%;
-
 }
 
 .criarSalaBotao {
@@ -33,7 +32,7 @@
   color: #0f4a6d;
 }
 
-.chatPrincipalSalaspublico{
+.chatPrincipalSalaspublico {
   margin-top: 0rem;
   width: 100%;
   height: calc(100vh - 2rem);

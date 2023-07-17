@@ -1,5 +1,6 @@
 .containerChat {
   padding: 0;
+  position: fixed;
   display: flex;
   height: calc(100% - 5rem); 
 }
@@ -8,15 +9,15 @@
   position: fixed;
   overflow: auto;
   background-color: #F3F2F7;
-  width: 350px;
+  width: 400px;
   top: 83px;
   height: calc(100vh - 83px); /* Ajuste a altura conforme necessário */
 }
 
 .chat-principal {
   position: fixed;
-  width: calc(100vw - 350px);
-  margin-left: 350px;
+  width: calc(100vw - 400px);
+  margin-left: 400px;
 }
 
 .sidebar-Chat::-webkit-scrollbar {

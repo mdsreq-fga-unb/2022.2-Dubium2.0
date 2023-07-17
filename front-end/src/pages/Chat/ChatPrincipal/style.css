@@ -49,7 +49,7 @@
   border: solid 2px rgba(123, 123, 124, 0.24);
   border-radius: 8px;
   align-items: center;
-  background-color: #fff; /* Adicionando uma cor de fundo */
+  background-color: #ffffff; /* Adicionando uma cor de fundo */
   padding: 5px; /* Adicionando um pouco de espaço interno para o conteúdo */
   z-index: 9999; /* Definindo um z-index alto para garantir que ele fique acima dos outros elementos */
 }
@@ -59,9 +59,9 @@
   outline: none;
   font-size: 14px;
   background-color: #f2f2f2;
-  border-radius: px;
+  border-radius: 8px;
   width: 400px;
-  border: 1.2px solid #ccc;
+  border: none;
 }
 
 .searchInput:focus {

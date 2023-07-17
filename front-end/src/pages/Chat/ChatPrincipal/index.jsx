@@ -275,6 +275,10 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
     }
   }, [searchText])
 
+  const handleArrowBackClick = () => {
+    setIsSearchOpen(false)
+    console.log("Ícone de voltar clicado!");
+  };
   
 
   return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB && (
@@ -329,7 +333,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
             <div id="searchIcon">
               {isSearchOpen ? (
                 <div className="searchContainer">
-                  <span className="searchIcon">
+                  <span className="searchIcon" onClick={handleArrowBackClick}>
                     <ArrowBackIcon />
                   </span>
                   <input

@@ -54,14 +54,13 @@ export default function RankingUsuarios({ materiaPesquisada }) {
             <li className="usuario-ranqueado">
               <div
                 className="dadosUsuario"
-                style={{flexDirection: "row", gap: "10px" }}
               >
                 {usuario.foto ? (
                   <img id="imagemPerfil" src={usuario.foto} alt="Selected" />
                 ) : (
                   <PersonIcon sx={{ fontSize: 120 }} />
                 )}
-                <div className="dados"
+                <div className="dadosRanking"
                   style={{
                     marginTop: "2rem",
                     display: "flex",

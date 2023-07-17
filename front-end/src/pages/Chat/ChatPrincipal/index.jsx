@@ -282,133 +282,122 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   
 
   return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB && (
-      <div className="containerChatPrincipal">
+    <div className="containerChatPrincipal">
 
-        <div id="corFundo">
-          <div className="cabecalhoChat">
-            {chat.privado && (
-              <>
-                {chat.usuarios[0].user.id === jwt(token).secret.id ? (
-                  chat.usuarios[0].userTarget.id in fotosUsuarios ? (
-                    <img
-                      id="imagemPerfilChat"
-                      src={fotosUsuarios[chat.usuarios[0].userTarget.id]}
-                      alt="imagemPerfil"
-                    />
-                  ) : (
-                    <img
-                      id="imagemPerfilChat"
-                      src={"https://cdn-icons-png.flaticon.com/512/3106/3106921.png"}
-                      alt="imagemPerfil"
-                    />
-                  )
+      <div class="corFundo">
+        <div className="cabecalhoChat">
+          {chat.privado && (
+            <>
+              {chat.usuarios[0].user.id === jwt(token).secret.id ? (
+                chat.usuarios[0].userTarget.id in fotosUsuarios ? (
+                  <img
+                    id="imagemPerfilChat"
+                    src={fotosUsuarios[chat.usuarios[0].userTarget.id]}
+                    alt="imagemPerfil"
+                  />
                 ) : (
-                  chat.usuarios[0].user.id in fotosUsuarios ? (
-                    <img
-                      id="imagemPerfilChat"
-                      src={fotosUsuarios[chat.usuarios[0].user.id]}
-                      alt="imagemPerfil"
-                    />
-                  ) : (
-                    <PersonIcon />
-                  )
-                )}
-              </>
+                  <img
+                    id="imagemPerfilChat"
+                    src={"https://cdn-icons-png.flaticon.com/512/3106/3106921.png"}
+                    alt="imagemPerfil"
+                  />
+                )
+              ) : (
+                chat.usuarios[0].user.id in fotosUsuarios ? (
+                  <img
+                    id="imagemPerfilChat"
+                    src={fotosUsuarios[chat.usuarios[0].user.id]}
+                    alt="imagemPerfil"
+                  />
+                ) : (
+                  <PersonIcon />
+                )
+              )}
+            </>
+          )}
+
+          <div className="dados">
+            {token && chat.privado ?
+              <Link to={`/usuario/${chat.usuarios[0].user.id == jwt(token).secret.id ? chat.usuarios[0].userTarget.id : chat.usuarios[0].user.id}`}>
+                <span>{chat.usuarios[0].user.id == jwt(token).secret.id ? chat.usuarios[0].userTarget.nome : chat.usuarios[0].user.nome}</span>
+              </Link> :
+              <span>{chat.nome}</span>
+            }
+
+            <div className="digitando">
+              <div>
+                {chat.privado && chat.usuarios[0].user.id == jwt(token).secret.id ? `${stringDigitando}` : `${stringDigitando}`}</div>
+            </div>
+          </div>
+          <div id="searchIcon">
+            {isSearchOpen ? (
+              <input
+                type="text"
+                placeholder="Pesquisar..."
+                value={searchText}
+                onChange={handleSearchInputChange}
+                className="searchInput"
+              />
+            ) : (
+              <SearchIcon onClick={handleSearchClick} />
             )}
 
-            <div className="dados">
-              {token && chat.privado ?
-                <Link to={`/usuario/${chat.usuarios[0].user.id == jwt(token).secret.id ? chat.usuarios[0].userTarget.id : chat.usuarios[0].user.id}`}>
-                  <span>{chat.usuarios[0].user.id == jwt(token).secret.id ? chat.usuarios[0].userTarget.nome : chat.usuarios[0].user.nome}</span>
-                </Link> :
-                <span>{chat.nome}</span>
-              }
-
-              <div className="digitando">
-                <div>
-                  {chat.privado && chat.usuarios[0].user.id == jwt(token).secret.id ? `${stringDigitando}` : `${stringDigitando}`}</div>
-              </div>
-            </div>
-
-            <div id="searchIcon">
-              {isSearchOpen ? (
-                <div className="searchContainer">
-                  <span className="searchIcon" onClick={handleArrowBackClick}>
-                    <ArrowBackIcon />
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="Pesquisar..."
-                    value={searchText}
-                    onChange={handleSearchInputChange}
-                    className="searchInput"
-                  />
-                  
-                 
-                  {/* Corpo da div de pesquisa */}
-                  {mensagensFiltradas && (
-                    <div  className="mensagensFiltradas" >
-                      {mensagensFiltradas.map((mensagem) => {
-                        return mensagem.idRoom === chat._id && (
-                          <div
-                            key={mensagem.index}
-                            onClick={() => {
-                              scrollToIndex(mensagem.index);
-                              setIsSearchOpen(false)
-                            }}
-                            className="mensageUni"
-                            
-                          >
-                            {mensagem.message.length > 50 ? mensagem.message.slice(0, 50) + "..." : mensagem.message}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
+            {
+              mensagensFiltradas && (
+                <div className="mensagensFiltradas">
+                  {mensagensFiltradas.map((mensagem) => {
+                    return (mensagem.idRoom == chat._id) && (
+                      <div
+                        key={mensagem.index}
+                        onClick={() => {
+                          scrollToIndex(mensagem.index)
+                        }}
+                      >
+                        {mensagem.message}
+                      </div>
+                    );
+                  })
+                  }
                 </div>
-              ) : (
-                <SearchIcon onClick={handleSearchClick} />
-              )}
-            </div>
-
-
-          </div>
-          <div className="conteudoChat" ref={containerRef}>
-            {messagesDB.map((mensagem, index) => {
-              mensagem.index = index
-              return (mensagem.idRoom == chat._id) && (
-                <div
-                  key={index}
-                  className={jwt(token).secret.id == mensagem.user.id ? "textoChat1" : "textoChatOutro"}>
-                  {chat.privado ? (<span className="mensagem" dangerouslySetInnerHTML={{
-                    __html: highlightSearchText(mensagem.message, searchText)
-                  }} />) : (<>{mensagem.user.nome}: {mensagem.message} </>)}
-                  <span className="horario">{horarioFormatado(mensagem.horario)}</span>
-                </div>
-              );
-            })
+              )
             }
           </div>
-          
-        <form className="formEntradas" action="" onSubmit={handleSubmit}>
-          <div className="entradasChat">
-            <input
-              id="campoDigitacao"
-              type="text"
-              placeholder="Mensagem"
-              value={message}
-              required
-              maxLength='1000'
-              onChange={e => { setMessage(e.target.value) }}
-            />
-            <button type="submit" className="sendMessage">
-              Send <SendIcon style={{ fontSize: '15px' }} />
-            </button>
-          </div>
-        </form>
-        </div >
+        </div>
+        <div className="conteudoChat" ref={containerRef}>
+          {messagesDB.map((mensagem, index) => {
+            mensagem.index = index
+            return (mensagem.idRoom == chat._id) && (
+              <div
+                key={index}
+                className={jwt(token).secret.id == mensagem.user.id ? "textoChat1" : "textoChatOutro"}>
+                {chat.privado ? (<span className="mensagem" dangerouslySetInnerHTML={{
+                  __html: highlightSearchText(mensagem.message, searchText)
+                }} />) : (<>{mensagem.user.nome}: {mensagem.message} </>)}
+                <span className="horario">{horarioFormatado(mensagem.horario)}</span>
+              </div>
+            );
+          })
+          }
+        </div>
+      </div >
+      <form className="formEntradas" action="" onSubmit={handleSubmit}>
+        <div className="entradasChat">
+          <input
+            id="campoDigitacao"
+            type="text"
+            placeholder="Mensagem"
+            value={message}
+            required
+            maxLength='100'
+            onChange={e => { setMessage(e.target.value) }}
+          />
+          <button type="submit" className="sendMessage">
+            Send <SendIcon style={{ fontSize: '15px' }} />
+          </button>
+        </div>
+      </form>
 
-      </div>
+    </div>
 
   );
 }

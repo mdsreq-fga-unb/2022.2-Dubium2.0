@@ -4,12 +4,7 @@ on: [push]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
-    env:
-      DB_HOST: "mongodb+srv://arthurmelo1918:71JuBrKKWQr6kAfU@dubium0.o4ru6rq.mongodb.net/Dubium"
-      API_KEY: "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"
-      ORG: "org-ZKypXgICyNRD0O6urMB1v5Eh"
-
+    
     steps:
       - name: Clone repository
         uses: actions/checkout@v2
@@ -26,6 +21,12 @@ jobs:
           
           cd ../front-end
           npm install
+          
+      - name: Set up environment variables
+        run: |
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
+          echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
+          echo "ORG=${{ secrets.ORG }}" >> $GITHUB_ENV
 
       - name: Run back-end
         run: |

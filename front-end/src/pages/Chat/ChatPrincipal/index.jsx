@@ -1,6 +1,7 @@
 import "./style.css";
 
 import SearchIcon from "@mui/icons-material/Search";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRef, useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import jwt from 'jwt-decode'
@@ -37,7 +38,9 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   const [userTarget, setUserTarget] = useState("")
   const socketContext = useContext(SocketContext);
   const [fotosUsuarios, setFotoUsuarios] = useState({})
-  const [mensagensFiltradas, setMensagensFiltradas] = useState([])
+  const [mensagensFiltradas, setMensagensFiltradas] = useState([]);
+  
+
 
   //ScrollBar
   useEffect(() => {
@@ -235,7 +238,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   }, [arrayMensagens])
 
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen,] = useState(false);
   const [searchText, setSearchText] = useState("");
 
   const handleSearchClick = () => {
@@ -271,6 +274,12 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
       setMensagensFiltradas("")
     }
   }, [searchText])
+
+  const handleArrowBackClick = () => {
+    setIsSearchOpen(false)
+    console.log("Ícone de voltar clicado!");
+  };
+  
 
   return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB && (
     <div className="containerChatPrincipal">

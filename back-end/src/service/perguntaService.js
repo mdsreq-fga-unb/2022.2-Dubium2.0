@@ -18,7 +18,7 @@ const obterPerguntas = async () => {
 
 const obterPerguntaPorId = async (id) => {
     try {
-        return await perguntaSchema.findOne({ _id: id })
+        return await aSchema.findOne({ _id: id })
     } catch (error) {
         return new Error(error.message)
     }
@@ -109,6 +109,10 @@ module.exports = {
     salvarPergunta,
     perguntasSalvas,
     perguntasCadastradas,
+<<<<<<< HEAD
+    editarPergunta
+=======
     editarPergunta,
     deletarPerguntasPorUsuario
+>>>>>>> c51bba859516e77f82b05837fbb6356ef2d10a39
 }

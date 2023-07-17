@@ -37,7 +37,9 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   const [userTarget, setUserTarget] = useState("")
   const socketContext = useContext(SocketContext);
   const [fotosUsuarios, setFotoUsuarios] = useState({})
-  const [mensagensFiltradas, setMensagensFiltradas] = useState([])
+  const [mensagensFiltradas, setMensagensFiltradas] = useState([]);
+  
+
 
   //ScrollBar
   useEffect(() => {
@@ -235,7 +237,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   }, [arrayMensagens])
 
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen,] = useState(false);
   const [searchText, setSearchText] = useState("");
 
   const handleSearchClick = () => {
@@ -271,6 +273,8 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
       setMensagensFiltradas("")
     }
   }, [searchText])
+
+  
 
   return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB && (
       <div className="containerChatPrincipal">
@@ -368,15 +372,17 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
 
                   {/* Corpo da div de pesquisa */}
                   {mensagensFiltradas && (
-                    <div className="mensagensFiltradas">
+                    <div  className="mensagensFiltradas" >
                       {mensagensFiltradas.map((mensagem) => {
                         return mensagem.idRoom === chat._id && (
                           <div
                             key={mensagem.index}
                             onClick={() => {
                               scrollToIndex(mensagem.index);
+                              setIsSearchOpen(false)
                             }}
                             className="mensageUni"
+                            
                           >
                             {mensagem.message.length > 50 ? mensagem.message.slice(0, 50) + "..." : mensagem.message}
                           </div>

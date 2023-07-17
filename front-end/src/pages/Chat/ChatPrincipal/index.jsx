@@ -378,7 +378,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                             }}
                             className="mensageUni"
                           >
-                            {mensagem.message}
+                            {mensagem.message.length > 50 ? mensagem.message.slice(0, 50) + "..." : mensagem.message}
                           </div>
                         );
                       })}

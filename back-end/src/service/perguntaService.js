@@ -1,6 +1,6 @@
 const avisoSchema = require("../model/avisoSchema.js")
 const perguntaSchema = require("../model/perguntaSchema.js")
-const usuarioSchema = require("../model/usuarioSchema.js")
+
 const usuarioService = require("../service/usuarioService.js")
 
 const criarPergunta = async (titulo, curso, conteudo, filtro, idUsuario) => {
@@ -45,6 +45,16 @@ const deletarPergunta = async (id, idUsuario) => {
             }
         })
         .catch(error => new Error("Falha ao procurar pergunta"))
+}
+
+const deletarPerguntasPorUsuario = async (usuario) => {
+    await perguntaSchema.deleteMany({
+    idUsuario:{
+      "username": usuario.email,
+      "id": usuario.id,
+      "curso": usuario.curso
+    }
+   })
 }
 
 const favoritarPergunta = async (id, idUser, favorito) => {
@@ -99,5 +109,10 @@ module.exports = {
     salvarPergunta,
     perguntasSalvas,
     perguntasCadastradas,
+<<<<<<< HEAD
     editarPergunta
+=======
+    editarPergunta,
+    deletarPerguntasPorUsuario
+>>>>>>> c51bba859516e77f82b05837fbb6356ef2d10a39
 }

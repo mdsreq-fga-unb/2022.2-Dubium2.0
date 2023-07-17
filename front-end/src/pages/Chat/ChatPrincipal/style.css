@@ -1,299 +1,295 @@
-  .chat-principal {
-    margin-left: 136px;
-  }
+.containerChatPrincipal {
+  width: 100vw;
+  height: 100vh;
+}
 
+.dados {
+  width: 20%;
+  margin-left: 1rem;
+  margin-top: 2rem;
+  border-end-start-radius: 15px;
+  border-end-end-radius: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: 0.5s;
+}
+
+
+.cabecalhoChat {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-bottom: rgb(184, 181, 181) solid 0.1px; /* Ajuste o valor da margem inferior conforme necessário */
+}
+
+
+#searchIcon {
+  margin-top: 2rem;
+  margin-left: 40%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.searchContainer {
+  width: 400px;
+  position: fixed; 
+  top: 13%; 
+  right: 1rem; /* Posicionando a 1rem da borda direita da tela */
+  transform: translateY(-50%); /* Centralizando verticalmente */
+  display: flex;
+  border: solid 2px rgba(123, 123, 124, 0.24);
+  border-radius: 8px;
+  align-items: center;
+  background-color: #ffffff; 
+  padding: 5px; 
+  z-index: 9999; 
+}
+
+.searchInput {
+  padding: 5px;
+  outline: none;
+  font-size: 14px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  width: 200px;
+  border: 1.2px solid #ccc; /* Adicione a propriedade border para definir o estilo da borda */
+}
+
+.searchInput:focus {
+  background-color: #ffffff;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.searchInput {
+  background-color: transparent;
+}
+
+.highlight {
+  border-radius: 3px;
+  background-color: yellow;
+  color: black;
+}
+
+.mensagensFiltradas {
+  width: 400px;
+  position: absolute; /* Posicionando como absoluto para que a div não ocupe espaço no fluxo do layout */
+  top: 2.5rem; 
+  right: 0rem; 
+  border: solid 2px rgba(123, 123, 124, 0.24);
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 5px;
+  z-index: 9999; 
+}
+
+.mensagensFiltradas:target {
+  display: none;
+}
+
+.mensageUni {
+  max-width: 100%;
+  padding: 5px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px rgba(104, 104, 104, 0.219);
+  border-radius: 5px;
+  transition: border-color 0.3s ease; 
+  margin-bottom: 10px;
+
+  word-wrap: break-word;
+}
+
+.mensageUni:hover {
+  background-color: #EDEFFC;
+}
+
+
+
+
+#imagemPerfilChat {
+  margin-top: 1.2rem;
+  margin-left: 1.2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: #000000 0.5px solid;
+}
+
+.digitando {
+  color: #201F25;
+  margin-top: 3px;
+  font-size: 15px;
+}
+
+.conteudoChat {
+  position: fixed;
+  overflow-y: auto;
+  width: calc(100% - 410px);
+  height: calc(100% - 13.5rem);
+  padding: 0.3rem;
+  font-size: 20px;
+}
+
+.conteudoChat::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+  /* Largura da barra de rolagem */
+}
+
+.conteudoChat::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  /* Cor de fundo da pista da barra de rolagem */
+}
+
+.conteudoChat::-webkit-scrollbar-thumb {
+  background-color: #888;
+  /* Cor do polegar da barra de rolagem */
+  border-radius: 4px;
+  /* Raio de borda do polegar */
+}
+
+.conteudoChat::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+  /* Cor do polegar da barra de rolagem quando o mouse passa por cima */
+}
+
+.conteudoChat::-webkit-scrollbar-thumb:active {
+  background-color: #333;
+  /* Cor do polegar da barra de rolagem quando está sendo pressionado */
+}
+
+.corFundo {
+  /* background-image: url(https://www.papeiseparede.com.br/3257-thickbox_default/papel-de-parede-whatsapp-branco-e-azul.jpg.webp); */
+  justify-content: center;
+  z-index: -1;
+  width: calc(100% - 400px);
+  height: calc(100% - 8rem);
+  /* Ajuste a altura conforme necessário */
+}
+
+.textoChat1 {
+  margin-top: 10px;
+  max-width: 40%;
+  min-width: 3%;
+  float: right;
+  /* Alinha a fala à esquerda */
+  margin-right: 1%;
+  margin-left: 90%;
+  height: auto;
+  padding: 10px;
+  color: #7E808C;
+  background-color: #EDEFFC;
+  border-end-start-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.mensagem {
+  word-wrap: break-word;
+}
+
+.horario {
+  float: right;
+  margin: 5px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.textoChatOutro {
+  margin-top: 10px;
+  float: left;
+  /* Alinha a fala à esquerda */
+  max-width: 50%;
+  margin-right: 90%;
+  margin-left: 1%;
+  gap: 10px;
+  width: auto;
+  height: auto;
+  padding: 13px;
+  color: #7E808C;
+/* background: linear-gradient(to left, rgb(101, 154, 204), rgb(68, 131, 182));   */
+background-color: #EDEFFC;
+  border-end-end-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.entradasChat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.formEntradas {
+  width: calc(100% - 410px);
+}
+
+#campoDigitacao {
+  font-size: 13px;
+  background-color: #EDF0F7;
+  width: 50%;
+  height: 27px;
+  padding: 0.2rem;
+  color: #8B9096;
+  border: none;
+  border-radius: 15px;
+  padding-left: 2%;
+  /* Ajuste o valor da margem à esquerda conforme necessário */
+}
+
+
+.scrollbar-container {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.scrollbar-content {
+  white-space: nowrap;
+  display: flex;
+  /* Adicione estilos adicionais conforme necessário para personalizar a aparência */
+}
+
+.sendMessage {
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+  font-size: 13px;
+  background-color: #4B62E2;
+  padding: 10px;
+  color: #EDEFFC;
+  border: none;
+  border-radius: 30px;
+  transition: 0.5s;
+  display: flex;
+  gap: 5px;
+  /* Certifique-se de adicionar a propriedade display:flex */
+}
+
+.sendMessage:hover {
+  color: #ffffff;
+  background-color: #075889;
+}
+
+@media (max-width: 950px) {
   .dados {
-    margin-left: 1rem;
-    margin-top: 2rem;
-    border-end-start-radius: 15px;
-    border-end-end-radius: 15px;
-    cursor: pointer;
-    font-size: 20px;
-    transition: 0.5s;
-  }
-
-  .cabecalhoChat {
-    width: 100%;
-    height: 5rem;
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    color: black;
-  }
-
-  #searchIcon {
-    margin-top: 2rem;
-    margin-left: 73%;
-  }
-
-  #imagemPerfilChat {
-    margin-top: 1.2rem;
-    margin-left: 1.2rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    border: #000000 0.5px solid;
-  }
-
-  .digitando {
-    color: #201F25;
-    margin-top: 3px;
+    margin-top: 1.8rem;
     font-size: 15px;
   }
 
-  .conteudoChat {
-    position: fixed;
-    overflow: auto;
-    width: 84%;
-    height: 40.7rem;
-    padding: 0.3rem;
-    justify-content: space-between;
+  #searchIcon {
+    display: none;
   }
+}
 
-  .conteudoChat::-webkit-scrollbar {
-    width: 6px;
-    background-color: transparent;
-    /* Largura da barra de rolagem */
-  }
-
-  .conteudoChat::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-    /* Cor de fundo da pista da barra de rolagem */
-  }
-
-  .conteudoChat::-webkit-scrollbar-thumb {
-    background-color: #888;
-    /* Cor do polegar da barra de rolagem */
-    border-radius: 4px;
-    /* Raio de borda do polegar */
-  }
-
-  .conteudoChat::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-    /* Cor do polegar da barra de rolagem quando o mouse passa por cima */
-  }
-
-  .conteudoChat::-webkit-scrollbar-thumb:active {
-    background-color: #333;
-    /* Cor do polegar da barra de rolagem quando está sendo pressionado */
-  }
-
-  #corFundo {
-    background-image: url(https://www.papeiseparede.com.br/3257-thickbox_default/papel-de-parede-whatsapp-branco-e-azul.jpg.webp);
-    justify-content: center;
-    height: 46.5rem;
-  }
-
-  .textoChat1 {
-    margin-top: 10px;
-    max-width: 50%;
-    min-width: 3%;
-    float: right;
-    /* Alinha a fala à esquerda */
-    margin-right: 1%;
-    margin-left: 90%;
-    height: auto;
-    padding: 13px;
-    color: #ffffff;
-    background: linear-gradient(to right, #363795, #005C97);
-    border-end-start-radius: 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  }
-
-  .textoChat1 span {
-    margin-left: 10px;
-  }
-
-  .textoChatOutro span {
-    margin-left: 10px;
-  }
-
-  .horario {
-    float: right;
-    margin-top: 12px;
-
-    font-size: 12px;
-  }
-
-  .textoChatOutro {
-    margin-top: 10px;
-    float: left;
-    /* Alinha a fala à esquerda */
-    max-width: 50%;
-    margin-right: 90%;
-    margin-left: 1%;
-    gap: 10px;
-    width: auto;
-    height: auto;
-    padding: 13px;
-    color: #ffffff;
-    background: linear-gradient(to left, rgb(101, 154, 204), rgb(68, 131, 182));
-    border-end-end-radius: 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  }
-
-  .entradasChat {
-    border-top: #201F25 solid 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-  }
-
-  .formEntradas {
-    position: relative;
-    /* Deve ter uma posição definida para o z-index funcionar */
-    z-index: 9999;
-  }
-
-  #campoDigitacao {
-    font-size: 13px;
-    background-color: #ffffff;
-    width: 50%;
-    height: 27px;
-    padding: 0.5rem;
-    color: black;
-    border-color: #201F25;
-    border-style: solid;
-    border-end-start-radius: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 20px;
-  }
-
-  .scrollbar-container {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .scrollbar-content {
-    white-space: nowrap;
-    display: flex;
-    /* Adicione estilos adicionais conforme necessário para personalizar a aparência */
+@media (max-width: 600px) {
+  .dados {
+    display: none;
   }
 
   .sendMessage {
-    align-items: center;
-    justify-content: center;
-    margin-left: 8px;
-    font-size: 13px;
-    background-color: #ffffff;
-    padding: 5px;
-    color: black;
-    border: black solid 2px;
-    border-radius: 50%;
-    transition: 0.5s;
+    display: none;
   }
-
-  .sendMessage:hover {
-    color: #ffffff;
-    background-color: #075889;
-  }
-
-  @media screen and (max-height: 834px) {
-    #corFundo {
-      height: 42rem;
-    }
-
-    .conteudoChat {
-      height: 36.3rem;
-    }
-  }
-
-  @media screen and (max-height: 810px) {
-    #corFundo {
-      height: 39rem;
-    }
-
-    .conteudoChat {
-      height: 33.3rem;
-    }
-  }
-
-  @media screen and (max-height: 750px) {
-    #corFundo {
-      height: 36rem;
-    }
-
-    .conteudoChat {
-      height: 30.3rem;
-    }
-  }
-
-  @media screen and (max-height: 700px) {
-    #corFundo {
-      height: 33.3rem;
-    }
-
-    .conteudoChat {
-      height: 27.6rem;
-    }
-  }
-
-  @media screen and (max-height: 650px) {
-    #corFundo {
-      height: 30.3rem;
-    }
-
-    .conteudoChat {
-      height: 24.6rem;
-    }
-  }
-
-  @media screen and (max-height: 590px) {
-    #corFundo {
-      height: 25.3rem;
-    }
-
-    .conteudoChat {
-      height: 19.6rem;
-    }
-  }
-
-  @media screen and (max-height: 520px) {
-    #corFundo {
-      height: 22rem;
-    }
-
-    .conteudoChat {
-      height: 16.4rem;
-    }
-  }
-
-  @media screen and (max-width: 1600px) {
-    #searchIcon {
-      margin-left: 65%;
-    }
-  }
-
-  @media screen and (max-width: 1400px) {
-    #searchIcon {
-      margin-left: 55%;
-    }
-  }
-
-  @media screen and (max-width: 1000px) {
-    #campoDigitacao {
-      margin-left: -9rem;
-    }
-
-    .dados {
-      font-size: 14px;
-    }
-
-    #searchIcon {
-      margin-left: 47%;
-    }
-  }
-
-  @media screen and (max-width: 790px) {
-    #searchIcon {
-      margin-left: 30%;
-    }
-  }
-
-  @media screen and (max-width: 700px) {
-    #searchIcon {
-      margin-left: 20%;
-    }
-  }
+}

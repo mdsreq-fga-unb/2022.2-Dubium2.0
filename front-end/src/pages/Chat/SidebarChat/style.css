@@ -1,15 +1,24 @@
 .sidebarItemChat {
   height: 50px;
-  border-bottom: 2px solid #201F25;
   font-size: 17px;
   display: flex;
   align-items: center;
-  padding: 0.6rem;
-  margin-left: -5px;
+  padding: 0.8rem;
 }
 
-.iconeSala{
-  margin-left: 1rem;
+.index {
+  transition: 0.5s;
+  margin-left: 1.5rem;
+  width: 360px;
+}
+
+.index:hover {
+  box-shadow: 0px 5px 10px rgba(162, 161, 161, 0.5);
+  background-color: #F3F2F7;
+  border-radius: 8px;
+}
+
+.iconeSala {
   margin-right: 1rem;
 }
 
@@ -25,6 +34,17 @@
   align-items: center;
   justify-content: center;
   margin-left: 2.2rem;
+
+}
+
+.arquivados {
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+}
+
+.arquivados span {
+  margin-left: 50px;
 }
 
 #imagemPerfilChatS {
@@ -32,5 +52,75 @@
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  border: #000000 0.5px solid;
+}
+
+
+.sidebarDate {
+  height: 50px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem;
+  margin-left: -1.9rem;
+  width: 96%;
+}
+
+.densityMediumIcon:hover {
+  cursor: pointer;
+}
+
+.deleteForeverIcon:hover {
+  cursor: pointer;
+}
+
+.deleteForeverIcon {
+  transition: 0.5s;
+  display: flex;
+  width: 90px;
+  border-radius: 5px;
+  margin-left: 200px;
+  margin-top: -25px;
+  height: 40px;
+  padding: 2px;
+  align-items: center;
+  justify-content: start;
+}
+
+.sidebarArquivados {
+  position: relative;
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+
+}
+
+@keyframes slideIn {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 1rem;
+  }
+}
+
+.deleteForeverIcon:hover {
+  background-color: #d9def8;
+}
+
+.headerSidebar {
+  margin-top: 5px;
+  display: flex;
+  border-radius: 5px;
+  padding: 5px;
+  width: 310px;
+  margin-left: 10px;
+}
+
+.headerSidebar div {
+  flex: 1;
+}
+
+.headerSidebar div:hover {
+  cursor: pointer;
 }

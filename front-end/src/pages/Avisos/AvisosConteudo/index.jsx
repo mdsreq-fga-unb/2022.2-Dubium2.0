@@ -12,11 +12,13 @@ import PersonIcon from "@mui/icons-material/Person";
 import StarIcon from "@mui/icons-material/Star";
 import isAuthenticated from "../../../isAuth";
 import jwt from 'jwt-decode'
+import { FotoContext } from "../../../context/FotoProvider";
 
 export default function AvisosConteudo({ materiaPesquisada }) {
   const [allQuest, setAllQuest] = useState([]);
   const { elementoSidebar } = useContext(SidebarContext);
   const [token, setToken] = useState('');
+  const fotoContext = useContext(FotoContext)
 
 
   useEffect(() => {
@@ -101,7 +103,7 @@ export default function AvisosConteudo({ materiaPesquisada }) {
               <div className="card-aviso">
                 <div className="infosAviso">
                 <div className="usuario-aviso">
-                  <PersonIcon fontSize="large" />
+                <img src={fotoContext[aviso.usuario.id]} className="fotosCards" />
                   <div className="usuario-informacao-texto">
                     {/* <span>{aviso.usuario.fotoPerfil}</span> */}
                     <span>{aviso.usuario.nome}</span>

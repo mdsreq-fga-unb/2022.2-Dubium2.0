@@ -7,6 +7,12 @@
   word-break: break-all;
 }
 
+.fotosCards {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
 .criar-pergunta {
   display: flex;
   flex-direction: row;

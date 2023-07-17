@@ -1,37 +1,35 @@
 .containerChat {
-  position: fixed;
-  width: 100%;
-  height: auto;
-}
-
-.containerSidebar {
+  padding: 0;
   position: fixed;
   display: flex;
-  overflow: auto;
+  height: calc(100% - 5rem); 
 }
 
-.containerSidebar {
-  flex-direction: column;
-  border-right: 2px solid #414141;
-  width: 250px;
-  padding: 10px;
-  top: 0;
-  bottom: 0;
-  left: 0;
+.sidebar-Chat {
   position: fixed;
-  top: 80px;
+  overflow: auto;
+  background-color: #F3F2F7;
+  width: 400px;
+  top: 83px;
+  height: calc(100vh - 83px); /* Ajuste a altura conforme necessário */
 }
 
-.containerSidebar::-webkit-scrollbar {
-  width: 6px;
+.chat-principal {
+  position: fixed;
+  width: calc(100vw - 400px);
+  margin-left: 400px;
+}
+
+.sidebar-Chat::-webkit-scrollbar {
+  width: 3px;
   background-color: transparent;
 }
 
-.containerSidebar::-webkit-scrollbar-thumb {
+.sidebar-Chat::-webkit-scrollbar-thumb {
   background-color: #888;
   border-radius: 4px;
 }
 
-.containerSidebar::-webkit-scrollbar-thumb:hover {
+.sidebar-Chat::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }

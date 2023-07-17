@@ -8,13 +8,13 @@ import SalasPublicas from "../SalasPublico/SalaPrincipal/index.jsx";
 
 export default function ChatPublico() {
     return (
-        <div className="containerChat">
+        <div className="containerSalasPublico">
 
             <Header/>
-            <div className="containerSidebar">
-                <SidebarSalasPublico/>
+            <div className="containerSidebarSalasPublico">
+                <SidebarSalasPublico />
             </div>
-            <div className="chatPrincipal">
+            <div className="chatPrincipalSalaspublico">
                 <SalasPublicas/>
             </div>
         </div>

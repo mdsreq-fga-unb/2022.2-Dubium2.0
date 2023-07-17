@@ -31,13 +31,13 @@ const buscarAvisoPorId = async (id) => {
 
 const editarAviso = async (id, idUser, titulo, materia, conteudo) => {
     return await avisoSchema.findOne({ _id: id})
-        .then(aviso => {
+        .then(async aviso => {
             if (aviso.usuario.id != idUser) {
                 return res.status(403).send({
                     error: "Você não tem permissão para editar esse aviso."
                 });
             }
-            return aviso.updateOne({titulo: titulo, materia: materia, conteudo: conteudo})
+            return await aviso.updateOne({titulo: titulo, materia: materia, conteudo: conteudo})
         })
         .catch(error => {throw new Error("Aviso não encontrado!")})
 }
@@ -54,6 +54,17 @@ const deletarAviso = async (id, userId) => {
         }
       });
   };
+
+const deletarAvisosPorUsuario = async (user) => {
+    await avisoSchema.deleteMany({
+    usuario:{
+      "username": user.email,
+      "id": user.id,
+      "nome": user.nome_completo,
+      "curso": user.curso
+    }
+   })
+}
 
   const salvarAviso = async (id, idUser, salvo) => {
     try {
@@ -91,6 +102,14 @@ const deletarAviso = async (id, userId) => {
         .catch(error => {throw new Error("Aviso não encontrado!")})
   }
 
+  const avisosCadastrados = async (idUsuario) => {
+    try {
+        return await avisoSchema.find({ "usuario.id": idUsuario }).lean()
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
 
 module.exports = {
     criarAviso,
@@ -100,7 +119,7 @@ module.exports = {
     editarAviso,
     salvarAviso,
     avisosSalvos,
-    favoritarAviso
-
-
+    favoritarAviso,
+    avisosCadastrados,
+    deletarAvisosPorUsuario
 }

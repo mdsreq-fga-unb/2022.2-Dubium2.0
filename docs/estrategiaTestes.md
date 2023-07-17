@@ -26,14 +26,22 @@ O teste de integração é realizado em todas as branchs logo após um _push_ no
 ![Captura de tela de 2023-07-17 19-48-44](https://github.com/mdsreq-fga-unb/2023.1-Dubium2.0/assets/87377900/af23f37f-f163-4b4b-90e9-45226e8e4b92)
 
 ### Teste de Sistema
-O teste de sistema foi realizado no MVP1 pela equipe Armazenaí, pode ser conferido a seguir:
+O teste de sistema foi realizado no MVP1 pela equipe Armazenaí e pode ser conferido a seguir:
+
+![](./img/relatorio.png)
 
 Já o teste de sistema do MVP2 pode ser observado a seguir:
-|US|DOR|DOD|OBSERVAÇÕES|CONCLUSÃO|
+|US|DOR|DOD|Observações|Conclusão|
 |-----------|-----------|------------|------------|---------------|
 
 
 ### Teste de Aceitação
+O teste de aceitação foi realizado pela cliente, onde passamos em cada requisito não funcional e ela expôs se estavam de acordo com o solicitado e esperado.
+
+|RNF|Descrição|Conclusão|
+|-----------|-----------|------------|
+
+
 
 
 

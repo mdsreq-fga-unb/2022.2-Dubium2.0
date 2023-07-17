@@ -46,8 +46,9 @@
   right: 1rem; /* Posicionando a 1rem da borda direita da tela */
   transform: translateY(-50%); /* Centralizando verticalmente */
   display: flex;
+  border: solid 2px rgba(123, 123, 124, 0.24);
+  border-radius: 8px;
   align-items: center;
-  border: solid 2px blue;
   background-color: #fff; /* Adicionando uma cor de fundo */
   padding: 5px; /* Adicionando um pouco de espaço interno para o conteúdo */
   z-index: 9999; /* Definindo um z-index alto para garantir que ele fique acima dos outros elementos */
@@ -83,7 +84,7 @@
   position: absolute; /* Posicionando como absoluto para que a div não ocupe espaço no fluxo do layout */
   top: 2.5rem; /* Ajuste a distância do topo conforme necessário */
   right: 0rem; /* Ajuste a distância da direita conforme necessário */
-  border: solid 2px blue;
+  border: solid 2px rgba(123, 123, 124, 0.24);
   background-color: #ffffff;
   border-radius: 8px;
   padding: 5px;

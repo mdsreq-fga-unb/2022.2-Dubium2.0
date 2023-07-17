@@ -4,6 +4,7 @@
 }
 
 .dados {
+  width: 20%;
   margin-left: 1rem;
   margin-top: 2rem;
   border-end-start-radius: 15px;
@@ -33,8 +34,8 @@
 
 
 #searchIcon {
-  margin-top: 2%;
-  margin-left: 70%;
+  margin-top: 2rem;
+  margin-left: 40%;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -125,7 +126,6 @@
   z-index: -1;
   width: calc(100% - 400px);
   height: calc(100% - 8rem);
-  background-color: #000000;
   /* Ajuste a altura conforme necessário */
 }
 
@@ -136,7 +136,7 @@
   float: right;
   /* Alinha a fala à esquerda */
   margin-right: 5px;
-  margin-left: 80%;
+  margin-left: 50%;
   height: auto;
   padding: 10px;
   color: #7E808C;
@@ -163,7 +163,7 @@
   float: left;
   /* Alinha a fala à esquerda */
   max-width: 40%;
-  margin-right: 65%;
+  margin-right: 50%;
   margin-left: 5px;
   gap: 10px;
   width: auto;
@@ -185,7 +185,7 @@
 }
 
 .formEntradas {
-  width: calc(100% - 410px); 
+  width: calc(100% - 410px);
 }
 
 #campoDigitacao {
@@ -234,8 +234,23 @@
   background-color: #075889;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
+  .dados {
+    margin-top: 1.8rem;
+    font-size: 15px;
+  }
+
+  #searchIcon {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .dados {
+    display: none;
+  }
+
   .sendMessage {
-   display: none;
+    display: none;
   }
 }

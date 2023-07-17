@@ -1,6 +1,7 @@
 import "./style.css";
 
 import SearchIcon from "@mui/icons-material/Search";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRef, useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import jwt from 'jwt-decode'
@@ -37,7 +38,9 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   const [userTarget, setUserTarget] = useState("")
   const socketContext = useContext(SocketContext);
   const [fotosUsuarios, setFotoUsuarios] = useState({})
-  const [mensagensFiltradas, setMensagensFiltradas] = useState([])
+  const [mensagensFiltradas, setMensagensFiltradas] = useState([]);
+  
+
 
   //ScrollBar
   useEffect(() => {
@@ -235,7 +238,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   }, [arrayMensagens])
 
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen,] = useState(false);
   const [searchText, setSearchText] = useState("");
 
   const handleSearchClick = () => {
@@ -271,6 +274,12 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
       setMensagensFiltradas("")
     }
   }, [searchText])
+
+  const handleArrowBackClick = () => {
+    setIsSearchOpen(false)
+    console.log("Ícone de voltar clicado!");
+  };
+  
 
   return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB && (
       <div className="containerChatPrincipal">
@@ -320,39 +329,49 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                   {chat.privado && chat.usuarios[0].user.id == jwt(token).secret.id ? `${stringDigitando}` : `${stringDigitando}`}</div>
               </div>
             </div>
+
             <div id="searchIcon">
               {isSearchOpen ? (
-                <input
-                  type="text"
-                  placeholder="Pesquisar..."
-                  value={searchText}
-                  onChange={handleSearchInputChange}
-                  className="searchInput"
-                />
+                <div className="searchContainer">
+                  <span className="searchIcon" onClick={handleArrowBackClick}>
+                    <ArrowBackIcon />
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="Pesquisar..."
+                    value={searchText}
+                    onChange={handleSearchInputChange}
+                    className="searchInput"
+                  />
+                  
+                 
+                  {/* Corpo da div de pesquisa */}
+                  {mensagensFiltradas && (
+                    <div  className="mensagensFiltradas" >
+                      {mensagensFiltradas.map((mensagem) => {
+                        return mensagem.idRoom === chat._id && (
+                          <div
+                            key={mensagem.index}
+                            onClick={() => {
+                              scrollToIndex(mensagem.index);
+                              setIsSearchOpen(false)
+                            }}
+                            className="mensageUni"
+                            
+                          >
+                            {mensagem.message.length > 50 ? mensagem.message.slice(0, 50) + "..." : mensagem.message}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               ) : (
                 <SearchIcon onClick={handleSearchClick} />
               )}
-
-              {
-                mensagensFiltradas && (
-                  <div className="mensagensFiltradas">
-                    {mensagensFiltradas.map((mensagem) => {
-                      return (mensagem.idRoom == chat._id) && (
-                        <div
-                          key={mensagem.index}
-                          onClick={() => {
-                            scrollToIndex(mensagem.index)
-                          }}
-                        >
-                          {mensagem.message}
-                        </div>
-                      );
-                    })
-                    }
-                  </div>
-                )
-              }
             </div>
+
+
           </div>
           <div className="conteudoChat" ref={containerRef}>
             {messagesDB.map((mensagem, index) => {
@@ -379,6 +398,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
               placeholder="Mensagem"
               value={message}
               required
+              maxLength='1000'
               onChange={e => { setMessage(e.target.value) }}
             />
             <button type="submit" className="sendMessage">

@@ -32,4 +32,4 @@ O objetivo do Dubium é ajudar / dar suporte para a resolução de dúvidas espe
 - NodeJS
 - Express
 - React
-- Mocha
+- Jest

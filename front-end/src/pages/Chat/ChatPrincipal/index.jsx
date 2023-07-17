@@ -376,7 +376,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                             onClick={() => {
                               scrollToIndex(mensagem.index);
                             }}
-                            className="test"
+                            className="mensageUni"
                           >
                             {mensagem.message}
                           </div>

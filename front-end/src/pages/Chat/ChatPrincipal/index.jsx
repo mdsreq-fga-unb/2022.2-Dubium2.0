@@ -1,6 +1,7 @@
 import "./style.css";
 
 import SearchIcon from "@mui/icons-material/Search";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRef, useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import jwt from 'jwt-decode'
@@ -325,43 +326,12 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
               </div>
             </div>
 
-            {/* <div id="searchIcon">
-              {isSearchOpen ? (
-                <input
-                  type="text"
-                  placeholder="Pesquisar..."
-                  value={searchText}
-                  onChange={handleSearchInputChange}
-                  className="searchInput"
-                />
-              ) : (
-                <SearchIcon onClick={handleSearchClick} />
-              )}
-
-              {
-                mensagensFiltradas && (
-                  <div className="mensagensFiltradas">
-                    {mensagensFiltradas.map((mensagem) => {
-                      return (mensagem.idRoom == chat._id) && (
-                        <div
-                          key={mensagem.index}
-                          onClick={() => {
-                            scrollToIndex(mensagem.index)
-                          }}
-                        >
-                          {mensagem.message}
-                        </div>
-                      );
-                    })
-                    }
-                  </div>
-                )
-              }
-            </div> */}
-
             <div id="searchIcon">
               {isSearchOpen ? (
                 <div className="searchContainer">
+                  <span className="searchIcon">
+                    <ArrowBackIcon />
+                  </span>
                   <input
                     type="text"
                     placeholder="Pesquisar..."
@@ -369,7 +339,8 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                     onChange={handleSearchInputChange}
                     className="searchInput"
                   />
-
+                  
+                 
                   {/* Corpo da div de pesquisa */}
                   {mensagensFiltradas && (
                     <div  className="mensagensFiltradas" >

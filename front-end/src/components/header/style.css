@@ -1,6 +1,5 @@
 .header {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
   height: 81px;
@@ -149,5 +148,17 @@
   .header-login{
     margin:-1.6rem;
     gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .pesquisa{
+    display: none;
+  }
+  .list{
+    margin-right: 3rem;
+  }
+  .header-login{
+    margin-left: 1rem;
   }
 }

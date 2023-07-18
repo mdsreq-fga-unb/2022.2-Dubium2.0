@@ -49,8 +49,14 @@
   font-size: 14px;
   background-color: #f2f2f2;
   border-radius: 8px;
-  width: 200px;
+  width: 400px;
   z-index: 9999;
+  justify-content: center;
+}
+
+.searchFlex {
+  display: flex;
+  align-items: center;
 }
 
 .searchInput {
@@ -59,8 +65,9 @@
   font-size: 14px;
   background-color: #f2f2f2;
   border-radius: 8px;
-  width: 150px;
+  width: 350px;
   border: 1.2px solid #ccc;
+  align-items: center;
 }
 
 .mensageUni {
@@ -100,6 +107,19 @@
   color: #201F25;
   margin-top: 3px;
   font-size: 15px;
+}
+
+.analiseIa {
+  display: none;
+  font-size: 10px;
+}
+
+.textoChat1:hover+.analiseIa {
+  display: block;
+}
+
+.textoChatOutro:hover+.analiseIa {
+  display: block;
 }
 
 .conteudoChat {
@@ -261,6 +281,14 @@
 
   #searchIcon {
     margin-left: 20%;
+  }
+
+  .searchContainer {
+    width: 250px;
+  }
+
+  .searchInput {
+    width: 150px;
   }
 }
 

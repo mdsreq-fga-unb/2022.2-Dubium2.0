@@ -13,7 +13,7 @@ import SendIcon from "@mui/icons-material/Send";
 import PersonIcon from '@mui/icons-material/Person';
 import { pesquisaMensagem } from "../../../services/pesquisa";
 import { horarioFormatado } from "../../../services/util";
-import DensityMediumIcon from '@mui/icons-material/MoreVert';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 
 export default function ChatPrincipal({ mensagemPesquisada }) {
@@ -330,17 +330,17 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
           <div id="searchIcon">
             {isSearchOpen ? (
               <div className="searchContainer">
-                <span className="searchIcon" onClick={handleArrowBackClick}>
-                  <ArrowBackIcon />
-                </span>
-                <input
-                  type="text"
-                  placeholder="Pesquisar..."
-                  value={searchText}
-                  onChange={handleSearchInputChange}
-                  className="searchInput"
-                />
-
+                <div className="searchFlex">
+                  <ArrowBackIcon style={{fontSize:'20px'}} onClick={handleArrowBackClick} />
+              
+                  <input
+                    type="text"
+                    placeholder="Pesquisar..."
+                    value={searchText}
+                    onChange={handleSearchInputChange}
+                    className="searchInput"
+                  />
+                </div>
 
                 {/* Corpo da div de pesquisa */}
                 {mensagensFiltradas && (
@@ -380,20 +380,10 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                   __html: highlightSearchText(mensagem.message, searchText)
                 }} />) : (<>{mensagem.user.nome}: {mensagem.message} </>)}
                 <span className="horario">{horarioFormatado(mensagem.horario)}</span>
-                {/* <DensityMediumIcon
-                  style={{ fontSize: '15px', cursor: 'pointer' }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShowMenu(true);
-                  }}
-                />
-                {showMenu && (
-                  <div className="analiseMessage"
-                    Teste
-                  >
-                    <DeleteForeverIcon />Desarquivar
-                  </div>
-                )} */}
+                <div className="analiseIa">
+                  <SmartToyIcon />
+                  Analisar por uma IA
+                </div>
               </div>
             );
           })

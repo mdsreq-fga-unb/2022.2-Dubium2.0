@@ -31,7 +31,7 @@
 | MVP2     | Produto(Entrega)                    | Data Início | Data Fim |
 | -------- | ----------------------------------- | ----------- | -------- |
 | Sprint 4 | **T04-EP11-US45** **T04-EP11-US47** | 19/06       | 04/07    |
-| Sprint 5 | Produto(Entrega)                    | 05/07       | 20/07    |
+| Sprint 5 | **T02-EP04-US18**  **T02-EP04-US19**   **T04-EP11-US45**   **T04-EP11-US46**   **T05-EP12-US48**   **T05-EP12-US49**   **T05-EP12-US50**   **T05-EP12-US51**              | 05/07       | 20/07    |
 
 ## 3 - Matriz de Comunicação
 

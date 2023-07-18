@@ -10,7 +10,7 @@
 
 |Tipo de teste|Nível de teste|Técnica de teste|Objetivo|Perspectiva|Escopo|
 |-----------|-------|----------|----------|--------------|---------|
-|Funcional|Unitário|Automático|Qualidade interna|Técnica|US05, US06, US18, US18,US28, US35, US17(MVP1), US34(MVP1), US18(MVP2), US19(MVP2), US48(MVP2), US49(MVP2) e US50(MVP2)|
+|Funcional|Unitário|Automático|Qualidade interna|Técnica|US05, US06, US18, US35, US17(MVP1), US34(MVP1), US18(MVP2), US19(MVP2), US48(MVP2), US49(MVP2) e US50(MVP2)|
 |Funcional|Integração|Automático|Qualidade interna|Técnica| MVP1 e MVP2|
 |Funcional|Sistema|Caixa Preta|Qualidade externa|Negócio| MVP1, US45(MVP2), US46(MVP2), US48(MVP2), US49(MVP2) e U50(MVP2)|
 |Usabilidade|Aceitação|Caixa Preta|Qualidade externa|Negócio|RNF04, RNF06, RNF07|
@@ -21,7 +21,11 @@
 
 |US| Descrição| Critérios de Aceitação| Passou? | Observações|
 |---|------------|-------------|-------|--------|
+|**US05**|Eu, como usuário, gostaria de ser capaz de publicar perguntas para tirar minhas dúvidas.|- Caracteres especiais devem ser aceitos ao criar pergunta <br> - Números devem ser aceitos ao criar pergunta <br> - Perguntas devem ter identificações diferente <br> Corpo, título, filtro e engenharia devem ser obrigatórios.|Sim|---|
+|**US06**|Eu, como usuário, gostaria de visualizar perguntas para fins de busca e estudo.| -  A visualização deve conter o nome e o curso do usuário que fez a pergunta. <br> - Uma lista de perguntas já feitas anteriormente deve ser visualizada. |Sim|---|
+|**US08**|Eu, como usuário, gostaria de poder deletar as minhas perguntas para caso de escrita incorreta.| - Somente o autor da pergunta pode apagá-la|Sim|---|
 |**US17**|Eu, como usuário, gostaria de editar meus avisos para corrigir erros de digitação.| - O título e conteúdo devem ser editáveis. <br> - Somente o autor do aviso pode editá-lo.|Sim|---|
+|**US35**|Eu, como usuário, gostaria de editar meus avisos para corrigir erros de digitação.| - O título e conteúdo devem ser editáveis. <br> - Somente o autor do aviso pode editá-lo.|Sim|---|
 |**US34**|Eu, como usuário, gostaria de personalizar e adicionar uma foto ao meu perfil para outros usuários me identificarem.|- Deve ser possível adicionar fotos de perfil nos formatos: .png, .gif, .jpeg e .jpg.|Sim|---|
 
 
@@ -54,12 +58,12 @@ Já o teste de sistema do MVP2 pode ser observado a seguir:
 
 | US      | Descrição                                                                                                                                                                                                                                                | DOR | DOD | Critérios de Aceitação                                                                    | Passou? | Conclusão                                                                                                  |
 |---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|-----|-------------------------------------------------------------------------------------------|---------|------------------------------------------------------------------------------------------------------------|
-
 | **US45** | Eu, como usuário, quero ser capaz de pesquisar meu histórico de conversas por palavra-chave ou data específica, para que eu possa encontrar informações importantes de forma rápida e fácil.                                                            | OK  | OK  | - Deve ter um botão específico que indique a busca no chat.                                | Sim     | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.   |
 | **US46** | Eu, como usuário, quero ser capaz de arquivar conversas antigas que não são mais relevantes para mim, para manter minha lista de conversas organizada e fácil de usar.                                                                                    | OK  | OK  | - Deve ser possível acessar um chat arquivado.                                            | Sim     | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.   |
 | **US48** | Eu, como usuário, gostaria de ter o conteúdo de avisos analisados por uma IA para maior confiabilidade.                                                                                                                                                    | OK  | OK  | - Não deve ser criado o aviso, caso tenha conteúdo nocivo.                                 | Sim     | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.   |
 | **US49** | Eu, como usuário, gostaria de ter o conteúdo de perguntas filtrados por uma IA para remover palavras nocivas.                                                                                                                                               | OK  | OK  | - Não deve ser criada a pergunta, caso tenha conteúdo nocivo.                               | Sim     | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.   |
 | **US50** | Eu, como usuário, gostaria de ter o conteúdo de respostas analisado por uma IA para maior confiabilidade.                                                                                                                                                  | OK  | OK  | - Não deve ser criada a resposta, caso tenha conteúdo nocivo.                              | Sim     | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.   |
+
 
 
 

@@ -12,6 +12,14 @@ const deletarRespostasPorUsuario = async (usuario) => {
    })
 }
 
+const editarResposta = async (idResposta, novoConteudo ) => {
+    try {
+        return await respostaSchema.findOneAndUpdate({ _id: idResposta }, { conteudo: novoConteudo })
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
 const deletarRespostas = async (idUsuario) => {
     try {
         return await respostaSchema.deleteMany({ "Usuario.id": idUsuario }) 
@@ -24,6 +32,5 @@ const deletarRespostas = async (idUsuario) => {
 
 
 module.exports = {
-    deletarRespostasPorUsuario,
-    deletarRespostas
+    deletarRespostasPorUsuario
 }

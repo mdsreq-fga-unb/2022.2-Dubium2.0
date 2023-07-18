@@ -22,7 +22,6 @@ export default function AvisoSelecionado() {
   const [editando, setEditando] = useState(false);
   const [tituloEditado, setTituloEditado] = useState("");
   const [conteudoEditado, setConteudoEditado] = useState("");
-  const [materiaEditada, setMateriaEditada] = useState("");
   const fotoContext = useContext(FotoContext)
   const { idAviso } = useParams();
 
@@ -79,14 +78,12 @@ export default function AvisoSelecionado() {
     setEditando(true);
     setTituloEditado(avisoSelecionado?.titulo || "");
     setConteudoEditado(avisoSelecionado?.conteudo || "");
-    setMateriaEditada(avisoSelecionado?.materia || "");
   };
 
   const cancelarEdicao = () => {
     setEditando(false);
     setTituloEditado("");
     setConteudoEditado("");
-    setMateriaEditada("");
   };
 
   const deleteAviso = async () => {
@@ -146,9 +143,8 @@ export default function AvisoSelecionado() {
     const infoAviso = {
       id_usuario: jwt(token).secret.id,
       id_aviso: idAviso,
-      // titulo: tituloEditado,
+      titulo: tituloEditado,
       conteudo: conteudoEditado,
-      materia: tituloEditado
     };
   
     await apiRequest
@@ -193,6 +189,9 @@ export default function AvisoSelecionado() {
             )}
             </div>
           </div>
+          <span className="titulo">
+            {avisoSelecionado?.titulo}
+          </span>
           <span className="filtro">
             {avisoSelecionado?.materia?.toUpperCase()}
           </span>

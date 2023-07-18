@@ -19,6 +19,8 @@ Na reunião com a cliente, relatamos que concluímos todas as US que ficaram de 
 |**T05** - Automatização com IA	|**EP12** - Implementação GPT3	|**US50** - Eu, como usuário, gostaria de ter o conteúdo de respostas analisados por uma IA para maior confiabilidade.|
 |**T05** - Automatização com IA	|**EP12** - Implementação GPT3	|**US51** - Eu, como usuário, gostaria de ter o conteúdo das mensagens no chat analisados por uma IA quando solicitado.|
 
+## Validação da cliente sobre o MVP2:
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2I2v-khITvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <a href="https://www.youtube.com/watch?v=2I2v-khITvY">Clique aqui para ser redirecionado ao vídeo no YouTube</a>

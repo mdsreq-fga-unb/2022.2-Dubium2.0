@@ -5,8 +5,18 @@ router.use(json())
 const passport = require("passport")
 const RespostaSchema = require("../model/respostaSchema.js")
 const respostaSchema = require("../model/respostaSchema.js")
+const respostaService = require("../service/respostaService.js")
 
 
+router.put("/editar", passport.authenticate('jwt', { session: false }), async (req, res) => {
+    const { idResposta, novoConteudo } = req.body
+    try {
+        await respostaService.editarResposta(idResposta, novoConteudo)
+        res.status(200).send("Resposta editada com sucesso")
+    } catch (err) {
+        res.status(404).send({ error: "Erro ao editar resposta", message: err.message });
+    }
+})
 
 router.post("/", passport.authenticate('jwt', { session: false }), (req, res) => {
     const { Usuario, idPergunta, conteudo } = req.body

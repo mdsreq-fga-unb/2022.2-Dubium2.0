@@ -31,8 +31,16 @@
 
 #### MVP 2
 
-| US| Critérios de Aceitação| Passou? | Observações|
-|---|------------|-------------|-------|
+| US| Descrição|Critérios de Aceitação| Passou? | Observações|
+|---|------------|-------------|-------|--------|
+|**US18**|Eu, como usuário, gostaria de editar minhas perguntas para corrigir erro de digitação.|- Somente o autor da pergunta pode editá-la. <br> - Os campos que podem ser editados são: Título, conteúdo.| Sim |---|
+|**US19**|Eu, como usuário, gostaria de editar minhas respostas para corrigir erros de digitação.|- Somente o autor da pergunta pode editá-la. <br> -O campo que pode ser editado é o conteúdo.|Sim|---|
+|**US45**|Eu, como usuário, quero ser capaz de pesquisar meu histórico de conversas por palavra-chave ou data específica, para que eu possa encontrar informações importantes de forma rápida e fácil.|- Deve ter um botão específico que indique a busca no chat.|----|Por seu critério estar voltado para interface não foi possível realizar um teste unitário.|
+|**US46**|Eu, como usuário, quero ser capaz de arquivar conversas antigas que não são mais relevantes para mim, para manter minha lista de conversas organizada e fácil de usar.|- Deve ser possível acessar um chat arquivado. |----|Por seu critério estar voltado para interface não foi possível realizar um teste unitário.|
+|**US47**|Eu, como usuário, quero que meu histórico de conversas mais recentes sejam recuperados e carregados mais rapidamente.|- Deve seguir um limite máximo de 1000ms.|----| Por ser um critério relacionado a perfomance, não foi possível realizar um teste unitário|
+|**US48**|Eu, como usuário, gostaria de ter o conteúdo de avisos analisados por uma IA para maior confiabilidade.|Não deve ser criado o aviso, caso tenha conteúdo nocivo|Sim|---|
+|**US49**|Eu, como usuário, gostaria de ter o conteúdo de perguntas filtrados por uma IA para remover palavras nocivas.|Não deve ser criado a pergunta, caso tenha conteúdo nocivo|Sim|---|
+|**US50**|Eu, como usuário, gostaria de ter o conteúdo de respostas analisados por uma IA para maior confiabilidade.|Não deve ser criado a resposta, caso tenha conteúdo nocivo|Sim|---|
 
 
 
@@ -57,6 +65,7 @@ O teste de aceitação foi realizado pela cliente, onde passamos em cada requisi
 
 |RNF|Descrição|Conclusão|
 |-----------|-----------|------------|
+
 
 
 

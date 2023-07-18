@@ -6,7 +6,8 @@
 |----------|--------|----------------------------|---------------------------------------------------------------------------------------------|
 |16/04/2023|   0.1  | Inserção de todas as referências em que a equipe se baseou para o desenvolvimento da Unidade 1. |[Arthur](https://github.com/Arthrok), [Eric](https://github.com/ericbky), [Pedro Lucas](https://github.com/lucasdray), [Yasmim](https://github.com/yaskisoba)|
 |15/05/2023|   0.2  | Inserção de todas as referências em que a equipe se baseou para o desenvolvimento da Unidade 2. |[Arthur](https://github.com/Arthrok), [Eric](https://github.com/ericbky), [Pedro Lucas](https://github.com/lucasdray), [Yasmim](https://github.com/yaskisoba)|
-|10/06/2023|   0.3  | Inserção de todas as referências em que a equipe se baseou para o desenvolvimento da Unidade 2. |[Fábio](https://github.com/fabioaletorres)|
+|10/06/2023|   0.3  | Inserção de todas as referências em que a equipe se baseou para o desenvolvimento da Unidade 3. |[Fábio](https://github.com/fabioaletorres)|
+|18/07/2023|   0.4 | Inserção de todas as referências em que a equipe se baseou para o desenvolvimento da Unidade 4. |[Fábio](https://github.com/fabioaletorres)|
 
 ---------------------------------------------------------------
 

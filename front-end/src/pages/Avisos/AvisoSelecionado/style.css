@@ -51,3 +51,12 @@
   .cancelar-editar:active {
   background-color: gray;
   }
+
+  .titulo{
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .filtro{
+    
+  }

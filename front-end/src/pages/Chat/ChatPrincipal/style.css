@@ -110,16 +110,19 @@
 }
 
 .analiseIa {
+  margin-top: 10px;
+  align-items: center;
   display: none;
-  font-size: 10px;
+  font-size: 12px;
+  gap: 5px;
+}
+.analiseIa:hover{
+  cursor: pointer;
 }
 
-.textoChat1:hover+.analiseIa {
-  display: block;
-}
-
-.textoChatOutro:hover+.analiseIa {
-  display: block;
+.textoChat1:hover .analiseIa,
+.textoChatOutro:hover .analiseIa {
+  display: flex;
 }
 
 .conteudoChat {

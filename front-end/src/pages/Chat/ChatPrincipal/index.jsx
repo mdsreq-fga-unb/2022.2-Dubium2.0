@@ -381,7 +381,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                 }} />) : (<>{mensagem.user.nome}: {mensagem.message} </>)}
                 <span className="horario">{horarioFormatado(mensagem.horario)}</span>
                 <div className="analiseIa">
-                  <SmartToyIcon />
+                  <SmartToyIcon style={{fontSize:'15px'}}/>
                   Analisar por uma IA
                 </div>
               </div>

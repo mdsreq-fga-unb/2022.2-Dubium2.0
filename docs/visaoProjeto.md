@@ -58,12 +58,12 @@
 
 ## 5 - Critérios de replanejamento
 
-- Atrasos no cronograma;
-- Alterações na equipe de trabalho;
-- Riscos identificados que afetam o projeto;
-- Mudanças no escopo do projeto;
-- Mudanças nos requisitos do cliente ou dos stakeholders;
-- Mudanças na tecnologia ou na infraestrutura do projeto;
-- Problemas de comunicação ou colaboração entre as partes interessadas;
-- Problemas técnicos que afetam o desenvolvimento do software;
-- Problemas de qualidade do produto ou do processo de desenvolvimento.
+Atrasos no cronograma;
+Alterações na equipe de trabalho;
+Riscos identificados que afetam o projeto;
+Mudanças no escopo do projeto;
+Mudanças nos requisitos do cliente ou dos stakeholders;
+Mudanças na tecnologia ou na infraestrutura do projeto;
+Problemas de comunicação ou colaboração entre as partes interessadas;
+Problemas técnicos que afetam o desenvolvimento do software;
+Problemas de qualidade do produto ou do processo de desenvolvimento.

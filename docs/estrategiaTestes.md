@@ -10,7 +10,7 @@
 
 |Tipo de teste|Nível de teste|Técnica de teste|Objetivo|Perspectiva|Escopo|
 |-----------|-------|----------|----------|--------------|---------|
-|Funcional|Unitário|Automático|Qualidade interna|Técnica| MVP1 e MVP2|
+|Funcional|Unitário|Automático|Qualidade interna|Técnica| US17(MVP1), US34(MVP1), US18(MVP2), US19(MVP2), US48(MVP2), US49(MVP2) e US50(MVP2)|
 |Funcional|Integração|Automático|Qualidade interna|Técnica| MVP1 e MVP2|
 |Funcional|Sistema|Caixa Preta|Qualidade externa|Negócio| MVP1 e MVP2|
 |Usabilidade|Aceitação|Caixa Preta|Qualidade externa|Negócio|RNF04, RNF06, RNF07|
@@ -22,12 +22,8 @@
 |US| Descrição| Critérios de Aceitação| Passou? | Observações|
 |---|------------|-------------|-------|--------|
 |**US17**|Eu, como usuário, gostaria de editar meus avisos para corrigir erros de digitação.| - O título e conteúdo devem ser editáveis. <br> - Somente o autor do aviso pode editá-lo.|Sim|---|
-|**US33**|Eu, como usuário, gostaria de visualizar perfis de outros usuários para quando o mesmo for selecionado.|- Ao clicar no usuário desejado, deve ser direcionado ao seu perfil.|----| Por seu critério estar voltado para interface não foi possível realizar um teste unitário.|
 |**US34**|Eu, como usuário, gostaria de personalizar e adicionar uma foto ao meu perfil para outros usuários me identificarem.|- Deve ser possível adicionar fotos de perfil nos formatos: .png, .gif, .jpeg e .jpg.|Sim|---|
-|**US37**|Eu, como usuário, quero ser capaz de enviar mensagens públicas para outros usuários em tempo real, para que eu possa ter conversas públicas com outros usuários sem precisar atualizar a página.|- Qualquer usuário participante do chat público deve ser capaz de enviar mensagem.|Sim|---|
-|**US38**|Eu, como usuário, quero ser capaz de enviar mensagens privadas para outros usuários, para que eu possa ter conversas privadas que não são visíveis para outros usuários.|- Deve ser possível visualizar quando um usuário está digitando. <br> - Quaisquer usuários podem enviar mensagens privadas entre dois usuários|Sim|Com excessão do primeiro critério, por estar voltado para interface não foi possível realizar um teste unitário.|
-|**US39**|Eu, como usuário, quero ser notificado quando uma nova mensagem privada for enviada para mim, para que eu possa saber imediatamente quando uma nova mensagem chegou e respondê-la.|Deve estar num ícone ao lado da sua foto de perfil na página inicial.|----|Por seu critério estar voltado para interface não foi possível realizar um teste unitário.|
-|**US44**|Eu, como usuário, quero ser capaz de visualizar todo o meu histórico de conversas com outro usuário, para que eu possa rever as informações e referências discutidas.|- O histórico deve estar disponível sempre que o chat for rolado para cima.|----|Por seu critério estar voltado para interface não foi possível realizar um teste unitário.|
+
 
 #### MVP 2
 
@@ -35,12 +31,12 @@
 |---|------------|-------------|-------|--------|
 |**US18**|Eu, como usuário, gostaria de editar minhas perguntas para corrigir erro de digitação.|- Somente o autor da pergunta pode editá-la. <br> - Os campos que podem ser editados são: Título, conteúdo.| Sim |---|
 |**US19**|Eu, como usuário, gostaria de editar minhas respostas para corrigir erros de digitação.|- Somente o autor da pergunta pode editá-la. <br> -O campo que pode ser editado é o conteúdo.|Sim|---|
-|**US45**|Eu, como usuário, quero ser capaz de pesquisar meu histórico de conversas por palavra-chave ou data específica, para que eu possa encontrar informações importantes de forma rápida e fácil.|- Deve ter um botão específico que indique a busca no chat.|----|Por seu critério estar voltado para interface não foi possível realizar um teste unitário.|
-|**US46**|Eu, como usuário, quero ser capaz de arquivar conversas antigas que não são mais relevantes para mim, para manter minha lista de conversas organizada e fácil de usar.|- Deve ser possível acessar um chat arquivado. |----|Por seu critério estar voltado para interface não foi possível realizar um teste unitário.|
-|**US47**|Eu, como usuário, quero que meu histórico de conversas mais recentes sejam recuperados e carregados mais rapidamente.|- Deve seguir um limite máximo de 1000ms.|----| Por ser um critério relacionado a perfomance, não foi possível realizar um teste unitário|
 |**US48**|Eu, como usuário, gostaria de ter o conteúdo de avisos analisados por uma IA para maior confiabilidade.|Não deve ser criado o aviso, caso tenha conteúdo nocivo|Sim|---|
 |**US49**|Eu, como usuário, gostaria de ter o conteúdo de perguntas filtrados por uma IA para remover palavras nocivas.|Não deve ser criado a pergunta, caso tenha conteúdo nocivo|Sim|---|
 |**US50**|Eu, como usuário, gostaria de ter o conteúdo de respostas analisados por uma IA para maior confiabilidade.|Não deve ser criado a resposta, caso tenha conteúdo nocivo|Sim|---|
+
+
+
 
 
 
@@ -56,8 +52,15 @@ O teste de sistema foi realizado no MVP1 pela equipe Armazenaí e pode ser confe
 
 Já o teste de sistema do MVP2 pode ser observado a seguir:
 
-|US|DOR|DOD|Observações|Conclusão|
-|-----------|-----------|------------|------------|---------------|
+| US      | Descrição                                                                                                                                                                                                                                                | DOR | DOD | Critérios de Aceitação                                                                    | Conclusão                                                                                                     |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|-----|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| **US45** | Eu, como usuário, quero ser capaz de pesquisar meu histórico de conversas por palavra-chave ou data específica, para que eu possa encontrar informações importantes de forma rápida e fácil.                                                            | OK  | OK  | - Deve ter um botão específico que indique a busca no chat.                                | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.    |
+| **US46** | Eu, como usuário, quero ser capaz de arquivar conversas antigas que não são mais relevantes para mim, para manter minha lista de conversas organizada e fácil de usar.                                                                                    | OK  | OK  | - Deve ser possível acessar um chat arquivado.                                            | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.    |
+| **US48** | Eu, como usuário, gostaria de ter o conteúdo de avisos analisados por uma IA para maior confiabilidade.                                                                                                                                                    | OK  | OK  | - Não deve ser criado o aviso, caso tenha conteúdo nocivo.                                 | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.    |
+| **US49** | Eu, como usuário, gostaria de ter o conteúdo de perguntas filtrados por uma IA para remover palavras nocivas.                                                                                                                                               | OK  | OK  | - Não deve ser criada a pergunta, caso tenha conteúdo nocivo.                               | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.    |
+| **US50** | Eu, como usuário, gostaria de ter o conteúdo de respostas analisado por uma IA para maior confiabilidade.                                                                                                                                                  | OK  | OK  | - Não deve ser criada a resposta, caso tenha conteúdo nocivo.                              | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.    |
+
+
 
 
 ### Teste de Aceitação

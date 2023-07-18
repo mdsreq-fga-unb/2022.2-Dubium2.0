@@ -7,7 +7,7 @@ const http = require('./server.js')
 require("./config/sockets.js")
 
 
-const port = 8080
+const port = process.env.PORT || 8080
 
 // const startup = async() => {
 //     await client.connect()

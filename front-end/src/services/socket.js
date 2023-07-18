@@ -1,4 +1,4 @@
 import io from 'socket.io-client';
 
 
-export default io('http://localhost:8080')
+export default io('https://dubium2-3cd544237057.herokuapp.com')

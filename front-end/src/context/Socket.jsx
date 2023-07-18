@@ -3,7 +3,7 @@ import socketio from "socket.io-client";
 import React, { createContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const socket = socketio.connect("http://localhost:8080");
+const socket = socketio.connect("https://dubium2-3cd544237057.herokuapp.com");
 export const SocketContext = createContext();
 
 const SocketProvider = ({ children }) => {

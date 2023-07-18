@@ -109,10 +109,5 @@ module.exports = {
     salvarPergunta,
     perguntasSalvas,
     perguntasCadastradas,
-<<<<<<< HEAD
     editarPergunta
-=======
-    editarPergunta,
-    deletarPerguntasPorUsuario
->>>>>>> c51bba859516e77f82b05837fbb6356ef2d10a39
 }

@@ -4,7 +4,7 @@ require('dotenv').config()
 
 // const connection = mongoose.connect("mongodb+srv://arthurmelo1918:71JuBrKKWQr6kAfU@dubium0.o4ru6rq.mongodb.net/Dubium")
 
-const connection = mongoose.connect("mongodb://localhost:27017")
+const connection = mongoose.connect("mongodb+srv://arthurmelo1918:71JuBrKKWQr6kAfU@dubium0.o4ru6rq.mongodb.net/Dubium")
     .then(() => {
         console.log("Mongoose rodando!")
     }) 

@@ -142,6 +142,7 @@ export default function PerguntaSelecionada() {
       id_pergunta: idPergunta,
       conteudo: conteudoEditado,
       materia: tituloEditado
+      
     };
   
     await apiRequest
@@ -151,7 +152,8 @@ export default function PerguntaSelecionada() {
         },
       })
       .then((response) => {
-        setEditando(true);
+        setEditando(false);
+        getPerguntas();
         
       })
       .catch((error) => window.alert(error.response.data.message));
@@ -303,7 +305,7 @@ export default function PerguntaSelecionada() {
             </IconButton>
           )}
           {token && jwt(token)?.secret?.id == perguntaSelecionada?.idUsuario?.id && (
-            <IconButton onClick={editarPergunta}>
+            <IconButton onClick={habilitarEdicao}>
               <EditIcon sx={{ fontSize: 16 }} />
             </IconButton>
           )}

@@ -338,6 +338,7 @@ export default function PerguntaSelecionada() {
           {respostas.map((data, index) => (
             <li value={data._id} key={index} className="card-resposta">
               <div className="usuario-informacao-texto">
+              <img src={fotoContext[data.Usuario.id]} className="fotosCards" />
                 <span
                   style={{
                     display: "flex",

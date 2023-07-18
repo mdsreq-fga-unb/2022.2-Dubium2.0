@@ -41,6 +41,7 @@ textarea,
   color: rgb(250, 250, 250);
   border: none;
   border-radius: 15px;
+  cursor: pointer;
 }
 
 .botao-cancelar {

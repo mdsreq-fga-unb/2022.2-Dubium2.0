@@ -23,7 +23,7 @@ export default function ForumBody({ materiaPesquisada }) {
   const [allQuest, setAllQuest] = useState([]);
   const { elementoSidebar } = useContext(SidebarContext);
   const fotoContext = useContext(FotoContext)
- 
+
   useEffect(() => {
     function getPerguntas() {
       if (elementoSidebar) {
@@ -87,21 +87,21 @@ export default function ForumBody({ materiaPesquisada }) {
             >
               <div className="card-pergunta">
                 <div className="infos">
-                <div className="usuario-pergunta">
-                  <Link className='link-usuario' to={`/usuario/${data.idUsuario.id}`}>
-                    <img src={fotoContext[data.idUsuario.id]} className="fotosCards" />
-                    <div className="usuario-informacao-texto">
+                  <div className="usuario-pergunta">
+                    <Link className='link-usuario' to={`/usuario/${data.idUsuario.id}`}>
+                      <img src={fotoContext[data.idUsuario.id]} className="fotosCards" />
+                      <div className="usuario-informacao-texto">
 
-                      <span>{data.idUsuario.nome}</span>
+                        <span>{data.idUsuario.nome}</span>
 
-                      <span>
-                        {handleCurso(data.curso)}
-                      </span>
-                    </div>
-                  </Link>
-                </div>
+                        <span>
+                          {handleCurso(data.curso)}
+                        </span>
+                      </div>
+                    </Link>
+                  </div>
 
-                <span className="filtro">{data.filtro}</span>
+                  <span className="filtroMat">{data.filtro}</span>
                 </div>
 
 

@@ -42,7 +42,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 80%;
+  width: 70%;
 }
 
 .textoAviso {
@@ -53,8 +53,13 @@
   margin-top: 2rem;
 }
 
+.topAviso {
+  display: flex;
+}
+
 .filtroAviso {
-  margin-left: 75%;
+  margin-top: 2rem;
+  color: #0f4a6d;
 }
 
 .card-aviso:hover {
@@ -74,6 +79,7 @@
     margin-left: 6rem;
     height: 16rem;
   }
+
 }
 
 @media (max-width: 1400px) {
@@ -86,6 +92,10 @@
 }
 
 @media (max-width: 1000px) {
+  .topAviso {
+    display: block;
+  }
+
   .usuario-aviso {
     display: block;
     margin: 1rem;
@@ -96,6 +106,10 @@
     width: 70%;
     margin-left: 6rem;
     height: 18rem;
+  }
+
+  .filtroAviso {
+    margin-left: 40%;
   }
 }
 
@@ -111,10 +125,6 @@
     width: 70%;
     margin-left: 6rem;
     height: 20rem;
-  }
-
-  .filtroAviso {
-    margin-left: 50%;
   }
 
   .usuario-informacao-texto {
@@ -140,5 +150,9 @@
 @media (max-width: 700px) {
   .card-aviso {
     margin-left: 8rem;
+  }
+
+  .filtroAviso {
+    margin-left: 10%;
   }
 }

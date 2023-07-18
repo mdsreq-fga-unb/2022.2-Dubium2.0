@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import SidebarContext from "../../../context/SidebarProvider";
-import {pesquisaAviso} from "../../../services/pesquisa";
+import { pesquisaAviso } from "../../../services/pesquisa";
 import apiRequest from "../../../services/api";
 import handleCurso from "../../../services/curso";
 
@@ -102,28 +102,31 @@ export default function AvisosConteudo({ materiaPesquisada }) {
             >
               <div className="card-aviso">
                 <div className="infosAviso">
-                <div className="usuario-aviso">
-                <img src={fotoContext[aviso.usuario.id]} className="fotosCards" />
-                  <div className="usuario-informacao-texto">
-                    {/* <span>{aviso.usuario.fotoPerfil}</span> */}
-                    <span>{aviso.usuario.nome}</span>
-                    <span style={{ color: "#757575" }}>
-                      {handleCurso(aviso.usuario.curso)}
-                    </span>
+                  <div className="topAviso">
+                    <div className="usuario-aviso">
+                      <img src={fotoContext[aviso.usuario.id]} className="fotosCards" />
+                      <div className="usuario-informacao-texto">
+                        {/* <span>{aviso.usuario.fotoPerfil}</span> */}
+                        <span>{aviso.usuario.nome}</span>
+                        <span style={{ color: "#757575" }}>
+                          {handleCurso(aviso.usuario.curso)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="filtroAviso">
+                      <span>{aviso.materia.toUpperCase()}</span>
+                    </div>
+                  </div>
+                  <div className="textoAviso">
+                    <span className="textoAviso">{aviso.titulo}</span>
+                    <br></br>
+                    <span className="textoAviso">{aviso.conteudo}</span>
+                  </div>
+                  <div className="like-comentarioAviso">
+                    <StarIcon sx={{ color: "#ffa722", fontSize: 16 }} />
+                    <span>{aviso.votos} favoritos</span>
                   </div>
                 </div>
-
-                <span className="filtroAviso">{aviso.materia.toUpperCase()}</span>
-                <div className="textoAviso">
-                  <span className="textoAviso">{aviso.titulo}</span>
-                  <br></br>
-                  <span className="textoAviso">{aviso.conteudo}</span>
-                </div>
-                <div className="like-comentarioAviso">
-                  <StarIcon sx={{ color: "#ffa722", fontSize: 16 }} />
-                  <span>{aviso.votos} favoritos</span>
-                </div>
-              </div>
               </div>
             </Link>
           );

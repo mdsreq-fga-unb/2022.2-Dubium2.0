@@ -119,7 +119,7 @@ const deletarUsuario = async (req, res) => {
         await respostaService.deletarRespostas(idUsuario)
         await usuarioService.limparChatsEmUsuarios(idUsuario)
         await usuarioService.deletarChats(idUsuario)
-        await deletarUsuario(idUsuario)
+        await usuarioService.deletarUsuario(idUsuario)
         res.status(200).send("deletado com sucesso!")
     } catch (err) {
         res.status(404).send({ error: "Erro ao deletar usuario", message: err.message });

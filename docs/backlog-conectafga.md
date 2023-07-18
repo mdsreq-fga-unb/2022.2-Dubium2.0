@@ -20,7 +20,6 @@
 | Usabilidade | RNF04 |O conteúdo de interface da aplicação deve ser totalmente responsivo para dispositivos desktop.|
 | Performance | RNF05 |O sistema deve ser rápido e eficiente (5.000ms), proporcionando uma experiência satisfatória ao usuário a partir de constantes otimizações no código.|
 | Requisitos de Interface | RNF06 | Padrão de cores deverá seguir o que foi bem definido pelo cliente: Azul, verde, preto, branco e cinza.|
-| Requisitos de Interface | RNF07 | Deverá ter modo claro e escuro. |
 
 ## 3. Requisitos Funcionais
 

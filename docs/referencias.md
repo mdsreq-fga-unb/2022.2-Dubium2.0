@@ -11,7 +11,7 @@
 
 ---------------------------------------------------------------
 
-## Unidade 1
+## Unidade 01
 
 
 - BEC00 Kent Beck 2000. Extreme Programming Explained Addison-Wesley Publishing Co. Uma boa introdução às ideias fundamentais da XP.
@@ -24,19 +24,19 @@
 
 - SABBAGH, Rafael. Scrum: Gestão ágil para projetos de sucesso. São Paulo: Casa do Código, 2016.
 
-## Unidade 2
+## Unidade 02
 
 
 - "Projetando Interfaces: Padrões para Design de Interação Eficaz" por Jenifer Tidwell
 - "Use a Cabeça! Padrões de Projetos" por Eric Freeman e Elisabeth Robson 
 
-## Unidade 3
+## Unidade 03
 
 -   MARTIN, Robert C. Código Limpo: Habilidades Práticas do Agile Software. Atlas Book.
 
 - Introdução à Arquitetura e Design de Software: Uma visão sobre a Plataforma Java (Paulo Silveira, Guilherme Silveira, Sérgio Lopes, Nico Steppat e Fabio King).
 
-## Unidade 4
+## Unidade 04
 
 - Agile testing: a practical guide for testers and agile teams. 2009 Pearson Education, Lisa Crispin e Janet Gregory. Inc. Addison-Wesley; 
 

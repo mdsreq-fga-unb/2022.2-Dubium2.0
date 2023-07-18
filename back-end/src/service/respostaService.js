@@ -32,5 +32,6 @@ const deletarRespostas = async (idUsuario) => {
 
 
 module.exports = {
-    deletarRespostasPorUsuario
+    deletarRespostasPorUsuario,
+    editarResposta,
 }

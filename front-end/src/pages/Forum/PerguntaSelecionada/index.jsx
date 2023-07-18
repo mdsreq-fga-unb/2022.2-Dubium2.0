@@ -10,6 +10,7 @@ import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import StarIcon from "@mui/icons-material/Star";
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
@@ -27,6 +28,10 @@ export default function PerguntaSelecionada() {
   const [token, setToken] = useState('');
   const fotoContext = useContext(FotoContext)
   const { idPergunta } = useParams();
+  const [editando, setEditando] = useState(false);
+  const [tituloEditado, setTituloEditado] = useState("");
+  const [conteudoEditado, setConteudoEditado] = useState("");
+  const [materiaEditada, setMateriaEditada] = useState("");
 
   const navigate = useNavigate();
 
@@ -130,6 +135,8 @@ export default function PerguntaSelecionada() {
     }
   }, [token])
 
+
+  
 
   const deletarPergunta = async () => {
     await apiRequest
@@ -262,11 +269,16 @@ export default function PerguntaSelecionada() {
               <DeleteIcon sx={{ fontSize: 16 }} />
             </IconButton>
           )}
+          {token && jwt(token)?.secret?.id == perguntaSelecionada?.idUsuario?.id && (
+            <IconButton >
+              <EditIcon sx={{ fontSize: 16 }} />
+            </IconButton>
+          )}
         </div>
         <span className="filtroPerguntaSeleionada">
           {perguntaSelecionada?.filtro?.toUpperCase()}
         </span>
-        <span>{perguntaSelecionada?.conteudo}</span>
+
         <ul className="container-interacao">
           <div className="ps-favoritar-salvar">
             <li

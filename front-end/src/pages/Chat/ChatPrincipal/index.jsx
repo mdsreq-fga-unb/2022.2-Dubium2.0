@@ -10,17 +10,14 @@ import apiRequest from '../../../services/api.js'
 import { SocketContext } from "../../../context/Socket";
 import React, { useContext } from "react";
 import SendIcon from "@mui/icons-material/Send";
-import GroupsIcon from '@mui/icons-material/Groups';
 import PersonIcon from '@mui/icons-material/Person';
 import { pesquisaMensagem } from "../../../services/pesquisa";
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { horarioFormatado } from "../../../services/util";
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 
 export default function ChatPrincipal({ mensagemPesquisada }) {
   const containerRef = useRef(null);
-
   const [message, setMessage] = useState("");
   const [isFirstRender, setIsFirstRender] = useState(true);
   const [token, setToken] = useState('');
@@ -31,15 +28,14 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   const [arrayMensagens, setarrayMensagens] = useState([]);
   const [messagesDB, setMessagesDB] = useState([])
   const [digitando, setDigitando] = useState(false)
-  const { idUsuario } = useParams();
   const navigate = useNavigate();
-  const conteudoRef = useRef(null);
   const [stringDigitando, setStringDigitando] = useState('')
   const [userTarget, setUserTarget] = useState("")
   const socketContext = useContext(SocketContext);
   const [fotosUsuarios, setFotoUsuarios] = useState({})
   const [mensagensFiltradas, setMensagensFiltradas] = useState([]);
-  
+  const [showMenu, setShowMenu] = useState({});
+
 
 
   //ScrollBar
@@ -279,7 +275,8 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
     setIsSearchOpen(false)
     console.log("Ícone de voltar clicado!");
   };
-  
+
+
 
   return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB && (
     <div className="containerChatPrincipal">
@@ -329,39 +326,48 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                 {chat.privado && chat.usuarios[0].user.id == jwt(token).secret.id ? `${stringDigitando}` : `${stringDigitando}`}</div>
             </div>
           </div>
+
           <div id="searchIcon">
             {isSearchOpen ? (
-              <input
-                type="text"
-                placeholder="Pesquisar..."
-                value={searchText}
-                onChange={handleSearchInputChange}
-                className="searchInput"
-              />
+              <div className="searchContainer">
+                <div className="searchFlex">
+                  <ArrowBackIcon style={{fontSize:'20px'}} onClick={handleArrowBackClick} />
+              
+                  <input
+                    type="text"
+                    placeholder="Pesquisar..."
+                    value={searchText}
+                    onChange={handleSearchInputChange}
+                    className="searchInput"
+                  />
+                </div>
+
+                {/* Corpo da div de pesquisa */}
+                {mensagensFiltradas && (
+                  <div className="mensagensFiltradas" >
+                    {mensagensFiltradas.map((mensagem) => {
+                      return mensagem.idRoom === chat._id && (
+                        <div
+                          key={mensagem.index}
+                          onClick={() => {
+                            scrollToIndex(mensagem.index);
+                            setIsSearchOpen(false)
+                          }}
+                          className="mensageUni"
+                        >
+                          {mensagem.message.length > 50 ? mensagem.message.slice(0, 50) + "..." : mensagem.message}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             ) : (
               <SearchIcon onClick={handleSearchClick} />
             )}
-
-            {
-              mensagensFiltradas && (
-                <div className="mensagensFiltradas">
-                  {mensagensFiltradas.map((mensagem) => {
-                    return (mensagem.idRoom == chat._id) && (
-                      <div
-                        key={mensagem.index}
-                        onClick={() => {
-                          scrollToIndex(mensagem.index)
-                        }}
-                      >
-                        {mensagem.message}
-                      </div>
-                    );
-                  })
-                  }
-                </div>
-              )
-            }
           </div>
+
+
         </div>
         <div className="conteudoChat" ref={containerRef}>
           {messagesDB.map((mensagem, index) => {
@@ -374,6 +380,10 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
                   __html: highlightSearchText(mensagem.message, searchText)
                 }} />) : (<>{mensagem.user.nome}: {mensagem.message} </>)}
                 <span className="horario">{horarioFormatado(mensagem.horario)}</span>
+                <div className="analiseIa">
+                  <SmartToyIcon style={{fontSize:'15px'}}/>
+                  Analisar por uma IA
+                </div>
               </div>
             );
           })

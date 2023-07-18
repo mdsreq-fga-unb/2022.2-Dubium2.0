@@ -1,0 +1,40 @@
+.md-tabs, .md-header, .md-footer {
+    /* background da nav */
+    --md-primary-fg-color: rgb(15, 25, 34);
+}
+
+.md-header, .md-tabs, .md-search__input::placeholder {
+    /* cor do search */
+    --md-primary-bg-color: rgb(83, 127, 180);
+    /* cor das letras da nav */
+    color: rgb(83, 127, 180);
+}
+.md-header:hover, .md-tabs__item:hover {
+    /* colocar botao transicao de cor (elementos tabs e nav) */
+    color: rgb(107, 151, 204);
+}
+
+.md-main, .md-nav__list {
+    background-color: rgb(28, 47, 64); /* background do body */
+    --md-primary-fg-color: #202024;
+    /* background das tables */
+    --md-default-bg-color: rgb(28, 47, 64);
+  }
+
+*{
+    --md-typeset-a-color: white;
+    --md-default-fg-color--light: white;
+}
+
+
+
+
+footer {
+    display: none;
+    
+}
+
+
+li {
+    list-style: none;
+}

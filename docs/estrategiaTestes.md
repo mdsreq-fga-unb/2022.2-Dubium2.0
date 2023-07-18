@@ -10,7 +10,7 @@
 
 |Tipo de teste|Nível de teste|Técnica de teste|Objetivo|Perspectiva|Escopo|
 |-----------|-------|----------|----------|--------------|---------|
-|Funcional|Unitário|Automático|Qualidade interna|Técnica|US05, US06, US18, US35, US17(MVP1), US34(MVP1), US18(MVP2), US19(MVP2), US48(MVP2), US49(MVP2) e US50(MVP2)|
+|Funcional|Unitário|Automático|Qualidade interna|Técnica|US05, US06, US18, US35, US17(MVP1), US18(MVP2), US19(MVP2), US48(MVP2), US49(MVP2) e US50(MVP2)|
 |Funcional|Integração|Automático|Qualidade interna|Técnica| MVP1 e MVP2|
 |Funcional|Sistema|Caixa Preta|Qualidade externa|Negócio| MVP1, US45(MVP2), US46(MVP2), US48(MVP2), US49(MVP2) e U50(MVP2)|
 |Usabilidade|Aceitação|Caixa Preta|Qualidade externa|Negócio|RNF04, RNF06, RNF07|
@@ -26,7 +26,7 @@
 |**US08**|Eu, como usuário, gostaria de poder deletar as minhas perguntas para caso de escrita incorreta.| - Somente o autor da pergunta pode apagá-la|Sim|---|
 |**US17**|Eu, como usuário, gostaria de editar meus avisos para corrigir erros de digitação.| - O título e conteúdo devem ser editáveis. <br> - Somente o autor do aviso pode editá-lo.|Sim|---|
 |**US35**|Eu, como usuário, gostaria de editar meus avisos para corrigir erros de digitação.| - O título e conteúdo devem ser editáveis. <br> - Somente o autor do aviso pode editá-lo.|Sim|---|
-|**US34**|Eu, como usuário, gostaria de personalizar e adicionar uma foto ao meu perfil para outros usuários me identificarem.|- Deve ser possível adicionar fotos de perfil nos formatos: .png, .gif, .jpeg e .jpg.|Sim|---|
+
 
 
 #### MVP 2

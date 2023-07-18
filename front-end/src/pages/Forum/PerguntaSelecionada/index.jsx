@@ -14,6 +14,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import StarIcon from "@mui/icons-material/Star";
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 
 import jwt from 'jwt-decode'
 import { FotoContext } from "../../../context/FotoProvider";
@@ -32,6 +33,8 @@ export default function PerguntaSelecionada() {
   const [tituloEditado, setTituloEditado] = useState("");
   const [conteudoEditado, setConteudoEditado] = useState("");
   const [materiaEditada, setMateriaEditada] = useState("");
+  const [editarResposta, setEditarResposta] = useState(false)
+  const [novoConteudoResposta, setNovoConteudoResposta] = useState("")
 
   const navigate = useNavigate();
 
@@ -141,7 +144,7 @@ export default function PerguntaSelecionada() {
       id_usuario : jwt(token).secret.id,
       id_pergunta: idPergunta,
       conteudo: conteudoEditado,
-      materia: tituloEditado
+      titulo: tituloEditado
       
     };
   
@@ -159,18 +162,36 @@ export default function PerguntaSelecionada() {
       .catch((error) => window.alert(error.response.data.message));
   };
 
-  const habilitarEdicao = () => {
+  const habilitarEdicaoPergunta = () => {
     setEditando(true);
     setTituloEditado(perguntaSelecionada?.titulo || "");
     setConteudoEditado(perguntaSelecionada?.conteudo || "");
-    setMateriaEditada(perguntaSelecionada?.materia || "");
   };
+
+  const habilitarEdicaoResposta = () => {
+    setEditarResposta(true);
+
+  };
+
+  const salvarNovaResposta = async (idResposta, novoConteudo) => {
+    await apiRequest
+      .put("/resposta/editar", { idResposta, novoConteudo }, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then(response => {
+        getRespostas()
+        setEditarResposta(false)
+        setNovoConteudoResposta("")
+      })
+      .catch(err => {console.log(err)})
+  }
 
   const cancelarEdicao = () => {
     setEditando(false);
     setTituloEditado("");
     setConteudoEditado("");
-    setMateriaEditada("");
   };
 
   const deletarPergunta = async () => {
@@ -305,12 +326,15 @@ export default function PerguntaSelecionada() {
             </IconButton>
           )}
           {token && jwt(token)?.secret?.id == perguntaSelecionada?.idUsuario?.id && (
-            <IconButton onClick={habilitarEdicao}>
+            <IconButton onClick={habilitarEdicaoPergunta}>
               <EditIcon sx={{ fontSize: 16 }} />
             </IconButton>
           )}
         </div>
-        <span className="filtroPerguntaSeleionada">
+        <span className="titulo">
+            {perguntaSelecionada?.titulo}
+          </span>
+        <span className="filtroPerguntaSelecionada">
           {perguntaSelecionada?.filtro?.toUpperCase()}
         </span>
         {editando ? (
@@ -416,21 +440,48 @@ export default function PerguntaSelecionada() {
                     alignItems: "center",
                   }}
                 >
-
+                  <img src={fotoContext[perguntaSelecionada?.data.idUsuario?.id]} className="fotosCards" />
                   {data.Usuario.nome}
                   {token && jwt(token)?.secret?.id == data?.Usuario.id && (
-                    <IconButton
-                      onClick={() => {
-                        deletarResposta(data._id);
-                      }}
-                    >
+                    <IconButton onClick={() => {deletarResposta(data._id);}} >
                       <DeleteIcon sx={{ fontSize: 16 }} />
                     </IconButton>
                   )}
+                  {token && jwt(token)?.secret?.id == data?.Usuario.id && !editarResposta && (
+                    <IconButton onClick={habilitarEdicaoResposta}>
+                      <EditIcon sx={{ fontSize: 16 }} />
+                    </IconButton>
+            )}
+              {token && jwt(token)?.secret?.id == data?.Usuario.id && editarResposta &&
+              
+                <CloseIcon
+                  onClick={() => {setEditarResposta(false)}}
+                />
+              }
                 </span>
                 <span>{handleCurso(data.Usuario.curso)}</span>
               </div>
-              <span>{data.conteudo}</span>
+              {!editarResposta && <span>{data.conteudo}</span>}
+              { token && jwt(token)?.secret?.id == data?.Usuario.id && editarResposta &&
+                
+                <div>
+                  <input
+                      type="text"
+                      placeholder={data.conteudo}
+                      onChange={(e) => setNovoConteudoResposta(e.target.value)}
+                      className="textarea-editar"
+                    />
+                  <button
+                  className="salvar-editar"
+                    onClick={() => {
+                      salvarNovaResposta(data._id, novoConteudoResposta)
+                    }}
+                  >salvar</button>
+                </div>
+              
+              
+              
+              }
               <div
                 className="ps-favoritar"
                 onClick={() => {

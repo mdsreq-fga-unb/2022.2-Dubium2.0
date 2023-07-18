@@ -90,6 +90,16 @@ const perguntasCadastradas = async (idUsuario) => {
     }
 }
 
+const deletarPerguntasPorUsuario = async (usuario) => {
+    await perguntaSchema.deleteMany({
+    idUsuario:{
+      "username": usuario.email,
+      "id": usuario.id,
+      "curso": usuario.curso
+    }
+   })
+}
+
 module.exports = {
     criarPergunta,
     obterPerguntas,
@@ -99,5 +109,6 @@ module.exports = {
     salvarPergunta,
     perguntasSalvas,
     perguntasCadastradas,
-    editarPergunta
+    editarPergunta,
+    deletarPerguntasPorUsuario
 }

@@ -4,10 +4,10 @@
 
 | Data     | Versão | Descrição                  | Autor(es)                                                                          |
 |----------|--------|----------------------------|---------------------------------------------------------------------------------------------|
-|19/04/2023|   0.1  | Inserção das lições aprendidas na Unidade 1  |[Arthur](https://github.com/Arthrok), [Eric](https://github.com/ericbky), [Pedro Lucas](https://github.com/lucasdray), [Yasmim](https://github.com/yaskisoba)|
-|15/05/2023|   0.2  | Inserção das lições aprendidas na Unidade 2  |[Arthur](https://github.com/Arthrok)|
-|12/06/2023|   0.3  | Inserção das lições aprendidas na Unidade 3  |[Fábio](https://github.com/fabioaletorres)|
-|18/07/2023|   0.4 | Inserção das lições aprendidas na Unidade 4  |[Fábio](https://github.com/fabioaletorres)|
+|19/04/2023|   0.1  | Inserção das lições aprendidas na Unidade 01  |[Arthur](https://github.com/Arthrok), [Eric](https://github.com/ericbky), [Pedro Lucas](https://github.com/lucasdray), [Yasmim](https://github.com/yaskisoba)|
+|15/05/2023|   0.2  | Inserção das lições aprendidas na Unidade 02  |[Arthur](https://github.com/Arthrok)|
+|12/06/2023|   0.3  | Inserção das lições aprendidas na Unidade 03  |[Fábio](https://github.com/fabioaletorres)|
+|18/07/2023|   0.4 | Inserção das lições aprendidas na Unidade 04  |[Fábio](https://github.com/fabioaletorres)|
 
 ----------------------------------------------------------------
 ## Unidade 01

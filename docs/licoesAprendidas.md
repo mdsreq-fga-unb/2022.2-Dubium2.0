@@ -32,3 +32,8 @@ Nessa unidade, aprendemos muitas coisas que serão úteis para a nossa carreira 
 No decorrer desse processo de desenvolvimento, pudemos aprender mais sobre as tecnologias utilizadas e executamos os testes necessários para a aplicação.
 Outro ponto a destacar é essa troca de experiência com as demais equipes por meio dos chapters, com isso pudemos ver como os grupos estavam encarando suas dificuldades e nos ajudou a melhorar.
 
+## Unidade 04
+
+Essa última unidade da disciplina abordou na parte teórica sobre os diferentes tipos de testes a serem executados no projeto para exterminar eventuais problemas. 
+Em relação a parte prática, tudo o que foi aprendido no decorrer do semestre executamos nessa unidade, que pode ser entendida como uma das mais importantes e com maior impacto na entrega do nosso projeto/produto.
+Aprendemos, principalmente para trabalhos futuros, a importância da organização e divisão de tarefas é importante para que nenhum membro seja sobrecarregado com a alta demanda que um projeto exige.

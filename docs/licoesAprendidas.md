@@ -28,7 +28,7 @@ Na unidade 2, aprendemos lições de alto valor:
 
 ## Unidade 3 
 
-Nessa unidade, aprendemmos muitas coisas que seram úteis para a nossa carreira acadêmica e profissional, dentre elas destacamos o efetivo trabalho em grupo, onde as entregas dos MVPS demandam muita contribuição devido as diversas etapas de implementação. Efetivamente colocamos em prática toda a teoria adquirida em sala de aula das unidades anteriores em um projeto real. 
+Nessa unidade, aprendemos muitas coisas que serão úteis para a nossa carreira acadêmica e profissional, dentre elas destacamos o efetivo trabalho em grupo, onde as entregas dos MVPS demandam muita contribuição devido as diversas etapas de implementação. Efetivamente colocamos em prática toda a teoria adquirida em sala de aula das unidades anteriores em um projeto real. 
 No decorrer desse processo de desenvolvimento, pudemos aprender mais sobre as tecnologias utilizadas e executamos os testes necessários para a aplicação.
 Outro ponto a destacar é essa troca de experiência com as demais equipes por meio dos chapters, com isso pudemos ver como os grupos estavam encarando suas dificuldades e nos ajudou a melhorar.
 

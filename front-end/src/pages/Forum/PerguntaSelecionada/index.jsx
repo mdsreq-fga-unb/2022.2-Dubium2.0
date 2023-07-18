@@ -53,6 +53,7 @@ export default function PerguntaSelecionada() {
         }
       })
       .then((response) => {
+        console.log(response)
         setPerguntaSelecionada(response.data);
       })
       .catch((err) => {
@@ -90,7 +91,7 @@ export default function PerguntaSelecionada() {
 
   useEffect(() => {
     if (token && perguntaSelecionada) {
-      console.log(perguntaSelecionada?.favoritadoPor?.includes(jwt(token).secret.id))
+      console.log(perguntaSelecionada)
       setFavoritoPergunta(perguntaSelecionada?.favoritadoPor?.includes(jwt(token).secret.id) )
     }
   }, [perguntaSelecionada])

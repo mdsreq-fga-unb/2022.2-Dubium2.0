@@ -40,6 +40,7 @@ const obterPerguntas = (req, res) => {
 const obterPerguntaPorId = (req, res) => {
     perguntaService.obterPerguntaPorId(req.params.id)
         .then(data => {
+            console.log(data)
             res.status(201).send(data)
         })
         .catch(err => {

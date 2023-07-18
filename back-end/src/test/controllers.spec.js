@@ -1,14 +1,9 @@
 const request = require("supertest");
 const server = require("../index");
-<<<<<<< HEAD
-const { excluirUsuario, buscarUsuarioPorEmail } = require('../service/usuarioService');
-const { perguntasCadastradas, deletarPergunta } = require('../service/perguntaService')
-=======
 const { excluirUsuario, buscarUsuarioPorEmail, obterUsuarios } = require('../service/usuarioService');
 const { perguntasCadastradas, deletarPerguntasPorUsuario } = require('../service/perguntaService')
 const { avisosCadastrados, deletarAvisosPorUsuario } = require('../service/avisoService')
 const { deletarRespostasPorUsuario } = require('../service/respostaService')
->>>>>>> c51bba859516e77f82b05837fbb6356ef2d10a39
 
 let token;
 let respostas;
@@ -76,68 +71,6 @@ describe('Perguntas', () => {
       })
       .set('Authorization', `Bearer ${token}`);
 
-<<<<<<< HEAD
-    it('Deve editar a pergunta se o usuário tiver permissão para editar', async () =>{
-      let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-      let perguntas = await perguntasCadastradas(usuario.id) 
-      let idPergunta = perguntas[0]._id.toString();
-      const response = await request(server)
-        .put(`/pergunta/editar/${idPergunta}`)
-        .send({
-          titulo: "Título Editado", 
-          conteudo: "Conteúdo Editado", 
-          curso: 1, 
-          filtro: "IE"
-        })
-        .set('Authorization', `Bearer ${token}`);
-
-        expect(response).toHaveProperty('status', 200)
-    })
-
-    it('Deve retornar um erro se a pergunta não for encontrada', async () =>{
-      let idPergunta = "64ab31c0b8fdef813c2c201c" //definindo um id aleatório
-      const response = await request(server)
-        .put(`/pergunta/editar/${idPergunta}`)
-        .send({
-          titulo: "Título Editado", 
-          conteudo: "Conteúdo Editado", 
-          curso: 1, 
-          filtro: "IE"
-        })
-        .set('Authorization', `Bearer ${token}`);
-      
-      expect(response).toHaveProperty('status', 500)
-    })
-
-    it('Deve retornar um erro se a atualização da pergunta não for bem sucedida', async () =>{
-      let idPergunta = "64ab31c0b8fdef813c2c201c" //definindo um id aleatório
-      try {
-        const response = await request(server)
-        .put(`/pergunta/editar/${idPergunta}`)
-        .send({
-          titulo: 2378123, 
-          conteudo: "Conteúdo Editado", 
-          curso: 1, 
-          filtro: "IE"
-        })
-        .set('Authorization', `Bearer ${token}`);
-      } catch (error){
-         expect(response).rejects.toThrow("Pergunta não encontrada!")
-      }
-    })
-
-    // it('Deve excluir uma pergunta', async () => {
-    //   let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-    //   let perguntas = await perguntasCadastradas(usuario.id) 
-    //   let idPergunta = perguntas[0]._id.toString();
-
-    //   const response = await request(server)
-    //     .delete(`/pergunta/${idPergunta}`)
-    //     .set('Authorization', `Bearer ${token}`);
-
-    //   expect(response).toHaveProperty('status', 201)
-    // })
-=======
     expect(response).toHaveProperty('status', 201)
   })
 
@@ -242,7 +175,6 @@ describe('Perguntas', () => {
 
     expect(response).toHaveProperty('status', 201)
   })
->>>>>>> c51bba859516e77f82b05837fbb6356ef2d10a39
 })
 
 describe('Respostas', () => {
@@ -448,14 +380,6 @@ describe('Chat', () => {
 
 afterAll( async () => {
   let usuario = await buscarUsuarioPorEmail('usuario_teste@gmail.com')
-<<<<<<< HEAD
-  let perguntas = await perguntasCadastradas(usuario.id) 
-  let idPergunta = perguntas[0]._id.toString();
-  //retira o usuário de teste do banco de dados
-  await excluirUsuario('usuario_teste@gmail.com')
-  await deletarPergunta(usuario.id, idPergunta)
-})
-=======
 
   //deleta as respostas de teste do banco de dados
   await deletarRespostasPorUsuario(usuario)
@@ -471,5 +395,3 @@ afterAll( async () => {
 
 
 })
-
->>>>>>> c51bba859516e77f82b05837fbb6356ef2d10a39

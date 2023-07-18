@@ -29,11 +29,13 @@
 
 .cdu-form-campos {
   display: flex;
-  height: 80%;
+  height: 78%;
   flex-direction: column;
   width: 100%;
   gap: 40px;
 }
+
+
 
 .grupo-x {
   display: flex;
@@ -61,6 +63,32 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.botao-geral {
+  display: flex;
+  padding: 6px;
+  width: 20%;
+  background-color: #0f5986;
+  color: rgb(250, 250, 250);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+  .botao-geral {
+    margin-top: 1rem;
+    margin-left: -3rem;
+    margin-right: 5%;
+  }
+}
+
+@media (max-width: 800px) {
+  .botao-geral {
+    margin-right: 0%;
+    height: 2rem;
+    width: 40%;
+  }
+
 @media (max-width: 1400px) {
   .cdu-form-buttons {
     margin-top: -1rem;
@@ -77,3 +105,4 @@
     gap: 0px;
   }
 }
+

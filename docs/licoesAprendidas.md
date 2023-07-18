@@ -9,9 +9,9 @@
 |12/06/2023|   0.3  | Inserção das lições aprendidas na Unidade 2  |[Fábio](https://github.com/fabioaletorres)|
 
 ----------------------------------------------------------------
-## Unidade 1
+## Unidade 01
 
-Na unidade 1, aprendemos lições de alto valor:
+Na unidade 01, aprendemos lições de alto valor:
 
 - Aprendemos a identificar qual a melhor metodologia utilizamos em um projeto por exemplo e sua importância adequada para diferentes situações de equipe e projeto.
 - Aprimoramos a identificação e definição dos problemas, das causas, e do que iremos entregar como um produto, sendo essencial para aflorar as ideias do escopo, filosofia adotada pela equipe, entre outros.
@@ -19,14 +19,14 @@ Na unidade 1, aprendemos lições de alto valor:
 - Como equipe em desenvolvimento interpessoal, compreendemos melhor alguns fundamentos da engenharia de software e suas importâncias.
 - Compreendemos que um produto de software é muito mais complexo do que aparenta, assim nos deu uma visão mais realista da estruturação, desenvolvimento, análise, testes, entre outros.
 
-## Unidade 2
+## Unidade 02
 
-Na unidade 2, aprendemos lições de alto valor:
+Na unidade 02, aprendemos lições de alto valor:
 
 - Descobrimos que os padrões de arquitetura podem melhorar a modularidade e a manutenibilidade do código, facilitando a compreensão, a extensão e a atualização do sistema. Utilizar padrões arquiteturais como MVC, MVVM, ou Clean Architecture nos permite separar responsabilidades e obter um código mais organizado e sustentável.
 - Percebemos que a escolha adequada dos padrões de interface e arquitetura pode impactar diretamente na qualidade e desempenho do sistema.
 
-## Unidade 3 
+## Unidade 03 
 
 Nessa unidade, aprendemos muitas coisas que serão úteis para a nossa carreira acadêmica e profissional, dentre elas destacamos o efetivo trabalho em grupo, onde as entregas dos MVPS demandam muita contribuição devido as diversas etapas de implementação. Efetivamente colocamos em prática toda a teoria adquirida em sala de aula das unidades anteriores em um projeto real. 
 No decorrer desse processo de desenvolvimento, pudemos aprender mais sobre as tecnologias utilizadas e executamos os testes necessários para a aplicação.

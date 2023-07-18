@@ -73,8 +73,8 @@ export default function RankingUsuarios({ materiaPesquisada }) {
                 </div>
               </div>
               <div className="ru-favorito">
-                <StarIcon sx={{ color: "#ffa722", fontSize: 16 }} />
-                <span>{1 - 1} favoritos</span>
+                {/* <StarIcon sx={{ color: "#ffa722", fontSize: 16 }} />
+                <span>{1 - 1} favoritos</span> */}
                 {/* arrumar o favoritos */}
               </div>
             </li>

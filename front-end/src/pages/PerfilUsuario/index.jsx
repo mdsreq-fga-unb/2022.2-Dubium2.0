@@ -247,10 +247,10 @@ export default function PerfilUsuario({ setLogado }) {
               setFavorito(!favorito);
             }}
           >
-            <IconButton>
+            {/* <IconButton>
               <StarIcon className={favorito ? "corFavorito" : ""} />
             </IconButton>
-            <span>Favoritar</span>
+            <span>Favoritar</span> */}
           </li>)}
           {/* editar usuario */}
           {token && idUsuario == jwt(token).secret.id && (

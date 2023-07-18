@@ -34,3 +34,15 @@
 -   MARTIN, Robert C. Código Limpo: Habilidades Práticas do Agile Software. Atlas Book.
 
 - Introdução à Arquitetura e Design de Software: Uma visão sobre a Plataforma Java (Paulo Silveira, Guilherme Silveira, Sérgio Lopes, Nico Steppat e Fabio King).
+
+## Unidade 4
+
+- Agile testing: a practical guide for testers and agile teams. 2009 Pearson Education, Lisa Crispin e Janet Gregory. Inc. Addison-Wesley; 
+
+- DevOps na Prática: entrega de software confiável e automatizada. Danilo Sato. Casa do Código. 
+
+- eXteme Programming: práticas para o dia a dia no desenvolvimento ágil de software. Daniel Wildt, Dionatan Moura, Guilherme 
+
+- Lacerda, Rafael Helm. 2015. Casa do Código
+
+- Test-Driven Development, teste e design no mundo real. Mauricio Aniche. Casa do Código.

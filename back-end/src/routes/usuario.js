@@ -13,6 +13,7 @@ router.get("/salvos/:id", passport.authenticate('jwt', { session: false }), usua
 router.get("/", passport.authenticate('jwt', { session: false }), usuarioController.obterUsuarios)
 router.post("/salvarFoto", passport.authenticate('jwt', { session: false }), usuarioController.salvarFoto)
 router.post("/chatInstance", passport.authenticate('jwt', { session: false }), usuarioController.instanciarChatUsuario)
+router.post("/deletar", passport.authenticate('jwt', { session: false }), usuarioController.deletarUsuario)
 
 
 

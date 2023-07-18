@@ -5,6 +5,9 @@ const perguntaSchema = require("../model/perguntaSchema.js")
 const chatSchema = require("../model/chatSchema.js")
 const usuarioService = require("../service/usuarioService.js")
 const jwt = require('jsonwebtoken')
+const avisoService = require("../service/avisoService.js")
+const perguntaService = require("../service/perguntaService.js")
+const respostaService = require("../service/respostaService.js")
 
 const buscarUsuario = (req, res) => {
     const { id } = req.params
@@ -108,6 +111,21 @@ const obterFotos = (req, res) => {
         })
 }
 
+const deletarUsuario = async (req, res) => {
+    try {
+        const { idUsuario } = req.body
+        await avisoService.deletarAvisos(idUsuario)
+        await perguntaService.deletarPerguntas(idUsuario)
+        await respostaService.deletarRespostas(idUsuario)
+        await usuarioService.limparChatsEmUsuarios(idUsuario)
+        await usuarioService.deletarChats(idUsuario)
+        await deletarUsuario(idUsuario)
+        res.status(200).send("deletado com sucesso!")
+    } catch (err) {
+        res.status(404).send({ error: "Erro ao deletar usuario", message: err.message });
+    }
+}
+
 
 
 module.exports = {
@@ -117,5 +135,6 @@ module.exports = {
     obterUsuarios,
     salvarFoto,
     instanciarChatUsuario,
-    obterFotos
+    obterFotos,
+    deletarUsuario
 }

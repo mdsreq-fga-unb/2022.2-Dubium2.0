@@ -100,6 +100,15 @@ const perguntasCadastradas = async (idUsuario) => {
     }
 }
 
+const deletarPerguntas = async (idUsuario) => {
+    try {
+        return await perguntaSchema.deleteMany({ "idUsuario.id": idUsuario }) 
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
+
 module.exports = {
     criarPergunta,
     obterPerguntas,
@@ -110,5 +119,6 @@ module.exports = {
     perguntasSalvas,
     perguntasCadastradas,
     editarPergunta,
-    deletarPerguntasPorUsuario
+    deletarPerguntasPorUsuario,
+    deletarPerguntas
 }

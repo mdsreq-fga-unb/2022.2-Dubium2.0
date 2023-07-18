@@ -103,6 +103,66 @@ const excluirUsuario = async (email) =>{
         }
     };
 
+const coletarChats = async (idUsuario) => {
+    try {
+        const chatsFiltrados = []
+        const idChats = []
+        const usuarios = await usuarioSchema.find({ _id: idUsuario })
+        const chatsDeUsuarios = usuarios.map(usuario => usuario.chats);
+        chatsDeUsuarios[0].forEach(chat => {
+            idChats.push(chat.idChat)
+            if (chat.privado){
+                if (chat.usuarios[0] == idUsuario) {
+                    chatsFiltrados.push(chat.usuarios[1])
+                } else if (chat.usuarios[1] == idUsuario) {
+                    chatsFiltrados.push(chat.usuarios[0])
+                }
+            }
+        })
+        const chats = chatsFiltrados
+        return {chats, idChats}
+    } catch (error) {
+        throw new Error(error.message, { Error: "Erro ao encontrar" })
+    }   
+}
+
+const limparChatsEmUsuarios = async (idUsuario) => {
+    try {
+        const {chats} = await coletarChats(idUsuario)
+        chats.forEach(async id => {
+        const usuario = await usuarioSchema.findById(id);
+        if (!usuario) {
+            throw new Error("Usuário não encontrado");
+        }
+        const chatsNaoPrivados = usuario.chats.filter(chat => chat.usuarios && !chat.usuarios.includes(idUsuario));
+        usuario.chats = chatsNaoPrivados;
+        await usuario.save();
+        })
+    } catch (error) {
+        throw new Error(error.message, { Error: "Erro ao encontrar" })
+    }    
+}
+
+const deletarChats = async (idUsuario) => {
+    try {
+        const {idChats} = await coletarChats(idUsuario)
+        idChats.forEach(async id => {
+            return await chatSchema.findByIdAndDelete({ _id: id })   
+        })
+
+    } catch (error) {
+        throw new Error(error.message, { Error: "Erro ao encontrar" })
+    } 
+}
+
+const deletarUsuario = async (idUsuario) => {
+    try {
+        return await usuarioSchema.findByIdAndDelete({ _id: idUsuario })
+    } catch (error) {
+        throw new Error(error.message, { Error: "Erro ao encontrar" })
+    }   
+}
+
 
 module.exports = {
     buscarUsuario,
@@ -113,5 +173,8 @@ module.exports = {
     instanciarChatUsuario,
     instanciarChatPublico,
     buscarUsuarioPorEmail,
-    excluirUsuario
+    excluirUsuario,
+    limparChatsEmUsuarios,
+    deletarChats,
+    deletarUsuario
 }

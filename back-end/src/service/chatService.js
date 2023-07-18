@@ -134,6 +134,9 @@ const chatUsuario = async (idUser) => {
     }  
 }
 
+
+
+
 module.exports = {
     criarInstanciaChat,
     registrarNotificacao,

@@ -145,23 +145,25 @@ export default function PerfilUsuario({ setLogado }) {
   }, [token]);
 
   const deletarUsuario = async () => {
-    if (confirm("Tem certeza que deseja excluir sua conta?")) {
-      await apiRequest
-        .delete(`usuarios/${idUsuario}`, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
-        .then(() => {
-          alert("Conta deletada com sucesso!");
-        })
-        .catch((error) => console.log(error));
-
-      localStorage.clear();
+    const data = { idUsuario: jwt(token).secret.id }
+    await apiRequest
+      .post("/usuario/deletar", data, {
+        headers: {
+          Authorization: "Bearer " + token
+        },
+      })
+      .then(response => {
+        alert("Conta deletada com sucesso!");
+      })
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+      document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       navigate("/");
       setLogado(false);
-    }
   };
+
+
 
   const handleDelete = () => {
     confirmAlert({

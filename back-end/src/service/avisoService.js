@@ -110,6 +110,14 @@ const deletarAvisosPorUsuario = async (user) => {
     }
 }
 
+const deletarAvisos = async (idUsuario) => {
+    try {
+        return await avisoSchema.deleteMany({ "usuario.id": idUsuario }) 
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
 
 module.exports = {
     criarAviso,
@@ -121,5 +129,6 @@ module.exports = {
     avisosSalvos,
     favoritarAviso,
     avisosCadastrados,
-    deletarAvisosPorUsuario
+    deletarAvisosPorUsuario,
+    deletarAvisos
 }

@@ -136,7 +136,40 @@ export default function PerguntaSelecionada() {
   }, [token])
 
 
+  const editarPergunta = async () => {
+    const infoPergunta = {
+      id_usuario : jwt(token).secret.id,
+      id_pergunta: idPergunta,
+      conteudo: conteudoEditado,
+      materia: tituloEditado
+    };
   
+    await apiRequest
+      .put(`/pergunta/editar/${idPergunta}`, infoPergunta, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response) => {
+        setEditando(true);
+        
+      })
+      .catch((error) => window.alert(error.response.data.message));
+  };
+
+  const habilitarEdicao = () => {
+    setEditando(true);
+    setTituloEditado(perguntaSelecionada?.titulo || "");
+    setConteudoEditado(perguntaSelecionada?.conteudo || "");
+    setMateriaEditada(perguntaSelecionada?.materia || "");
+  };
+
+  const cancelarEdicao = () => {
+    setEditando(false);
+    setTituloEditado("");
+    setConteudoEditado("");
+    setMateriaEditada("");
+  };
 
   const deletarPergunta = async () => {
     await apiRequest
@@ -270,7 +303,7 @@ export default function PerguntaSelecionada() {
             </IconButton>
           )}
           {token && jwt(token)?.secret?.id == perguntaSelecionada?.idUsuario?.id && (
-            <IconButton >
+            <IconButton onClick={editarPergunta}>
               <EditIcon sx={{ fontSize: 16 }} />
             </IconButton>
           )}
@@ -278,7 +311,30 @@ export default function PerguntaSelecionada() {
         <span className="filtroPerguntaSeleionada">
           {perguntaSelecionada?.filtro?.toUpperCase()}
         </span>
-
+        {editando ? (
+            <div>
+              <label htmlFor="">Título: </label><br></br><br></br>
+              <input
+                type="text"
+                value={tituloEditado}
+                onChange={(e) => setTituloEditado(e.target.value)}
+                className="textarea-editar"
+              />
+              <label htmlFor="">Conteúdo:</label><br></br><br></br>
+              <textarea className="conteudoArea"
+                value={conteudoEditado}
+                onChange={(e) => setConteudoEditado(e.target.value)}
+              ></textarea>
+              <div>
+              <button className="salvar-editar" onClick={editarPergunta}>Salvar</button>
+              <button className="cancelar-editar" onClick={cancelarEdicao}>Cancelar</button>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <span className="conteudo">{perguntaSelecionada?.conteudo}</span>
+            </div>
+          )}
         <ul className="container-interacao">
           <div className="ps-favoritar-salvar">
             <li

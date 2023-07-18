@@ -101,3 +101,66 @@
     width: 80%;
   }
 }
+
+.salvar-editar {
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 2px solid black; 
+  background-color: white; 
+  transition: background-color 0.3s; 
+  }
+  
+  .salvar-editar:hover {
+  background-color: lightgray;
+  }
+  
+  .salvar-editar:active {
+  background-color: gray; 
+  }
+  
+  .textarea-editar{
+    height: 40px; /* Define a altura desejada */
+    width: 100%; /* Define a largura desejada */
+    margin-bottom: 10px;
+    border-radius: 10px ;
+    border: 1px solid black;
+}
+
+.conteudoArea{
+  height: 100px; /* Define a altura desejada */
+  width: 100%; /* Define a largura desejada */
+  margin-bottom: 10px;
+  border-radius: 10px ;
+  border: 1px solid black;
+}
+
+.salvar-editar {
+margin-right: 10px;
+border-radius: 5px;
+border: 2px solid black; 
+background-color: white; 
+transition: background-color 0.3s; 
+}
+
+.salvar-editar:hover {
+background-color: lightgray;
+}
+
+.salvar-editar:active {
+background-color: gray; 
+}
+
+.cancelar-editar {
+margin-right: 10px;
+border-radius: 5px; 
+border: 2px solid black; 
+background-color: white; 
+transition: background-color 0.3s;
+}
+.cancelar-editar:hover {
+background-color: lightgray;
+}
+
+.cancelar-editar:active {
+background-color: gray;
+}

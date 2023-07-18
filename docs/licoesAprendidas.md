@@ -35,5 +35,5 @@ Outro ponto a destacar é essa troca de experiência com as demais equipes por m
 ## Unidade 04
 
 Essa última unidade da disciplina abordou na parte teórica sobre os diferentes tipos de testes a serem executados no projeto para exterminar eventuais problemas. 
-Em relação a parte prática, tudo o que foi aprendido no decorrer do semestre executamos nessa unidade, que pode ser entendida como uma das mais importantes e com maior impacto na entrega do nosso projeto/produto.
+Em relação a parte prática, tudo o que foi aprendido no decorrer do semestre executamos nessa unidade, que pode ser entendida como uma das mais importantes e com maior valor na entrega do nosso projeto/produto.
 Aprendemos, principalmente para trabalhos futuros, a importância da organização e divisão de tarefas é importante para que nenhum membro seja sobrecarregado com a alta demanda que um projeto exige.

@@ -10,9 +10,9 @@
 
 |Tipo de teste|Nível de teste|Técnica de teste|Objetivo|Perspectiva|Escopo|
 |-----------|-------|----------|----------|--------------|---------|
-|Funcional|Unitário|Automático|Qualidade interna|Técnica| US17(MVP1), US34(MVP1), US18(MVP2), US19(MVP2), US48(MVP2), US49(MVP2) e US50(MVP2)|
+|Funcional|Unitário|Automático|Qualidade interna|Técnica|US05, US06, US18, US18,US28, US35, US17(MVP1), US34(MVP1), US18(MVP2), US19(MVP2), US48(MVP2), US49(MVP2) e US50(MVP2)|
 |Funcional|Integração|Automático|Qualidade interna|Técnica| MVP1 e MVP2|
-|Funcional|Sistema|Caixa Preta|Qualidade externa|Negócio| MVP1 e MVP2|
+|Funcional|Sistema|Caixa Preta|Qualidade externa|Negócio| MVP1, US45(MVP2), US46(MVP2), US48(MVP2), US49(MVP2) e U50(MVP2)|
 |Usabilidade|Aceitação|Caixa Preta|Qualidade externa|Negócio|RNF04, RNF06, RNF07|
 
 ## Resultados
@@ -54,6 +54,7 @@ Já o teste de sistema do MVP2 pode ser observado a seguir:
 
 | US      | Descrição                                                                                                                                                                                                                                                | DOR | DOD | Critérios de Aceitação                                                                    | Passou? | Conclusão                                                                                                  |
 |---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|-----|-------------------------------------------------------------------------------------------|---------|------------------------------------------------------------------------------------------------------------|
+
 | **US45** | Eu, como usuário, quero ser capaz de pesquisar meu histórico de conversas por palavra-chave ou data específica, para que eu possa encontrar informações importantes de forma rápida e fácil.                                                            | OK  | OK  | - Deve ter um botão específico que indique a busca no chat.                                | Sim     | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.   |
 | **US46** | Eu, como usuário, quero ser capaz de arquivar conversas antigas que não são mais relevantes para mim, para manter minha lista de conversas organizada e fácil de usar.                                                                                    | OK  | OK  | - Deve ser possível acessar um chat arquivado.                                            | Sim     | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.   |
 | **US48** | Eu, como usuário, gostaria de ter o conteúdo de avisos analisados por uma IA para maior confiabilidade.                                                                                                                                                    | OK  | OK  | - Não deve ser criado o aviso, caso tenha conteúdo nocivo.                                 | Sim     | A história está respeitando seus critérios de aceitação e passou pelo DOR e DOD, então passou no teste.   |
@@ -72,7 +73,7 @@ O teste de aceitação foi realizado pela cliente, onde passamos em cada requisi
 |-----------|-----------|------------|---------------|
 |**RNF04**|O conteúdo de interface da aplicação deve ser totalmente responsivo para dispositivos desktop.|Sim|A cliente confirmou que no ambiente desktop a aplicação é responsiva.|
 |**RNF06**|O padrão de cores deverá seguir o que foi bem definido pelo cliente: Azul, verde, preto, branco e cinza.|Sim|A cliente navegou pela aplicação e confirmou que foi seguido o padrão de cores.|
-|**RNF07**|Deverá ter modo claro e escuro.|---| Não foi implementado.|
+|**RNF07**|Deverá ter modo claro e escuro.|Não| Não foi implementado.|
 
 
 

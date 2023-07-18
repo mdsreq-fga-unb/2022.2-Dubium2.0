@@ -51,19 +51,23 @@ const obterPerguntaPorId = (req, res) => {
         })
 }
 
-const editarPergunta = (req, res) => {
+const editarPergunta = async (req, res) => {
     const { id } = req.params
     const { titulo, conteudo, curso, filtro } = req.body
-    perguntaService.editarPergunta(id, req.user._id, titulo, conteudo, curso, filtro )
+    let conteudoPergunta = `${filtro}, ${titulo}, ${conteudo}`
+    try {
+        const data = await openaiService.analisarConteudoPost(conteudoPergunta);
+        const verificacao = data.data.choices[0].message.content;
+        if (verificacao === 'False' || verificacao === 'false') {
+            throw new Error("Conteúdo impróprio ou não condiz com o objetivo deste fórum");
+        }
+        perguntaService.editarPergunta(id, req.user._id, titulo, conteudo, curso, filtro )
         .then(updatedPergunta => {
             res.status(200).json(updatedPergunta)
         })
-        .catch(err => {
-            res.status(500).send({
-                error: "Erro ao atualizar pergunta",
-                message: err.message
-            });
-        });
+    } catch (err) {
+        res.status(500).send({ error: "Erro ao atualizar pergunta", message: err.message });
+    }
 }
 
 const deletarPergunta = (req, res) => {

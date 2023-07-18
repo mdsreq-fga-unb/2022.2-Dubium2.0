@@ -183,10 +183,10 @@ export default function PerguntaSelecionada() {
       })
       .then(response => {
         getRespostas()
-        setEditarResposta(false)
         setNovoConteudoResposta("")
       })
-      .catch(err => {console.log(err)})
+      .catch(err => {alert(err.response.data.message)})
+      setEditarResposta(false)
   }
 
   const cancelarEdicao = () => {
@@ -295,7 +295,7 @@ export default function PerguntaSelecionada() {
       .then(response => {
         getRespostas()
       })
-      .catch((error) => console.log(error));
+      .catch((error) => alert(error.response.data.message));
 
     setComentar(!comentar);
     reset()

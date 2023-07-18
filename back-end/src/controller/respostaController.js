@@ -6,11 +6,18 @@ const passport = require("passport")
 const RespostaSchema = require("../model/respostaSchema.js")
 const respostaSchema = require("../model/respostaSchema.js")
 const respostaService = require("../service/respostaService.js")
+const openaiService = require("../service/openaiService.js")
+
 
 
 router.put("/editar", passport.authenticate('jwt', { session: false }), async (req, res) => {
     const { idResposta, novoConteudo } = req.body
     try {
+        const data = await openaiService.analisarConteudoPost(novoConteudo);
+        const verificacao = data.data.choices[0].message.content;
+        if (verificacao === 'False' || verificacao === 'false') {
+            throw new Error("Conteúdo impróprio ou não condiz com o objetivo deste fórum");
+        }
         await respostaService.editarResposta(idResposta, novoConteudo)
         res.status(200).send("Resposta editada com sucesso")
     } catch (err) {
@@ -18,18 +25,20 @@ router.put("/editar", passport.authenticate('jwt', { session: false }), async (r
     }
 })
 
-router.post("/", passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post("/", passport.authenticate('jwt', { session: false }), async (req, res) => {
     const { Usuario, idPergunta, conteudo } = req.body
-    new RespostaSchema({ Usuario: Usuario, idPergunta: idPergunta, conteudo: conteudo, data: Date.now() }).save()
-        .then(data => {
-            res.status(201).send("Resposta criada com sucesso")
-        })
-        .catch(err => {
-            res.status(401).send({
-                error: "Erro ao criar resposta",
-                message: err
-            })
-        })
+    let conteudoResposta = `${conteudo}`
+    try {
+        const data = await openaiService.analisarConteudoPost(conteudoResposta);
+        const verificacao = data.data.choices[0].message.content;
+        if (verificacao === 'False' || verificacao === 'false') {
+            throw new Error("Conteúdo impróprio ou não condiz com o objetivo deste fórum");
+        }
+        await new RespostaSchema({ Usuario: Usuario, idPergunta: idPergunta, conteudo: conteudo, data: Date.now() }).save()
+        res.status(201).send("Resposta criada com sucesso")
+    } catch (err) {
+        res.status(401).send({error: "Erro ao criar resposta", message: err.message })
+    }
 })
 router.get("/pergunta/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
     const { id } = req.params

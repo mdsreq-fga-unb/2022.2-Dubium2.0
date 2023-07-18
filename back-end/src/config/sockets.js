@@ -2,6 +2,7 @@ const emitter = require('../auth/emitter.js');
 const http = require('../server.js')
 const io = require("socket.io")(http, {cors: {origin: "http://localhost:5173"}})
 const chatService = require("../service/chatService.js")
+const openaiService = require("../service/openaiService.js")
 
 
 io.on('connection', socket => {
@@ -64,6 +65,19 @@ io.on('connection', socket => {
 
             }
         }
+    })
+
+    socket.on("requisicaoIA", async (data) => {
+        if(!data){
+            return
+        }
+        data.user.id = "chatgpt"
+        data.user.nome = "GPT-3"
+        data.index = ""
+        const dataIA = await openaiService.analisarMensagem(data.message)
+        const resposta = dataIA.data.choices[0].message.content
+        data.message = resposta
+        socket.emit("respostaIA", data)
     })
 
     socket.on("limparNotificacao", (data) => {

@@ -189,6 +189,25 @@
   border-top-right-radius: 15px;
 }
 
+#textochatgpt {
+  margin-top: 10px;
+  float: left;
+  /* Alinha a fala à esquerda */
+  max-width: 40%;
+  margin-right: 50%;
+  margin-left: 5px;
+  gap: 10px;
+  width: auto;
+  height: auto;
+  padding: 13px;
+  color: #fbfcff;
+  /* background: linear-gradient(to left, rgb(101, 154, 204), rgb(68, 131, 182));   */
+  background-color: rgb(161, 173, 248);
+  border-end-end-radius: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
 .mensagem {
   word-wrap: break-word;
 }

@@ -21,8 +21,26 @@ const analisarConteudoPost = async (conteudo) => {
     }
 }
 
+const analisarMensagem = async (conteudo) => {
+    try {
+        return await openai.createChatCompletion({
+            model: "gpt-3.5-turbo",
+            messages: [
+                {
+                    role: "user",
+                    content: "Com 150 tokens, disserte sobre: " + conteudo,
+                }
+            ],
+            max_tokens: 150
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 
 module.exports = {
-    analisarConteudoPost
+    analisarConteudoPost,
+    analisarMensagem
 }

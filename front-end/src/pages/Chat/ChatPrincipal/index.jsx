@@ -35,6 +35,7 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
   const [fotosUsuarios, setFotoUsuarios] = useState({})
   const [mensagensFiltradas, setMensagensFiltradas] = useState([]);
   const [showMenu, setShowMenu] = useState({});
+  const [analise, setAnalise] = useState(true)
 
 
 
@@ -84,8 +85,15 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
       socket.emit("idUser", jwt(token).secret.id)
       socket.emit('joinInstance', usuarioSelecionado.chats)
       socket.on("receivedMessage", (message) => {
+        console.log(message)
         setarrayMensagens((prevarrayMensagens) => [...prevarrayMensagens, message]);
       });
+      socket.on("respostaIA", data => {
+        setAnalise(true)
+        saveMessages([data])
+        setarrayMensagens((prevarrayMensagens) => [...prevarrayMensagens, data]);
+        socket.emit("sendMessage", data)
+      })
     }
   }, [usuarioSelecionado]);
 
@@ -276,12 +284,17 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
     console.log("Ícone de voltar clicado!");
   };
 
+  const enviarMensagemIA = async (mensagem) => {
+    setAnalise(false)
+    socket.emit("requisicaoIA", mensagem)
+  }
+
 
 
   return token && socket && chat && usuarioSelecionado && arrayMensagens && messagesDB && (
     <div className="containerChatPrincipal">
 
-      <div class="corFundo">
+      <div className="corFundo">
         <div className="cabecalhoChat">
           {chat.privado && (
             <>
@@ -375,15 +388,22 @@ export default function ChatPrincipal({ mensagemPesquisada }) {
             return (mensagem.idRoom == chat._id) && (
               <div
                 key={index}
-                className={jwt(token).secret.id == mensagem.user.id ? "textoChat1" : "textoChatOutro"}>
+                className={jwt(token).secret.id == mensagem.user.id ? "textoChat1" : "textoChatOutro"}
+                id={mensagem.user.id == "chatgpt" ? "textochatgpt" : ""}
+                >
                 {chat.privado ? (<span className="mensagem" dangerouslySetInnerHTML={{
                   __html: highlightSearchText(mensagem.message, searchText)
                 }} />) : (<>{mensagem.user.nome}: {mensagem.message} </>)}
                 <span className="horario">{horarioFormatado(mensagem.horario)}</span>
-                <div className="analiseIa">
+                { analise && mensagem.privado &&            
+                <div className="analiseIa"
+                  onClick={() => {
+                    enviarMensagemIA(mensagem)
+                  }}
+                >
                   <SmartToyIcon style={{fontSize:'15px'}}/>
                   Analisar por uma IA
-                </div>
+                </div>}
               </div>
             );
           })
